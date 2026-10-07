@@ -1,0 +1,235 @@
+2026-10-07 19:16:08.120 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:16:08.175 [main] ERROR 
+No X11 DISPLAY variable was set,
+or no headful library support was found,
+but this program performed an operation which requires it.
+java.awt.HeadlessException: 
+No X11 DISPLAY variable was set,
+or no headful library support was found,
+but this program performed an operation which requires it.
+	at sun.awt.HeadlessToolkit.getScreenSize(HeadlessToolkit.java:186) ~[?:?]
+	at app.freerouting.gui.MainApplication.main(MainApplication.java:269) ~[fr19.jar:unspecified]
+2026-10-07 19:16:08.192 [main] ERROR Exception in FRAnalytics.trackAnonymousAction: Cannot invoke "app.freerouting.management.SegmentClient.track(String, String, String, app.freerouting.management.segment.Properties)" because "app.freerouting.management.FRAnalytics.analytics" is null
+java.lang.NullPointerException: Cannot invoke "app.freerouting.management.SegmentClient.track(String, String, String, app.freerouting.management.segment.Properties)" because "app.freerouting.management.FRAnalytics.analytics" is null
+	at app.freerouting.management.FRAnalytics.trackAnonymousAction(FRAnalytics.java:139) [fr19.jar:unspecified]
+	at app.freerouting.management.FRAnalytics.exceptionThrown(FRAnalytics.java:323) [fr19.jar:unspecified]
+	at app.freerouting.gui.DefaultExceptionHandler.handleException(DefaultExceptionHandler.java:15) [fr19.jar:unspecified]
+	at app.freerouting.gui.DefaultExceptionHandler.uncaughtException(DefaultExceptionHandler.java:29) [fr19.jar:unspecified]
+	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:695) [?:?]
+	at java.lang.ThreadGroup.uncaughtException(ThreadGroup.java:690) [?:?]
+	at java.lang.Thread.dispatchUncaughtException(Thread.java:2902) [?:?]
+2026-10-07 19:18:00.683 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:18:00.736 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:18:01.782 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:18:23.547 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:19:07.914 [Thread-22] INFO  Auto-routing was completed in 44.37 seconds.
+2026-10-07 19:19:08.017 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:19:13.016 [Thread-22] INFO  Route optimization was completed in 5.00 seconds.
+2026-10-07 19:19:13.029 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:20:31.206 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:20:31.260 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:20:32.287 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:20:53.730 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:21:29.517 [Thread-22] INFO  Auto-routing was completed in 35.78 seconds.
+2026-10-07 19:21:29.621 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:21:34.537 [Thread-22] INFO  Route optimization was completed in 4.92 seconds.
+2026-10-07 19:21:34.551 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:22:27.812 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:22:27.868 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:22:28.895 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:22:50.190 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:23:02.615 [Thread-22] INFO  Auto-routing was completed in 12.42 seconds.
+2026-10-07 19:23:02.717 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:29:19.818 [Thread-22] INFO  Route optimization was completed in 6 minute(s) 17.10 seconds and it improved the design by ~52.77%.
+2026-10-07 19:29:19.841 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:29:45.503 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:29:45.564 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:29:46.594 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:30:07.995 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:30:18.543 [Thread-22] INFO  Auto-routing was completed in 10.55 seconds.
+2026-10-07 19:30:18.645 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:30:23.185 [Thread-22] INFO  Route optimization was completed in 4.54 seconds.
+2026-10-07 19:30:23.202 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:30:40.045 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:30:40.102 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:30:41.132 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:31:02.442 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:31:15.252 [Thread-22] WARN  There were only 18.55 changes in the last 20 passes, so it's very likely that autorouter can't improve the result much further. It is recommended to stop it and finish the board manually.
+2026-10-07 19:31:18.932 [Thread-22] INFO  Auto-routing was completed in 16.49 seconds.
+2026-10-07 19:31:19.034 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:31:23.385 [Thread-22] INFO  Route optimization was completed in 4.35 seconds.
+2026-10-07 19:31:23.397 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:31:44.245 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:31:44.311 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:31:45.340 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:32:06.799 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:32:16.093 [Thread-22] INFO  Auto-routing was completed in 9.29 seconds.
+2026-10-07 19:32:16.196 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:35:02.511 [Thread-22] INFO  Route optimization was completed in 2 minute(s) 46.31 seconds and it improved the design by ~52.77%.
+2026-10-07 19:35:02.536 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:36:04.944 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:36:04.993 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:36:06.017 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:36:27.544 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:36:37.073 [Thread-22] WARN  There were only 18.65 changes in the last 20 passes, so it's very likely that autorouter can't improve the result much further. It is recommended to stop it and finish the board manually.
+2026-10-07 19:36:37.963 [Thread-22] INFO  Auto-routing was completed in 10.42 seconds.
+2026-10-07 19:36:38.065 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:36:42.747 [Thread-22] INFO  Route optimization was completed in 4.68 seconds.
+2026-10-07 19:36:42.760 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:38:01.472 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:38:01.527 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:38:02.554 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:38:24.033 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:38:35.082 [Thread-22] WARN  There were only 19.75 changes in the last 20 passes, so it's very likely that autorouter can't improve the result much further. It is recommended to stop it and finish the board manually.
+2026-10-07 19:38:35.590 [Thread-22] INFO  Auto-routing was completed in 11.56 seconds.
+2026-10-07 19:38:35.697 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:38:39.785 [Thread-22] INFO  Route optimization was completed in 4.09 seconds.
+2026-10-07 19:38:39.797 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:38:53.540 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:38:53.602 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:38:54.629 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:39:16.062 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:39:30.154 [Thread-22] WARN  There were only 16.85 changes in the last 20 passes, so it's very likely that autorouter can't improve the result much further. It is recommended to stop it and finish the board manually.
+2026-10-07 19:39:34.163 [Thread-22] INFO  Auto-routing was completed in 18.10 seconds.
+2026-10-07 19:39:34.265 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:39:39.135 [Thread-22] INFO  Route optimization was completed in 4.87 seconds.
+2026-10-07 19:39:39.147 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:39:44.373 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:39:44.434 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:39:45.465 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:40:06.822 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:40:41.323 [Thread-22] WARN  There were only 17.35 changes in the last 20 passes, so it's very likely that autorouter can't improve the result much further. It is recommended to stop it and finish the board manually.
+2026-10-07 19:41:03.300 [Thread-22] INFO  Auto-routing was completed in 56.48 seconds.
+2026-10-07 19:41:03.402 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:41:08.776 [Thread-22] INFO  Route optimization was completed in 5.37 seconds.
+2026-10-07 19:41:08.796 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:41:14.403 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:41:14.459 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:41:15.495 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:41:37.025 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:41:51.795 [Thread-22] WARN  There were only 16.40 changes in the last 20 passes, so it's very likely that autorouter can't improve the result much further. It is recommended to stop it and finish the board manually.
+2026-10-07 19:41:57.343 [Thread-22] INFO  Auto-routing was completed in 20.32 seconds.
+2026-10-07 19:41:57.447 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:42:02.637 [Thread-22] INFO  Route optimization was completed in 5.19 seconds.
+2026-10-07 19:42:02.650 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:43:01.589 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:43:01.661 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:43:02.695 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:43:24.289 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:43:34.732 [Thread-22] INFO  Auto-routing was completed in 10.44 seconds.
+2026-10-07 19:43:34.836 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:53:17.376 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:53:17.501 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:53:18.582 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:53:40.872 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:53:53.547 [Thread-22] INFO  Auto-routing was completed in 12.67 seconds.
+2026-10-07 19:53:53.649 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:56:58.444 [Thread-22] INFO  Route optimization was completed in 3 minute(s) 4.79 seconds and it improved the design by ~51.97%.
+2026-10-07 19:56:58.483 [Thread-22] INFO  Saving 'eclipse-core.ses'...
+2026-10-07 19:57:03.967 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:57:04.021 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:57:05.058 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:57:11.901 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 19:57:11.967 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 19:57:12.993 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 19:57:26.427 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:57:34.425 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 19:57:42.052 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.054 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.055 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.055 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.055 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.055 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.056 [Thread-22] WARN  ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2026-10-07 19:57:42.057 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.057 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.057 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.057 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.057 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.057 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.067 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.068 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.071 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.071 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.073 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.073 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.074 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.074 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.074 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.075 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.080 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.081 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.081 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:42.081 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:42.346 [Thread-22] INFO  Auto-routing was completed in 15.92 seconds.
+2026-10-07 19:57:42.448 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:57:51.232 [Thread-22] INFO  Auto-routing was completed in 16.80 seconds.
+2026-10-07 19:57:51.335 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 19:57:59.610 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.610 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.611 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.611 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.611 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.611 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.611 [Thread-22] WARN  ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2026-10-07 19:57:59.612 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.612 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.613 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.613 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.613 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.613 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.614 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.615 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.615 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.615 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.616 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.616 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.618 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.621 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.621 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.621 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.622 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.623 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.623 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.623 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.870 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.871 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.871 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.872 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.873 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.873 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.874 [Thread-22] WARN  ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2026-10-07 19:57:59.876 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.877 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.877 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.877 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.877 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.878 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.880 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.880 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.881 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.882 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.883 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.884 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.885 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.886 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 19:57:59.887 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.887 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.888 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.888 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.888 [Thread-22] WARN  IntPoint: p_x is out of range
+2026-10-07 19:57:59.889 [Thread-22] WARN  IntPoint: p_y is out of range
+2026-10-07 20:01:14.458 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 20:01:14.507 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 20:01:15.535 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 20:01:37.166 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 20:01:51.835 [Thread-22] INFO  Auto-routing was completed in 14.67 seconds.
+2026-10-07 20:01:51.947 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 20:05:17.624 [main] INFO  Freerouting v1.9.0 (build-date: 2023-10-30)
+2026-10-07 20:05:17.706 [main] INFO  Settings were loaded from freerouting.json
+2026-10-07 20:05:18.760 [main] INFO  Opening 'eclipse-core.dsn'...
+2026-10-07 20:05:40.809 [Thread-22] INFO  Starting auto-routing...
+2026-10-07 20:05:55.237 [Thread-22] INFO  Auto-routing was completed in 14.41 seconds.
+2026-10-07 20:05:55.338 [Thread-22] INFO  Starting route optimization on 1 thread...
+2026-10-07 20:08:45.526 [Thread-22] INFO  Route optimization was completed in 2 minute(s) 50.18 seconds and it improved the design by ~51.83%.
+2026-10-07 20:08:45.558 [Thread-22] INFO  Saving 'eclipse-core.ses'...

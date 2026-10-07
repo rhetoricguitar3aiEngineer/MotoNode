@@ -1,0 +1,9 @@
+# KiCad intermediates / caches
+*.dsn
+*.ses
+*.kicad_prl
+*-backups/
+fp-info-cache
+\#auto_saved_files\#
+_autosave-*
+__pycache__/
