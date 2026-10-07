@@ -1,0 +1,26 @@
+section,ref,qty,part,description,unit_usd,ext_usd,notes
+module,LED,8,WS2815 strip 60 LED/m IP65,12V addressable RGB strip (cut 8 LEDs),0.10,0.80,5 m roll ~$30 = $0.10/LED
+module,J_IN,1,3-pin waterproof pigtail (male),22AWG 15cm LED pigtail,0.12,0.12,sold as M/F pairs ~$0.25/pair
+module,J_OUT,1,3-pin waterproof pigtail (female),22AWG 15cm LED pigtail,0.13,0.13,
+module,HSG,1,Printed housing + diffuser,~12 g PETG/ASA,0.18,0.18,at $15/kg
+module,SEAL,1,Heat-shrink + neutral-cure silicone,consumables,0.05,0.05,
+module,,,,,MODULE TOTAL,1.28,
+controller,U2,1,ESP32-C3 SuperMini,MCU board with USB-C,1.80,1.80,
+controller,U1,1,MP1584EN buck module,12V->5V 3A adjustable,0.45,0.45,set to 5.0V before use
+controller,U3,1,74AHCT1G125,single buffer for 3.3->5V level shift,0.08,0.08,SOT-23-5
+controller,Q1,1,AO4407A,P-MOSFET -30V reverse-polarity protection,0.10,0.10,SO-8
+controller,D1,1,BZT52C12,12V zener gate clamp,0.02,0.02,
+controller,D2,1,SMBJ16A,TVS diode 16V standoff,0.05,0.05,
+controller,C1,1,470uF 25V,electrolytic bulk cap,0.06,0.06,
+controller,C2,1,100nF,ceramic decoupling,0.01,0.01,
+controller,OK1-3,3,PC817,optocoupler for brake/left/right inputs,0.03,0.09,
+controller,D3-5,3,1N4148,reverse protection for opto LEDs,0.01,0.03,
+controller,R,8,resistors 1/4W,"1x10k (Q1 gate), 3x2.2k (inputs), 3x10k (pull-ups), 1x33R (data)",0.01,0.08,
+controller,SW1,1,6x6 tactile button,mode button,0.03,0.03,
+controller,F1,1,inline blade fuse holder + 3A fuse,waterproof,0.35,0.35,
+controller,J2,1,3-pin waterproof pigtail (female),bus output,0.13,0.13,
+controller,J1/J3,1,5-pin waterproof pigtail pair,"vehicle harness: +12V, GND, brake, left, right",0.45,0.45,
+controller,PCB,1,5x7cm perfboard,,0.15,0.15,
+controller,HSG,1,Printed controller box,~25 g PETG/ASA,0.38,0.38,
+controller,,,,,CONTROLLER TOTAL,4.26,
+kit,,,"Starter kit = 1 controller + 6 modules",,,11.94,
