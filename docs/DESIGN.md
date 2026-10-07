@@ -54,7 +54,7 @@ wire or power injection. The design is also simpler and more robust.
 | Spec | Value |
 |---|---|
 | LEDs | 8 × WS2815 (5050 RGB) cut from a 60 LED/m strip |
-| Length | 8 × 16.67 mm = 133 mm (+ 2 × 8 mm end caps = 149 mm housing) |
+| Size | 133 mm of LEDs (8 × 16.67 mm); housing 155 × 16.5 × 9.7 mm, plus a 10 mm mounting tab at each end |
 | Supply | 12 V nominal (10–14.6 V) |
 | Current | ~20 mA/LED full white → **≈160 mA/module max**, ~40 mA typical |
 | Connectors | 1 × 3-pin waterproof pigtail IN (male), 1 × OUT (female) |
@@ -209,6 +209,9 @@ pio device monitor         # optional, 115200 baud debug output
 | `"diffuser"` | PETG **natural/clear**, 0.2 mm, 2 walls, 15% gyroid. Prints as a frosted diffuser for free |
 | `"controller"` | PETG/ASA, fits a 50 × 70 mm perfboard |
 | `"all"` | Preview of everything |
+
+The controller lid has a 4 mm hole over SW1. Press the button through a vinyl
+sticker or a dab of silicone covering the hole.
 
 The housing has two M4 mounting tabs (or use 3M VHB tape on the flat back),
 cable exits at both ends sized for 22 AWG 3-core pigtail cable (≈ 4.5 mm), and
