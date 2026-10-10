@@ -1,0 +1,3356 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "cd462249-3575-5b15-8ef6-f09a90142523")
+	(paper "A3")
+	(title_block
+		(title "ECLIPSE Tree - LED sprig flex (20 leaves)")
+		(date "2026-10-07")
+		(rev "A")
+		(company "ECLIPSE desk lamp - open hardware")
+		(comment 1 "20 x 0402 LED in parallel, ~5 mA each (100 mA per sprig)")
+		(comment 2 "Board: 2-layer polyimide flex 0.11 mm, 1/2 oz, bronze coverlay, ENIG")
+		(comment 3 "Build 20 with 2700 K LEDs and 20 with 6500 K LEDs per lamp")
+	)
+	(lib_symbols
+		(symbol "Connector_Generic:Conn_01x02"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x02_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:LED"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "LED"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Light emitting diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "LED diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LED_0_1"
+				(polyline
+					(pts
+						(xy -3.048 -0.762)
+						(xy -4.572 -2.286)
+						(xy -3.81 -2.286)
+						(xy -4.572 -2.286)
+						(xy -4.572 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -0.762)
+						(xy -3.302 -2.286)
+						(xy -2.54 -2.286)
+						(xy -3.302 -2.286)
+						(xy -3.302 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0)
+						(xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.27)
+						(xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27)
+						(xy 1.27 1.27)
+						(xy -1.27 0)
+						(xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "LED_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "LEAVES (all in parallel)"
+		(exclude_from_sim no)
+		(at 17.24 29.4 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "0f468b59-fd5a-5ee0-98f9-b28a1507f607")
+	)
+	(text "Same Vf bin on one sprig: the 20 LEDs share 100 mA without ballast resistors"
+		(exclude_from_sim no)
+		(at 20.32 154.94 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify left bottom)
+		)
+		(uuid "321b727c-ae25-5178-aa32-67ce37c6a754")
+	)
+	(rectangle
+		(start 15.24 25.4)
+		(end 400.05 160.02)
+		(stroke
+			(width 0.25)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "f12bc9cf-8a33-5cc2-b619-8f75c4669c6c")
+	)
+	(junction
+		(at 69.85 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9c1d1be9-15c3-5141-9bbf-329673973f9a")
+	)
+	(junction
+		(at 100.33 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0ac38eba-69e4-5dc9-a342-9f4cc5dc9c27")
+	)
+	(junction
+		(at 129.54 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "583eee31-7dc8-5fdf-b39e-80075ef75825")
+	)
+	(junction
+		(at 160.02 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6b003773-ff80-549a-ac22-8a2f3cc1ba2a")
+	)
+	(junction
+		(at 190.5 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "577cc854-f97f-560a-87ba-3b706e82572c")
+	)
+	(junction
+		(at 219.71 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "03302e39-e088-5f88-bc25-a19a43dbe35a")
+	)
+	(junction
+		(at 250.19 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6a82add7-34fb-5239-998d-1d39a10f1bf1")
+	)
+	(junction
+		(at 279.4 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4609b843-c132-5544-a937-185ead139294")
+	)
+	(junction
+		(at 309.88 54.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b445bda1-9862-5d42-b6cf-3c17d0727db4")
+	)
+	(junction
+		(at 69.85 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ba9ad488-c409-5b59-a41b-d14c1efc7583")
+	)
+	(junction
+		(at 100.33 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "06eb8dca-24f7-5bef-bc10-fc3a5741de25")
+	)
+	(junction
+		(at 129.54 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "55516ef6-b909-5ebf-97ff-c069013dc7dd")
+	)
+	(junction
+		(at 160.02 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cf58319e-977d-547d-b38f-33e92f11c86b")
+	)
+	(junction
+		(at 190.5 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8880da80-7e11-5113-ad42-4c0b2e61ea43")
+	)
+	(junction
+		(at 219.71 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8feff88c-bb22-580a-beef-03b77c056fcf")
+	)
+	(junction
+		(at 250.19 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3c502654-c782-52a1-b817-d225a521fe77")
+	)
+	(junction
+		(at 279.4 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7ec9989c-470d-5c72-bdf3-a10440555458")
+	)
+	(junction
+		(at 309.88 114.3)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "15703bbf-b909-5423-a066-5dc4465aafa7")
+	)
+	(junction
+		(at 63.5 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3efc15c4-4500-5892-9763-84826df52232")
+	)
+	(junction
+		(at 219.71 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "49405d1c-335e-5363-8e90-9fd39e9b1d4a")
+	)
+	(junction
+		(at 190.5 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a202f8a2-db4c-56a2-ad9a-a2d01eca1920")
+	)
+	(junction
+		(at 160.02 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "064a3b95-7ea3-522f-a19e-f2a1261e5b9d")
+	)
+	(junction
+		(at 250.19 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d5b2e1c8-174e-5e93-9f54-7b4175571ff8")
+	)
+	(junction
+		(at 279.4 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5b26cefe-be59-52de-90a3-147d52f4f59f")
+	)
+	(junction
+		(at 129.54 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ef5b07e8-aee4-547e-a612-44ab41d8fd6a")
+	)
+	(junction
+		(at 100.33 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "41bab43a-cdd4-5d5a-9b43-4c261dc57cfb")
+	)
+	(junction
+		(at 309.88 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e2f27bbc-9629-520e-b765-1aaf071b99bd")
+	)
+	(junction
+		(at 69.85 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "39d42586-61c4-509e-858c-0a555256e290")
+	)
+	(junction
+		(at 60.96 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f8a267bb-a72b-572e-a778-4e4445c5e0de")
+	)
+	(junction
+		(at 69.85 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c7de4e85-9edc-5375-a556-29510f81bdc7")
+	)
+	(junction
+		(at 100.33 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fd3130e2-8d26-56a0-8b2c-c9ff70a4a395")
+	)
+	(junction
+		(at 129.54 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8989080f-3499-5c0f-b983-eeb5728d54df")
+	)
+	(junction
+		(at 160.02 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d12a7d83-ff2b-59a9-86d0-a6216238fdfa")
+	)
+	(junction
+		(at 190.5 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ab6f0963-25b6-5ffe-af8c-50fa6faf92a0")
+	)
+	(junction
+		(at 219.71 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "51b9b6ab-625b-5607-93a3-5e728519c953")
+	)
+	(junction
+		(at 250.19 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "28a2bf5c-1833-5a0f-9248-f3ddb0487fd1")
+	)
+	(junction
+		(at 279.4 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f0e425e4-f8ad-5460-b0ca-5460e4012506")
+	)
+	(junction
+		(at 309.88 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8f48977b-e938-5b57-8cdc-e166b7ba4936")
+	)
+	(wire
+		(pts
+			(xy 35.56 91.44)
+			(xy 63.5 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f5f3b65-85cf-5837-aeb7-4697719737d5")
+	)
+	(wire
+		(pts
+			(xy 69.85 54.61)
+			(xy 100.33 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7828354d-f01b-5e92-949c-f3c96ac58bd3")
+	)
+	(wire
+		(pts
+			(xy 69.85 54.61)
+			(xy 63.5 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c4dbba6-983f-57e0-a623-ff8e1fb3ac8f")
+	)
+	(wire
+		(pts
+			(xy 69.85 54.61)
+			(xy 69.85 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dcb3d313-b162-5f28-9ba9-2c415b70d319")
+	)
+	(wire
+		(pts
+			(xy 100.33 54.61)
+			(xy 129.54 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4416716-f1b8-59cd-82d7-c2b3b6684066")
+	)
+	(wire
+		(pts
+			(xy 100.33 54.61)
+			(xy 100.33 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c93dafad-6ef0-58c7-9203-9fbf7f7d1cd9")
+	)
+	(wire
+		(pts
+			(xy 129.54 54.61)
+			(xy 129.54 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c1e7a94-1126-5e33-acc1-13f664712251")
+	)
+	(wire
+		(pts
+			(xy 129.54 54.61)
+			(xy 160.02 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "846ccaa3-5fdb-52b6-ab43-8606e4f00d93")
+	)
+	(wire
+		(pts
+			(xy 160.02 54.61)
+			(xy 190.5 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "14c07b5f-96cd-57b0-80ce-2a6c7c8d95ac")
+	)
+	(wire
+		(pts
+			(xy 160.02 54.61)
+			(xy 160.02 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "979e219a-08a1-5d9b-9852-2d629fd1a9a4")
+	)
+	(wire
+		(pts
+			(xy 190.5 54.61)
+			(xy 219.71 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff7d80c6-3ef0-54a8-90c4-c3d2678bdf6e")
+	)
+	(wire
+		(pts
+			(xy 190.5 54.61)
+			(xy 190.5 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9552ee61-0aa3-50c8-aa20-879551a3edeb")
+	)
+	(wire
+		(pts
+			(xy 219.71 54.61)
+			(xy 219.71 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03e0dcaa-795a-5afa-a53f-16e9afeb7081")
+	)
+	(wire
+		(pts
+			(xy 219.71 54.61)
+			(xy 250.19 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0aeec96-b75e-56e4-a2c9-f45f5287882a")
+	)
+	(wire
+		(pts
+			(xy 250.19 54.61)
+			(xy 250.19 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b94e7a67-9497-56e2-9b4f-8cd286ff1393")
+	)
+	(wire
+		(pts
+			(xy 250.19 54.61)
+			(xy 279.4 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e609b70-1a57-5234-8fa7-f3712310b05a")
+	)
+	(wire
+		(pts
+			(xy 279.4 54.61)
+			(xy 279.4 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a05fd902-1bc4-54eb-8820-c0af599fd7a8")
+	)
+	(wire
+		(pts
+			(xy 279.4 54.61)
+			(xy 309.88 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "858d52fa-0432-54e1-8c8f-7ffc8c22a5b8")
+	)
+	(wire
+		(pts
+			(xy 309.88 54.61)
+			(xy 309.88 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5520708c-c6a9-5b3e-8cd3-c9fff59cff0e")
+	)
+	(wire
+		(pts
+			(xy 309.88 54.61)
+			(xy 340.36 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8cde5b63-ba89-5d22-a960-83a1c5ce60fc")
+	)
+	(wire
+		(pts
+			(xy 340.36 54.61)
+			(xy 340.36 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91bd71d1-3aa7-5756-87ca-01b9e2a6ed05")
+	)
+	(wire
+		(pts
+			(xy 69.85 114.3)
+			(xy 69.85 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "113ab661-6d9a-5121-abf0-28b15669bfa5")
+	)
+	(wire
+		(pts
+			(xy 69.85 114.3)
+			(xy 100.33 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6de80129-2aa0-5e03-b9aa-20c15ad36ff2")
+	)
+	(wire
+		(pts
+			(xy 69.85 114.3)
+			(xy 69.85 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3efd8d2-d99f-54eb-b90d-9f6a068602e6")
+	)
+	(wire
+		(pts
+			(xy 100.33 114.3)
+			(xy 100.33 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1941fbd-2b79-5651-b1e8-4b966b022a65")
+	)
+	(wire
+		(pts
+			(xy 100.33 114.3)
+			(xy 129.54 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a8971d94-9f38-5933-8b49-31b699161598")
+	)
+	(wire
+		(pts
+			(xy 129.54 114.3)
+			(xy 129.54 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe989bd6-e9bb-59e1-a2ca-51bfa40283c9")
+	)
+	(wire
+		(pts
+			(xy 129.54 114.3)
+			(xy 160.02 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c544d20-47d4-5486-bbe8-9848af16fe1d")
+	)
+	(wire
+		(pts
+			(xy 160.02 114.3)
+			(xy 160.02 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f3c23fb-5974-531c-b1be-fc7030f2208a")
+	)
+	(wire
+		(pts
+			(xy 160.02 114.3)
+			(xy 190.5 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ad44f58-5c67-5610-939d-6d9932594a57")
+	)
+	(wire
+		(pts
+			(xy 190.5 114.3)
+			(xy 190.5 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef10931f-651d-50d3-b83e-947ee69f7074")
+	)
+	(wire
+		(pts
+			(xy 190.5 114.3)
+			(xy 219.71 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27b7266d-eb94-5f0a-8cb9-35e2c6d8c06d")
+	)
+	(wire
+		(pts
+			(xy 219.71 114.3)
+			(xy 219.71 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c2da1b4-8629-520d-8a4c-d6c8f3e27e00")
+	)
+	(wire
+		(pts
+			(xy 219.71 114.3)
+			(xy 250.19 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e85187f-cc2b-556c-a472-08ec4761c9f3")
+	)
+	(wire
+		(pts
+			(xy 250.19 114.3)
+			(xy 250.19 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "abff404c-d41c-5f3c-af25-0bdf3620d462")
+	)
+	(wire
+		(pts
+			(xy 250.19 114.3)
+			(xy 279.4 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3cd00dfc-e740-5d63-abc1-127fd7899d7d")
+	)
+	(wire
+		(pts
+			(xy 279.4 114.3)
+			(xy 279.4 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48e321c6-c36b-57b7-80f4-3ad721f3c4bc")
+	)
+	(wire
+		(pts
+			(xy 279.4 114.3)
+			(xy 309.88 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c40da6f-d409-531e-bb92-abbc2a6573b0")
+	)
+	(wire
+		(pts
+			(xy 309.88 114.3)
+			(xy 340.36 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91ce1f49-8cf5-52a3-b569-2cb1cd64a424")
+	)
+	(wire
+		(pts
+			(xy 309.88 114.3)
+			(xy 309.88 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac3e14c2-dee6-57f3-a5bc-530bbd285d28")
+	)
+	(wire
+		(pts
+			(xy 340.36 114.3)
+			(xy 340.36 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f49c4c11-a3c7-577d-87d3-45438a1c2780")
+	)
+	(wire
+		(pts
+			(xy 63.5 91.44)
+			(xy 69.85 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4da80836-3d69-5437-8a79-0d370710ac7c")
+	)
+	(wire
+		(pts
+			(xy 63.5 91.44)
+			(xy 63.5 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad338853-22a1-5143-bd07-d74339970664")
+	)
+	(wire
+		(pts
+			(xy 35.56 88.9)
+			(xy 60.96 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "457328bb-5a9e-53ff-a51a-4e73fc418b95")
+	)
+	(wire
+		(pts
+			(xy 69.85 63.5)
+			(xy 69.85 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3773843-f7d1-599f-ad86-3ddd3e67c714")
+	)
+	(wire
+		(pts
+			(xy 100.33 63.5)
+			(xy 100.33 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5504537d-eb74-5738-9e58-093d498adc66")
+	)
+	(wire
+		(pts
+			(xy 129.54 63.5)
+			(xy 129.54 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31c81b76-d4e8-54f5-bf36-68fd5dcdbc23")
+	)
+	(wire
+		(pts
+			(xy 160.02 63.5)
+			(xy 160.02 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00e3aba3-d551-567e-9102-8fe59a1e8956")
+	)
+	(wire
+		(pts
+			(xy 190.5 63.5)
+			(xy 190.5 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "adf0077a-697d-52e8-a8ff-13ea24e8071d")
+	)
+	(wire
+		(pts
+			(xy 219.71 63.5)
+			(xy 219.71 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae464aaa-113e-5a70-ac4a-141d9e9b160d")
+	)
+	(wire
+		(pts
+			(xy 250.19 63.5)
+			(xy 250.19 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5601bc37-1911-5330-b7ab-0354caec1e55")
+	)
+	(wire
+		(pts
+			(xy 279.4 63.5)
+			(xy 279.4 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9d5d2f5-460b-5ded-a64e-7b9038870fb7")
+	)
+	(wire
+		(pts
+			(xy 309.88 63.5)
+			(xy 309.88 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "76a140a7-0d25-5bda-8c75-e6c26d28ef14")
+	)
+	(wire
+		(pts
+			(xy 340.36 63.5)
+			(xy 340.36 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4718ec07-34cc-557d-8472-f98a3ddecc82")
+	)
+	(wire
+		(pts
+			(xy 69.85 123.19)
+			(xy 69.85 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "361be1c8-06f7-55bf-ab42-3340c620ef45")
+	)
+	(wire
+		(pts
+			(xy 100.33 123.19)
+			(xy 100.33 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f123733-8cf1-549f-bc35-c46c7bedcd68")
+	)
+	(wire
+		(pts
+			(xy 129.54 123.19)
+			(xy 129.54 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28a05f48-b824-5be2-bc1d-696848d67109")
+	)
+	(wire
+		(pts
+			(xy 160.02 123.19)
+			(xy 160.02 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed951839-0a4f-58d9-bff1-207b95206d55")
+	)
+	(wire
+		(pts
+			(xy 190.5 123.19)
+			(xy 190.5 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d807203d-472c-5797-b25e-da0a9b3c059d")
+	)
+	(wire
+		(pts
+			(xy 219.71 123.19)
+			(xy 219.71 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eba26287-257c-54ad-bfe3-3181f54fe651")
+	)
+	(wire
+		(pts
+			(xy 250.19 123.19)
+			(xy 250.19 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e593d7b2-eec7-5733-9cfc-4e3972a8596c")
+	)
+	(wire
+		(pts
+			(xy 279.4 123.19)
+			(xy 279.4 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f149fa59-896b-5d26-9b47-c08c4a13d8a7")
+	)
+	(wire
+		(pts
+			(xy 309.88 123.19)
+			(xy 309.88 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ec88364-f3ad-5ebc-b38b-cf48665b0fe0")
+	)
+	(wire
+		(pts
+			(xy 340.36 123.19)
+			(xy 340.36 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80342ca6-9c4a-549c-88bf-93ab5cc51c38")
+	)
+	(wire
+		(pts
+			(xy 219.71 67.31)
+			(xy 250.19 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04bf13b4-868d-5054-98ae-acc1b10b660b")
+	)
+	(wire
+		(pts
+			(xy 219.71 67.31)
+			(xy 190.5 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c667e7d2-ac62-5b4a-a3cb-1c0dadc2611a")
+	)
+	(wire
+		(pts
+			(xy 190.5 67.31)
+			(xy 160.02 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2db08e6d-469b-5ad1-a69f-f2f04e4013bc")
+	)
+	(wire
+		(pts
+			(xy 160.02 67.31)
+			(xy 129.54 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31d88adb-7652-5635-90a5-e54643123107")
+	)
+	(wire
+		(pts
+			(xy 250.19 67.31)
+			(xy 279.4 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7f25ce5-d546-55a9-9ef5-b4d53b8639d4")
+	)
+	(wire
+		(pts
+			(xy 279.4 67.31)
+			(xy 309.88 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26e3eafd-1cf1-53a0-a0d1-f8bf5d79604d")
+	)
+	(wire
+		(pts
+			(xy 129.54 67.31)
+			(xy 100.33 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03e20521-58f4-523e-9a4e-0d78d75f32d5")
+	)
+	(wire
+		(pts
+			(xy 100.33 67.31)
+			(xy 69.85 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e10822ef-f829-563a-90d6-9522a39ebde7")
+	)
+	(wire
+		(pts
+			(xy 309.88 67.31)
+			(xy 340.36 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8247a38-2000-52ad-a754-6ea5e7e317a8")
+	)
+	(wire
+		(pts
+			(xy 69.85 67.31)
+			(xy 69.85 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f085c0e-ed56-560d-b1eb-b680820fe0e8")
+	)
+	(wire
+		(pts
+			(xy 60.96 88.9)
+			(xy 60.96 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3b9312d-6d0d-5005-91af-efb9795ead67")
+	)
+	(wire
+		(pts
+			(xy 60.96 88.9)
+			(xy 69.85 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a5efdc2-2b5b-5199-be65-a2393c684c42")
+	)
+	(wire
+		(pts
+			(xy 69.85 125.73)
+			(xy 100.33 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bb2b3e8-1cf8-508b-860b-6db3f01c914a")
+	)
+	(wire
+		(pts
+			(xy 69.85 125.73)
+			(xy 60.96 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b163054-a902-52e9-9fbf-aeefaf31003f")
+	)
+	(wire
+		(pts
+			(xy 100.33 125.73)
+			(xy 129.54 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0dac2ede-5048-5230-8f2a-9884c32affa0")
+	)
+	(wire
+		(pts
+			(xy 129.54 125.73)
+			(xy 160.02 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "23b66c81-6b10-5ad0-ad21-d0f9409c581b")
+	)
+	(wire
+		(pts
+			(xy 160.02 125.73)
+			(xy 190.5 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ff9592e-2715-5a32-a90b-144913983bde")
+	)
+	(wire
+		(pts
+			(xy 190.5 125.73)
+			(xy 219.71 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "638e7cb1-6cfa-574a-b729-ef921d31e4fc")
+	)
+	(wire
+		(pts
+			(xy 219.71 125.73)
+			(xy 250.19 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71cef0de-8965-52e9-921b-cff5bbfccea1")
+	)
+	(wire
+		(pts
+			(xy 250.19 125.73)
+			(xy 279.4 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a74665e0-feb5-5d92-9d85-1420dd872447")
+	)
+	(wire
+		(pts
+			(xy 279.4 125.73)
+			(xy 309.88 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0229dab8-d26b-5a4b-85b0-bf9875b46fd3")
+	)
+	(wire
+		(pts
+			(xy 309.88 125.73)
+			(xy 340.36 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00f6fa8f-8b4e-5050-af6a-b299b6ba8130")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 30.48 91.44 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "3a8fcc91-660d-5c3f-a573-d6678339d61d")
+		(property "Reference" "J1"
+			(at 30.48 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ROOT"
+			(at 30.48 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:SprigRoot"
+			(at 30.48 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 30.48 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 30.48 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "PCB land"
+			(at 30.48 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Root pads: 1 = anode, 2 = cathode"
+			(at 30.48 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "be15497f-135d-576e-93ce-bb70d2299c58")
+		)
+		(pin "2"
+			(uuid "7df9fa62-538b-524b-b132-605af832ffec")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 69.85 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "68dadc96-1587-5f23-bd45-cd64b0cc0a86")
+		(property "Reference" "D1"
+			(at 67.31 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 72.39 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 69.85 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 69.85 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 69.85 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 69.85 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 69.85 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "349dc13c-1856-5193-881e-0ae96e618ac0")
+		)
+		(pin "2"
+			(uuid "e2704c08-1ab4-5abf-8355-9fb92f74ac0d")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 100.33 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c514205a-1331-5a05-9187-0a8b3db0abe0")
+		(property "Reference" "D2"
+			(at 97.79 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 102.87 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 100.33 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 100.33 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 100.33 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 100.33 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 100.33 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "045a85d2-8a8b-5917-883a-16b4b6b0e257")
+		)
+		(pin "2"
+			(uuid "788f1dc3-cd95-5d78-bd5e-545e19310802")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 129.54 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d230954e-9f6a-5be8-976b-2231f8b17a11")
+		(property "Reference" "D3"
+			(at 127 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 132.08 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 129.54 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 129.54 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 129.54 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 129.54 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 129.54 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1008e726-78c9-5819-a18f-a3fec064be71")
+		)
+		(pin "2"
+			(uuid "f8d45bed-42fe-5c5c-8024-41c8a455abd0")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 160.02 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "13437dd2-ea51-5067-9397-81981218a89f")
+		(property "Reference" "D4"
+			(at 157.48 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 162.56 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 160.02 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 160.02 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 160.02 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 160.02 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a4ee9433-1dca-541b-a3e4-1b5a20d4ae52")
+		)
+		(pin "2"
+			(uuid "f191fa29-dfca-5bef-baa0-b366bcb85bd9")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 190.5 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d9dfcbbb-2432-511b-b458-5803bcfdf1e7")
+		(property "Reference" "D5"
+			(at 187.96 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 193.04 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 190.5 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 190.5 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 190.5 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 190.5 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 190.5 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "661247b7-9e08-5f0d-821f-c3c93fcbcb2d")
+		)
+		(pin "2"
+			(uuid "c0df0c23-9535-5f4e-b908-e3d14f981de7")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 219.71 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "af915346-5f8b-57cb-8a19-60b359b02001")
+		(property "Reference" "D6"
+			(at 217.17 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 222.25 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 219.71 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 219.71 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 219.71 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 219.71 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 219.71 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d7c0c547-b85a-51d6-8234-349ca1e43c77")
+		)
+		(pin "2"
+			(uuid "8c588b72-e9d4-5db2-9428-c6c564d1b94d")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 250.19 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f150e4ba-ed09-582e-92c5-006516c3cb73")
+		(property "Reference" "D7"
+			(at 247.65 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 252.73 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 250.19 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 250.19 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 250.19 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 250.19 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3037ca26-cf5a-52e2-b7a2-587b06a755a7")
+		)
+		(pin "2"
+			(uuid "9a57b511-e1b8-5e3f-97f7-414f40a60ef6")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 279.4 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7600ace3-8884-55d9-a58a-ebe2eba88c6c")
+		(property "Reference" "D8"
+			(at 276.86 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 281.94 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 279.4 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 279.4 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 279.4 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 279.4 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 279.4 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fa34af5b-2436-5933-a9c6-5af8406b86c0")
+		)
+		(pin "2"
+			(uuid "7c3781fa-8c09-52ec-9382-27e09ffb0e27")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 309.88 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "71a4fa15-6c2c-594e-943e-7f5b189944a4")
+		(property "Reference" "D9"
+			(at 307.34 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 312.42 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 309.88 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 309.88 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 309.88 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 309.88 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 309.88 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "83e83c0d-c188-5b51-ae85-a82f0de3123e")
+		)
+		(pin "2"
+			(uuid "b19a03c0-b8db-5f98-a16d-cb38a7c070e8")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 340.36 59.69 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ae4e9220-53d5-504e-b57b-7510c6b651b6")
+		(property "Reference" "D10"
+			(at 337.82 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 342.9 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 340.36 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 340.36 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 340.36 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 340.36 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 340.36 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bcf7523c-2278-5076-a872-83c9514cb199")
+		)
+		(pin "2"
+			(uuid "e3c149c3-cbe8-5291-92fb-b23623ba92c3")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 69.85 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2510bef7-c205-51ea-a5a5-c4127794cbb6")
+		(property "Reference" "D11"
+			(at 67.31 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 72.39 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 69.85 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 69.85 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 69.85 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 69.85 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 69.85 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69f26c2c-233b-5e3d-9378-7781c478293e")
+		)
+		(pin "2"
+			(uuid "19ed7e98-430d-509b-9c33-3d24a4bba86b")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 100.33 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2cad77f9-c255-5243-aeb3-d9b3f51bfc52")
+		(property "Reference" "D12"
+			(at 97.79 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 102.87 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 100.33 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 100.33 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 100.33 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 100.33 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 100.33 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "432ae985-2f56-530e-8b08-0f1409581217")
+		)
+		(pin "2"
+			(uuid "657fc2b4-1e0a-5120-8feb-712252f74b30")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 129.54 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2bfa0793-fbea-5951-b464-4cf3e261758d")
+		(property "Reference" "D13"
+			(at 127 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 132.08 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 129.54 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 129.54 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 129.54 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 129.54 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 129.54 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d67dc16-3862-508d-8da8-88dc1733cb91")
+		)
+		(pin "2"
+			(uuid "94a2f62d-3013-57eb-b519-595e6dd53959")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 160.02 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8450a53c-0b43-5b42-bf1e-41c78bde0c64")
+		(property "Reference" "D14"
+			(at 157.48 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 162.56 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 160.02 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 160.02 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 160.02 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 160.02 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 160.02 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "18c0cc70-5f04-5927-9f50-392547a2a616")
+		)
+		(pin "2"
+			(uuid "a25edc4f-cd00-565c-bc2a-b711dc605fc3")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 190.5 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2e115d4d-6f67-51ae-a6d2-fa2c31f1560d")
+		(property "Reference" "D15"
+			(at 187.96 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 193.04 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 190.5 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 190.5 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 190.5 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 190.5 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 190.5 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f5acc788-1d82-5995-b230-e94d2f7b2200")
+		)
+		(pin "2"
+			(uuid "97ad5a07-d758-508f-9c84-42d51285b933")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 219.71 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a7883722-c9aa-5169-b16f-7d98f6735452")
+		(property "Reference" "D16"
+			(at 217.17 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 222.25 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 219.71 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 219.71 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 219.71 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 219.71 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 219.71 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4baac826-012f-5b7d-b12c-c332cdf01087")
+		)
+		(pin "2"
+			(uuid "a4539ac5-5f4d-53a2-ab89-f6a184f0a48d")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 250.19 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4049a6f1-052e-5a1d-bc34-cedcb5ffe74c")
+		(property "Reference" "D17"
+			(at 247.65 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 252.73 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 250.19 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 250.19 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 250.19 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 250.19 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5d7aa197-e132-5478-9167-875d33de527d")
+		)
+		(pin "2"
+			(uuid "310e3c87-6be2-5e9d-bcdb-78cf23d073a9")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 279.4 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "17e69ed0-1f4e-5303-ae55-c989b2f20239")
+		(property "Reference" "D18"
+			(at 276.86 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 281.94 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 279.4 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 279.4 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 279.4 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 279.4 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 279.4 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "653fd0f4-4dbe-5a5c-8236-797bf4fcf4a3")
+		)
+		(pin "2"
+			(uuid "2a0bd9a2-2028-5e83-a854-c6633bd4b2e1")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 309.88 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7daf63da-d3e0-5b6e-b38c-5024cb8f3a0f")
+		(property "Reference" "D19"
+			(at 307.34 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 312.42 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 309.88 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 309.88 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 309.88 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 309.88 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 309.88 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1529ed65-bea8-5438-b281-ec67c78428f1")
+		)
+		(pin "2"
+			(uuid "cc9b554d-0355-5783-b7ca-4ba0e3110e5c")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 340.36 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5e326a54-3eeb-5157-9759-5b9d5926fc39")
+		(property "Reference" "D20"
+			(at 337.82 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LEAF"
+			(at 342.9 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 340.36 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 340.36 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Inolux / Lite-On (select bin)"
+			(at 340.36 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402 white LED, 2700K or 6500K"
+			(at 340.36 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Leaf: 0402 white LED, If 5 mA"
+			(at 340.36 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "20c5d21d-b891-5b71-aef1-365a8ec36684")
+		)
+		(pin "2"
+			(uuid "5f5f03b0-2c30-536d-8719-5aaa96be4b39")
+		)
+		(instances
+			(project "eclipse-sprig"
+				(path "/cd462249-3575-5b15-8ef6-f09a90142523"
+					(reference "D20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

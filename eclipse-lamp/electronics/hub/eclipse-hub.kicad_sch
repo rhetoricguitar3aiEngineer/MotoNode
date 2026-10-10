@@ -1,0 +1,6880 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "30dcb7a8-4b37-5331-a842-cbd2eddfc107")
+	(paper "A2")
+	(title_block
+		(title "ECLIPSE Tree - Hub board (sprig chaining, in the burl)")
+		(date "2026-10-07")
+		(rev "A")
+		(company "ECLIPSE desk lamp - open hardware")
+		(comment 1 "40 sprig lands, 4 series chains of 10 sprigs (W1, C1, W2, C2), crown NTC")
+		(comment 2 "Board: D36 mm, 2 layers 1.0 mm FR4, 1 oz, black mask, ENIG; potted in the burl")
+		(comment 3 "J1 = 10 trunk-wire lands, pinout identical to core J2")
+	)
+	(lib_symbols
+		(symbol "Connector_Generic:Conn_01x02"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x02_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Connector_Generic:Conn_01x10"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x10"
+				(at 0 -15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x10_1_1"
+				(rectangle
+					(start -1.27 11.43)
+					(end 1.27 -13.97)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 10.287)
+					(end 0 10.033)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 7.747)
+					(end 0 7.493)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 5.207)
+					(end 0 4.953)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 2.667)
+					(end 0 2.413)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -4.953)
+					(end 0 -5.207)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -7.493)
+					(end 0 -7.747)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -10.033)
+					(end 0 -10.287)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -12.573)
+					(end 0 -12.827)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 10.16 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 7.62 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 5.08 0)
+					(length 3.81)
+					(name "Pin_3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 2.54 0)
+					(length 3.81)
+					(name "Pin_4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -5.08 0)
+					(length 3.81)
+					(name "Pin_7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -7.62 0)
+					(length 3.81)
+					(name "Pin_8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -10.16 0)
+					(length 3.81)
+					(name "Pin_9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -12.7 0)
+					(length 3.81)
+					(name "Pin_10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:Thermistor_NTC"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TH"
+				(at -4.445 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Thermistor_NTC"
+				(at 3.175 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Temperature dependent resistor, negative temperature coefficient"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "thermistor NTC resistor sensor RTD"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_* RV_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Thermistor_NTC_0_1"
+				(arc
+					(start -3.175 2.413)
+					(mid -3.0506 2.3165)
+					(end -3.048 2.159)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -3.048 2.794)
+					(mid -2.9736 2.9736)
+					(end -2.794 3.048)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -2.794 3.048)
+					(mid -2.6144 2.9736)
+					(end -2.54 2.794)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -2.794 2.54)
+					(mid -2.9736 2.6144)
+					(end -3.048 2.794)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -2.794 1.905)
+					(mid -2.9736 1.9794)
+					(end -3.048 2.159)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -2.54 2.159)
+					(mid -2.6144 1.9794)
+					(end -2.794 1.905)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -2.159 2.794)
+					(mid -2.434 2.5608)
+					(end -2.794 2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 2.159)
+						(xy -2.54 2.794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 -3.683)
+						(xy -2.54 -1.397)
+						(xy -2.794 -2.159)
+						(xy -2.286 -2.159)
+						(xy -2.54 -1.397)
+						(xy -2.54 -1.651)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 2.54)
+						(xy -1.778 1.524)
+						(xy 1.778 -1.524)
+						(xy 1.778 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -1.397)
+						(xy -1.778 -3.683)
+						(xy -2.032 -2.921)
+						(xy -1.524 -2.921)
+						(xy -1.778 -3.683)
+						(xy -1.778 -3.429)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start -1.016 2.54)
+					(end 1.016 -2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Thermistor_NTC_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "CHAIN W1  (2700 K, 10 sprigs in series, 100 mA)"
+		(exclude_from_sim no)
+		(at 17.24 43.37 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "25e001fa-797b-5be6-baad-5a6596173870")
+	)
+	(text "CHAIN C1  (6500 K, 10 sprigs in series, 100 mA)"
+		(exclude_from_sim no)
+		(at 17.24 114.49 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "765363df-9277-5da9-b20e-7dad0bbde883")
+	)
+	(text "CHAIN W2  (2700 K, 10 sprigs in series, 100 mA)"
+		(exclude_from_sim no)
+		(at 17.24 184.34 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "99ef6389-6ba5-5f1c-bb8e-10cf920a4c00")
+	)
+	(text "CHAIN C2  (6500 K, 10 sprigs in series, 100 mA)"
+		(exclude_from_sim no)
+		(at 17.24 254.19 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "17ebab2d-e988-55c7-8c4c-d0d94ee66c45")
+	)
+	(text "TRUNK HARNESS + CROWN NTC"
+		(exclude_from_sim no)
+		(at 482.06 43.37 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "1eea03e0-4a36-5e1f-8747-79a6d33bd6e4")
+	)
+	(rectangle
+		(start 15.24 39.37)
+		(end 469.9 100.33)
+		(stroke
+			(width 0.25)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "c73e94b3-21de-5535-9289-f5104d66e78d")
+	)
+	(rectangle
+		(start 15.24 110.49)
+		(end 469.9 170.18)
+		(stroke
+			(width 0.25)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "f1a1cbae-fe7f-5148-b7a9-3713eb64decb")
+	)
+	(rectangle
+		(start 15.24 180.34)
+		(end 469.9 240.03)
+		(stroke
+			(width 0.25)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "c87c7ca5-9edc-527c-a247-49f775b50a16")
+	)
+	(rectangle
+		(start 15.24 250.19)
+		(end 469.9 309.88)
+		(stroke
+			(width 0.25)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "28fe0ee9-ef09-595f-9192-783896670c88")
+	)
+	(rectangle
+		(start 480.06 39.37)
+		(end 570.23 330.2)
+		(stroke
+			(width 0.25)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "79883bb3-a8eb-5393-9d77-4c106cb2a6ce")
+	)
+	(wire
+		(pts
+			(xy 44.45 69.85)
+			(xy 45.72 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "def5997e-642d-5ebd-ba77-9d316ee429e7")
+	)
+	(wire
+		(pts
+			(xy 45.72 69.85)
+			(xy 45.72 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "561b461f-9fb0-5da7-b1ab-78eeb3c059a0")
+	)
+	(wire
+		(pts
+			(xy 135.89 165.1)
+			(xy 524.51 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b486e43e-5a20-59b2-93be-b194f3936fd5")
+	)
+	(wire
+		(pts
+			(xy 135.89 165.1)
+			(xy 135.89 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce4e9099-aac6-5911-b416-b2401e8c8613")
+	)
+	(wire
+		(pts
+			(xy 135.89 76.2)
+			(xy 45.72 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8137b41c-74bb-5ddb-b755-df1864604585")
+	)
+	(wire
+		(pts
+			(xy 44.45 67.31)
+			(xy 48.26 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5658daa5-a6a7-51f7-87e6-8af37e9b0e2a")
+	)
+	(wire
+		(pts
+			(xy 87.63 69.85)
+			(xy 88.9 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d0818a40-8958-5c3f-8685-8c5018390dae")
+	)
+	(wire
+		(pts
+			(xy 88.9 69.85)
+			(xy 88.9 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51234346-ae57-552a-a317-9ff4d2a8149d")
+	)
+	(wire
+		(pts
+			(xy 88.9 73.66)
+			(xy 48.26 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "369b0729-be17-56b3-9041-3f3888f8e437")
+	)
+	(wire
+		(pts
+			(xy 48.26 73.66)
+			(xy 48.26 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "668800fb-101f-5019-b1d2-5d32f1b1d5ac")
+	)
+	(wire
+		(pts
+			(xy 87.63 67.31)
+			(xy 91.44 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "74a66e19-0032-5946-8ced-0955d5801f5e")
+	)
+	(wire
+		(pts
+			(xy 129.54 69.85)
+			(xy 130.81 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "105885ee-052c-5d9c-bb2b-08ea708d45ab")
+	)
+	(wire
+		(pts
+			(xy 130.81 69.85)
+			(xy 130.81 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "add8e157-f61e-5542-8997-268a05549618")
+	)
+	(wire
+		(pts
+			(xy 130.81 73.66)
+			(xy 91.44 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82fbefd5-ef80-586f-874f-c16dd7b68d68")
+	)
+	(wire
+		(pts
+			(xy 91.44 73.66)
+			(xy 91.44 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8fe8b33-968f-560b-84e2-690049eecde0")
+	)
+	(wire
+		(pts
+			(xy 129.54 67.31)
+			(xy 133.35 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c09c4a8a-9bd0-5972-a9f7-3a4f884bcb6f")
+	)
+	(wire
+		(pts
+			(xy 171.45 69.85)
+			(xy 172.72 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca5454e0-4c73-5ccb-8f56-527bfa28d994")
+	)
+	(wire
+		(pts
+			(xy 172.72 69.85)
+			(xy 172.72 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65acc557-df2a-5b44-b44b-058e83238bf6")
+	)
+	(wire
+		(pts
+			(xy 172.72 73.66)
+			(xy 133.35 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2756a1ea-95ac-54c8-9cff-1ed5b1aba439")
+	)
+	(wire
+		(pts
+			(xy 133.35 73.66)
+			(xy 133.35 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab55f007-dc36-5827-b00e-7cd71e42ff24")
+	)
+	(wire
+		(pts
+			(xy 171.45 67.31)
+			(xy 175.26 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fdc59abd-22ee-54a6-bb83-bb5c434611db")
+	)
+	(wire
+		(pts
+			(xy 213.36 69.85)
+			(xy 214.63 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5b30e56-6bad-5697-a8a4-a21da3a1b89e")
+	)
+	(wire
+		(pts
+			(xy 214.63 69.85)
+			(xy 214.63 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8bac6a9-0fcb-5e20-8741-3b1759b757fc")
+	)
+	(wire
+		(pts
+			(xy 214.63 73.66)
+			(xy 175.26 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ed21819-6622-5df0-893b-739cff5e3d94")
+	)
+	(wire
+		(pts
+			(xy 175.26 73.66)
+			(xy 175.26 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44552910-445c-5fce-909d-f48684737927")
+	)
+	(wire
+		(pts
+			(xy 213.36 67.31)
+			(xy 217.17 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2af18ae7-ee7c-5cbd-abd1-cc2b2f305997")
+	)
+	(wire
+		(pts
+			(xy 255.27 69.85)
+			(xy 256.54 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0dac42b-d9a5-5187-84ad-6e0375df956d")
+	)
+	(wire
+		(pts
+			(xy 256.54 69.85)
+			(xy 256.54 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c528e207-424f-5128-81d8-92a4c1f31eb0")
+	)
+	(wire
+		(pts
+			(xy 256.54 73.66)
+			(xy 217.17 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86752766-1565-5028-8fe3-0efbc9647a24")
+	)
+	(wire
+		(pts
+			(xy 217.17 73.66)
+			(xy 217.17 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a07e279-cfa8-51ae-9cae-b7754cbcd79c")
+	)
+	(wire
+		(pts
+			(xy 255.27 67.31)
+			(xy 259.08 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62591a7c-5810-5490-b845-9cf79b9cd240")
+	)
+	(wire
+		(pts
+			(xy 297.18 69.85)
+			(xy 298.45 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e27e746-cd6e-5881-b5f1-302794040848")
+	)
+	(wire
+		(pts
+			(xy 298.45 69.85)
+			(xy 298.45 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10cd195d-0f23-59ba-95a6-34ef36614369")
+	)
+	(wire
+		(pts
+			(xy 298.45 73.66)
+			(xy 259.08 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea336d52-0d15-5aa0-b4cd-86d16ce7b044")
+	)
+	(wire
+		(pts
+			(xy 259.08 73.66)
+			(xy 259.08 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "914623da-2a6a-54f8-a9b9-69af6be7833c")
+	)
+	(wire
+		(pts
+			(xy 297.18 67.31)
+			(xy 300.99 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9dc2d98a-0347-595c-9378-84602dfb6887")
+	)
+	(wire
+		(pts
+			(xy 339.09 69.85)
+			(xy 340.36 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c5449c2-d246-512f-bafc-af643a3f1103")
+	)
+	(wire
+		(pts
+			(xy 340.36 69.85)
+			(xy 340.36 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c27af2c7-e834-5c50-9526-28222e57b908")
+	)
+	(wire
+		(pts
+			(xy 340.36 73.66)
+			(xy 300.99 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee78d235-1139-521f-a608-34bf1ce9b0d4")
+	)
+	(wire
+		(pts
+			(xy 300.99 73.66)
+			(xy 300.99 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d55a0c3-7e7e-5e38-ab60-43e4fb091915")
+	)
+	(wire
+		(pts
+			(xy 339.09 67.31)
+			(xy 342.9 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "286be20f-560a-5ce2-a29d-98f6e46480e8")
+	)
+	(wire
+		(pts
+			(xy 381 69.85)
+			(xy 382.27 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "151486bf-2bb8-5cf9-bc27-4e760582497a")
+	)
+	(wire
+		(pts
+			(xy 382.27 69.85)
+			(xy 382.27 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1868e77c-c7a9-55d1-b855-290b08f71ca8")
+	)
+	(wire
+		(pts
+			(xy 382.27 73.66)
+			(xy 342.9 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a69f44fa-6476-58dc-bcd8-10d618c8df70")
+	)
+	(wire
+		(pts
+			(xy 342.9 73.66)
+			(xy 342.9 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a6e8b29-0ec9-58ff-ae1e-d0e704c723cd")
+	)
+	(wire
+		(pts
+			(xy 381 67.31)
+			(xy 384.81 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ba7f18a-e785-5b10-9edb-e6adc7f28146")
+	)
+	(wire
+		(pts
+			(xy 422.91 69.85)
+			(xy 424.18 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "afcf2040-4402-54e4-afee-ea8af65844ef")
+	)
+	(wire
+		(pts
+			(xy 424.18 69.85)
+			(xy 424.18 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bad46acc-10d1-5d86-b827-1fb3a7015f25")
+	)
+	(wire
+		(pts
+			(xy 424.18 73.66)
+			(xy 384.81 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a740a18a-d064-577b-b8f9-eea3b5baa45b")
+	)
+	(wire
+		(pts
+			(xy 384.81 73.66)
+			(xy 384.81 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bedab08-f6a7-58cc-bbe0-2be4c1bc7e9b")
+	)
+	(wire
+		(pts
+			(xy 422.91 67.31)
+			(xy 426.72 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b35c063-8596-580a-8cc9-e114ab6a2ebc")
+	)
+	(wire
+		(pts
+			(xy 426.72 167.64)
+			(xy 524.51 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4438c96f-95a4-5f39-a666-ccf6c98d54b1")
+	)
+	(wire
+		(pts
+			(xy 426.72 167.64)
+			(xy 426.72 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67391387-4ab5-54db-8015-f016e823b9d0")
+	)
+	(wire
+		(pts
+			(xy 44.45 139.7)
+			(xy 45.72 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a382bdfa-3e87-5ca2-a85c-5f8ea9a71af1")
+	)
+	(wire
+		(pts
+			(xy 45.72 139.7)
+			(xy 45.72 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12d686bb-01c6-5c50-b942-253ef76fefb3")
+	)
+	(wire
+		(pts
+			(xy 45.72 162.56)
+			(xy 524.51 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f00299d0-3d65-5015-a94d-e51114036278")
+	)
+	(wire
+		(pts
+			(xy 44.45 137.16)
+			(xy 48.26 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4e4dab95-f6ab-5cb0-b06c-9e3c7618b020")
+	)
+	(wire
+		(pts
+			(xy 87.63 139.7)
+			(xy 88.9 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de8c94bb-af7c-55b6-9250-b0b1a616ca70")
+	)
+	(wire
+		(pts
+			(xy 88.9 139.7)
+			(xy 88.9 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb6ddca4-02cb-51a1-a89c-cbfc970e3e40")
+	)
+	(wire
+		(pts
+			(xy 88.9 143.51)
+			(xy 48.26 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f9eb625-330f-504b-b5e4-3a6a4a857ea8")
+	)
+	(wire
+		(pts
+			(xy 48.26 143.51)
+			(xy 48.26 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be1d5f19-dfe2-560c-90f2-cff6d846ebbe")
+	)
+	(wire
+		(pts
+			(xy 87.63 137.16)
+			(xy 91.44 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c533ebc-40ed-5845-8929-ef71b06d9d84")
+	)
+	(wire
+		(pts
+			(xy 129.54 139.7)
+			(xy 130.81 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e444e06-552c-55d3-b528-ec121e619d1f")
+	)
+	(wire
+		(pts
+			(xy 130.81 139.7)
+			(xy 130.81 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "79d2515e-14cd-5c82-aa18-0f4b629b7bfb")
+	)
+	(wire
+		(pts
+			(xy 130.81 143.51)
+			(xy 91.44 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a918342e-265b-5259-ae6a-035371422021")
+	)
+	(wire
+		(pts
+			(xy 91.44 143.51)
+			(xy 91.44 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95cb9220-c379-5006-ab5d-b4675ee1b0c8")
+	)
+	(wire
+		(pts
+			(xy 129.54 137.16)
+			(xy 133.35 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "929391f2-d118-5000-88a2-d58bdaec3ad6")
+	)
+	(wire
+		(pts
+			(xy 171.45 139.7)
+			(xy 172.72 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ee193ab-182a-567c-91db-4e98f9fe3513")
+	)
+	(wire
+		(pts
+			(xy 172.72 139.7)
+			(xy 172.72 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6461d6a4-c151-5100-b0d4-9835f6b06274")
+	)
+	(wire
+		(pts
+			(xy 172.72 143.51)
+			(xy 133.35 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa65fbc6-21cf-5310-b516-c4125db6b498")
+	)
+	(wire
+		(pts
+			(xy 133.35 143.51)
+			(xy 133.35 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3f92ef1-e63e-585b-bc65-7eb4b2939454")
+	)
+	(wire
+		(pts
+			(xy 171.45 137.16)
+			(xy 175.26 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f54ac136-7542-554a-9705-de86739c1638")
+	)
+	(wire
+		(pts
+			(xy 213.36 139.7)
+			(xy 214.63 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0552c4c9-d0a7-5187-b140-6bac6fb8fd8e")
+	)
+	(wire
+		(pts
+			(xy 214.63 139.7)
+			(xy 214.63 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2926d0e2-9110-53f4-923b-7044f88daec4")
+	)
+	(wire
+		(pts
+			(xy 214.63 143.51)
+			(xy 175.26 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1dd92926-ab85-5fe3-9ea7-2d8a1d5f01bb")
+	)
+	(wire
+		(pts
+			(xy 175.26 143.51)
+			(xy 175.26 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f0219b5-bfcd-59f9-ae51-fa985f4b23c6")
+	)
+	(wire
+		(pts
+			(xy 213.36 137.16)
+			(xy 217.17 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9650c02-daad-5230-9bba-c203fe32ffe4")
+	)
+	(wire
+		(pts
+			(xy 255.27 139.7)
+			(xy 256.54 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2cc61365-f84b-5ecd-a489-50f1d590c015")
+	)
+	(wire
+		(pts
+			(xy 256.54 139.7)
+			(xy 256.54 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "885d8c77-7d18-590e-b43a-8fcaf6046711")
+	)
+	(wire
+		(pts
+			(xy 256.54 143.51)
+			(xy 217.17 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53bb6189-748d-5d0a-9f50-54e6a2d8f7da")
+	)
+	(wire
+		(pts
+			(xy 217.17 143.51)
+			(xy 217.17 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c807b375-b186-51f2-9c1d-fb86806e7316")
+	)
+	(wire
+		(pts
+			(xy 255.27 137.16)
+			(xy 259.08 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2fa0a0df-3a51-5a22-80ed-a91f2c585b7f")
+	)
+	(wire
+		(pts
+			(xy 297.18 139.7)
+			(xy 298.45 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ababb527-a79c-5ac2-86ce-ecf3b1faf848")
+	)
+	(wire
+		(pts
+			(xy 298.45 139.7)
+			(xy 298.45 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c3af92d-15e5-5f78-9ac6-b10d951c465d")
+	)
+	(wire
+		(pts
+			(xy 298.45 143.51)
+			(xy 259.08 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "221ce5e7-4283-5edd-9941-17f910687b55")
+	)
+	(wire
+		(pts
+			(xy 259.08 143.51)
+			(xy 259.08 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a2484bf-1c07-5d90-9c64-0b5c4b450c54")
+	)
+	(wire
+		(pts
+			(xy 297.18 137.16)
+			(xy 300.99 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef36726a-cffe-5d49-ae91-1a8cd822e7b7")
+	)
+	(wire
+		(pts
+			(xy 339.09 139.7)
+			(xy 340.36 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3eef232-8b47-5e56-9c11-352839d187cc")
+	)
+	(wire
+		(pts
+			(xy 340.36 139.7)
+			(xy 340.36 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c86b7917-e2ef-57f7-9c6b-feec8a87c76f")
+	)
+	(wire
+		(pts
+			(xy 340.36 143.51)
+			(xy 300.99 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a551613-cbb7-5f78-ade9-360e476ceb95")
+	)
+	(wire
+		(pts
+			(xy 300.99 143.51)
+			(xy 300.99 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47449d5f-98d9-510d-846f-3af260c938d3")
+	)
+	(wire
+		(pts
+			(xy 339.09 137.16)
+			(xy 342.9 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "16577d6c-b026-5429-9175-de84701936d7")
+	)
+	(wire
+		(pts
+			(xy 381 139.7)
+			(xy 382.27 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e4d1838-db79-5f00-8513-3a9bb03e05e0")
+	)
+	(wire
+		(pts
+			(xy 382.27 139.7)
+			(xy 382.27 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5b4542c-ceea-5de3-904a-5a274d755d9d")
+	)
+	(wire
+		(pts
+			(xy 382.27 143.51)
+			(xy 342.9 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ec766e2-caff-5aac-952e-a2a0e6c3dd95")
+	)
+	(wire
+		(pts
+			(xy 342.9 143.51)
+			(xy 342.9 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f8bc503-6709-5bfc-ab85-12f120ff8590")
+	)
+	(wire
+		(pts
+			(xy 381 137.16)
+			(xy 384.81 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1d773cc-d351-5a66-9408-acd7f00ec38b")
+	)
+	(wire
+		(pts
+			(xy 422.91 139.7)
+			(xy 424.18 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1bed99c-6ca3-5ea7-b940-d4a56806740b")
+	)
+	(wire
+		(pts
+			(xy 424.18 139.7)
+			(xy 424.18 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f6860f8-166e-506f-b2fc-2a22d9d77cd0")
+	)
+	(wire
+		(pts
+			(xy 424.18 143.51)
+			(xy 384.81 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce0bbe5c-4d32-5864-86e6-949539d9abad")
+	)
+	(wire
+		(pts
+			(xy 384.81 143.51)
+			(xy 384.81 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd284401-3910-5085-a9e1-03b002988622")
+	)
+	(wire
+		(pts
+			(xy 422.91 137.16)
+			(xy 523.24 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f46f5e8-d7cf-575b-8552-9a1b90065430")
+	)
+	(wire
+		(pts
+			(xy 523.24 160.02)
+			(xy 524.51 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0534487a-c312-5e5c-921a-453e15cfe984")
+	)
+	(wire
+		(pts
+			(xy 523.24 160.02)
+			(xy 523.24 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98483fcb-3435-5d3a-a9c2-fa4fc96ddd70")
+	)
+	(wire
+		(pts
+			(xy 44.45 209.55)
+			(xy 50.8 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a9afbd4-12c6-5733-a92b-beffe9dc75bf")
+	)
+	(wire
+		(pts
+			(xy 524.51 177.8)
+			(xy 50.8 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9865fd68-47b8-5472-878a-0a8cce21e109")
+	)
+	(wire
+		(pts
+			(xy 50.8 177.8)
+			(xy 50.8 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "010e549b-b895-5436-bbce-a704e35ae4dc")
+	)
+	(wire
+		(pts
+			(xy 44.45 207.01)
+			(xy 48.26 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e924c8c-52f2-57a9-bdba-d006c2eb84a3")
+	)
+	(wire
+		(pts
+			(xy 87.63 209.55)
+			(xy 88.9 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29b17996-ead5-53c7-96b9-4f34f96a33aa")
+	)
+	(wire
+		(pts
+			(xy 88.9 209.55)
+			(xy 88.9 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f238b3f2-a94d-5407-9799-53ca9fc72d7d")
+	)
+	(wire
+		(pts
+			(xy 88.9 213.36)
+			(xy 48.26 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39e6b01a-78d4-5597-a738-f62be4c4dcf5")
+	)
+	(wire
+		(pts
+			(xy 48.26 213.36)
+			(xy 48.26 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e6a0412-d0c6-5ee7-84e3-d619596a6b07")
+	)
+	(wire
+		(pts
+			(xy 87.63 207.01)
+			(xy 91.44 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b64a4156-7184-5777-8087-b8ec154c3959")
+	)
+	(wire
+		(pts
+			(xy 129.54 209.55)
+			(xy 130.81 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "007027d6-e39c-5614-b64d-2456b5377424")
+	)
+	(wire
+		(pts
+			(xy 130.81 209.55)
+			(xy 130.81 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7eee4c8-5b56-5182-8fd6-e5d45f313c85")
+	)
+	(wire
+		(pts
+			(xy 130.81 213.36)
+			(xy 91.44 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9437c60-29e2-5e45-9b6a-e832b7ef6c7b")
+	)
+	(wire
+		(pts
+			(xy 91.44 213.36)
+			(xy 91.44 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef02a3ba-8e55-560b-aaa9-905a63c37ed0")
+	)
+	(wire
+		(pts
+			(xy 129.54 207.01)
+			(xy 133.35 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dec55e12-793d-5c19-aadc-1944818106d7")
+	)
+	(wire
+		(pts
+			(xy 171.45 209.55)
+			(xy 172.72 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b79d74e-fff2-5bd3-bfd7-d645a04d29c3")
+	)
+	(wire
+		(pts
+			(xy 172.72 209.55)
+			(xy 172.72 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0242fe6b-7b77-5db8-a3de-22a4c0b417cb")
+	)
+	(wire
+		(pts
+			(xy 172.72 213.36)
+			(xy 133.35 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a8c35e1-e140-5074-ab0a-30bd4e89c5c0")
+	)
+	(wire
+		(pts
+			(xy 133.35 213.36)
+			(xy 133.35 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad832126-17bf-538f-90f2-27b2f02e76a0")
+	)
+	(wire
+		(pts
+			(xy 171.45 207.01)
+			(xy 175.26 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8bc026c9-a627-5d53-af19-f08ad5bca8c5")
+	)
+	(wire
+		(pts
+			(xy 213.36 209.55)
+			(xy 214.63 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d34df942-bcce-5487-babd-43d00244317b")
+	)
+	(wire
+		(pts
+			(xy 214.63 209.55)
+			(xy 214.63 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48050752-9bf7-50d3-879a-878f4333867b")
+	)
+	(wire
+		(pts
+			(xy 214.63 213.36)
+			(xy 175.26 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bfa6f88b-554c-5e9b-bd5f-daed88fea952")
+	)
+	(wire
+		(pts
+			(xy 175.26 213.36)
+			(xy 175.26 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7321f7fa-fe25-549c-9192-38b7f61271dc")
+	)
+	(wire
+		(pts
+			(xy 213.36 207.01)
+			(xy 217.17 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2781ed8a-23b4-5b19-8ae6-db9fa7592cbe")
+	)
+	(wire
+		(pts
+			(xy 255.27 209.55)
+			(xy 256.54 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "551c6043-d4a3-5576-81a7-9ac004a67255")
+	)
+	(wire
+		(pts
+			(xy 256.54 209.55)
+			(xy 256.54 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd57c1b7-5e3d-50ee-b160-66b575c7a263")
+	)
+	(wire
+		(pts
+			(xy 256.54 213.36)
+			(xy 217.17 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "02ba0178-1e7b-51e9-9162-35a19f83958e")
+	)
+	(wire
+		(pts
+			(xy 217.17 213.36)
+			(xy 217.17 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8a6fd78-e2b7-55a6-8b0d-0c4327b24fd7")
+	)
+	(wire
+		(pts
+			(xy 255.27 207.01)
+			(xy 259.08 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ea4b6ff-d210-5a2f-afad-dea4546f7785")
+	)
+	(wire
+		(pts
+			(xy 297.18 209.55)
+			(xy 298.45 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d073605-105b-5e3a-903e-35d01a3a9fd8")
+	)
+	(wire
+		(pts
+			(xy 298.45 209.55)
+			(xy 298.45 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "162203e2-7cb2-5562-ac62-d81733584ad2")
+	)
+	(wire
+		(pts
+			(xy 298.45 213.36)
+			(xy 259.08 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0461f6e9-99b9-59f2-8f58-bb8816049934")
+	)
+	(wire
+		(pts
+			(xy 259.08 213.36)
+			(xy 259.08 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "982c5c78-37f5-54ac-8f7e-001a8c4733cc")
+	)
+	(wire
+		(pts
+			(xy 297.18 207.01)
+			(xy 300.99 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d6c4c8d-981d-5cd8-856d-a0d2c76dc4b3")
+	)
+	(wire
+		(pts
+			(xy 339.09 209.55)
+			(xy 340.36 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f774ba0-d187-5938-935b-29dd07122d40")
+	)
+	(wire
+		(pts
+			(xy 340.36 209.55)
+			(xy 340.36 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b23a4173-a5af-515a-9d71-9f5de865f65b")
+	)
+	(wire
+		(pts
+			(xy 340.36 213.36)
+			(xy 300.99 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee4e6ef9-3582-5894-a21a-8d68e153df14")
+	)
+	(wire
+		(pts
+			(xy 300.99 213.36)
+			(xy 300.99 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "842271ae-7afb-592f-ad26-abcf0526cba3")
+	)
+	(wire
+		(pts
+			(xy 339.09 207.01)
+			(xy 342.9 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3125ca49-e66d-5b75-9a3e-91c41c82d6cc")
+	)
+	(wire
+		(pts
+			(xy 381 209.55)
+			(xy 382.27 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a469856-a234-5a09-aba5-c1f8852b6506")
+	)
+	(wire
+		(pts
+			(xy 382.27 209.55)
+			(xy 382.27 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e61051d2-70af-52bc-977d-3d84e2e25152")
+	)
+	(wire
+		(pts
+			(xy 382.27 213.36)
+			(xy 342.9 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2eb623d9-618c-5451-914a-ae057b897730")
+	)
+	(wire
+		(pts
+			(xy 342.9 213.36)
+			(xy 342.9 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34f63115-1392-5b3d-8424-119bc187d785")
+	)
+	(wire
+		(pts
+			(xy 381 207.01)
+			(xy 384.81 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "032ca95a-ef0a-5426-8425-4de17f14fc29")
+	)
+	(wire
+		(pts
+			(xy 422.91 209.55)
+			(xy 424.18 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c1437a81-373c-55f4-a1c2-e2543056ac99")
+	)
+	(wire
+		(pts
+			(xy 424.18 209.55)
+			(xy 424.18 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae64ec89-31d9-5de5-899f-4897bdf5de5f")
+	)
+	(wire
+		(pts
+			(xy 424.18 213.36)
+			(xy 384.81 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d186639f-026b-5d87-aa48-cad203ba0a18")
+	)
+	(wire
+		(pts
+			(xy 384.81 213.36)
+			(xy 384.81 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f219fed1-4535-5e4a-86f3-4052c74f2a71")
+	)
+	(wire
+		(pts
+			(xy 422.91 207.01)
+			(xy 425.45 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1c8e534-889d-53b6-acb5-b2dd3444c917")
+	)
+	(wire
+		(pts
+			(xy 425.45 175.26)
+			(xy 524.51 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69302ece-c2dd-5819-a81e-c89ac963704a")
+	)
+	(wire
+		(pts
+			(xy 425.45 175.26)
+			(xy 425.45 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5997382-82e4-50f8-8859-5db0d674b055")
+	)
+	(wire
+		(pts
+			(xy 44.45 279.4)
+			(xy 50.8 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c66af266-f500-5466-910a-9fdcb846a5bc")
+	)
+	(wire
+		(pts
+			(xy 427.99 180.34)
+			(xy 524.51 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad55fed4-8810-5479-8aeb-073f1bac2e1b")
+	)
+	(wire
+		(pts
+			(xy 427.99 180.34)
+			(xy 427.99 271.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acaab658-992e-5b8d-9f93-84916c887e9a")
+	)
+	(wire
+		(pts
+			(xy 427.99 271.78)
+			(xy 50.8 271.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86a5af40-2054-5343-b950-2c094fec7ee3")
+	)
+	(wire
+		(pts
+			(xy 50.8 271.78)
+			(xy 50.8 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3e3db8d-453a-5837-94cd-96330449f3d8")
+	)
+	(wire
+		(pts
+			(xy 44.45 276.86)
+			(xy 48.26 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "168b5b85-a503-5283-ba4c-45ac57b51383")
+	)
+	(wire
+		(pts
+			(xy 87.63 279.4)
+			(xy 88.9 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d1f341e-72ec-5bea-9dcd-9e3441b0fa18")
+	)
+	(wire
+		(pts
+			(xy 88.9 279.4)
+			(xy 88.9 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e8fafa1-8c8a-5276-9034-8c697fdbaefa")
+	)
+	(wire
+		(pts
+			(xy 88.9 283.21)
+			(xy 48.26 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffd8052f-40b9-51d1-bd62-0fd95cb0ac69")
+	)
+	(wire
+		(pts
+			(xy 48.26 283.21)
+			(xy 48.26 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "18fb35a8-a310-5ed9-ae34-ef032a068f62")
+	)
+	(wire
+		(pts
+			(xy 87.63 276.86)
+			(xy 91.44 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90100f2c-70db-58d1-af7e-70de37688c6d")
+	)
+	(wire
+		(pts
+			(xy 129.54 279.4)
+			(xy 130.81 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e21cfc95-8c8f-57d5-acc8-79997c40c7ba")
+	)
+	(wire
+		(pts
+			(xy 130.81 279.4)
+			(xy 130.81 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "658deffa-ae2c-5eba-83e8-09633f963772")
+	)
+	(wire
+		(pts
+			(xy 130.81 283.21)
+			(xy 91.44 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78738436-1a6b-5c6b-9794-3f85b3583dde")
+	)
+	(wire
+		(pts
+			(xy 91.44 283.21)
+			(xy 91.44 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ce88900-c68c-5be0-bc18-d48c205e67e1")
+	)
+	(wire
+		(pts
+			(xy 129.54 276.86)
+			(xy 133.35 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58f912e1-ece9-5b24-86ba-aa1bbb1eca94")
+	)
+	(wire
+		(pts
+			(xy 171.45 279.4)
+			(xy 172.72 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6fb3c39-f7d8-5d78-9f3e-1c52107a1ef2")
+	)
+	(wire
+		(pts
+			(xy 172.72 279.4)
+			(xy 172.72 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ef0de5b-3f60-5380-96ee-5302db244aad")
+	)
+	(wire
+		(pts
+			(xy 172.72 283.21)
+			(xy 133.35 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2757dc6a-c01a-561d-96e6-f1a811c506ce")
+	)
+	(wire
+		(pts
+			(xy 133.35 283.21)
+			(xy 133.35 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b146fe83-172f-5a64-9256-fdefe17b36ca")
+	)
+	(wire
+		(pts
+			(xy 171.45 276.86)
+			(xy 175.26 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddab6cf0-2de8-563a-8da2-38fffcefc1d3")
+	)
+	(wire
+		(pts
+			(xy 213.36 279.4)
+			(xy 214.63 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3a501ba-9ca0-5843-8343-cb59fd52da81")
+	)
+	(wire
+		(pts
+			(xy 214.63 279.4)
+			(xy 214.63 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c219525-4038-5276-862e-4e697bacaa47")
+	)
+	(wire
+		(pts
+			(xy 214.63 283.21)
+			(xy 175.26 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e639cac-0cbf-58b5-ba53-3e57748221cb")
+	)
+	(wire
+		(pts
+			(xy 175.26 283.21)
+			(xy 175.26 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "add0efde-b2c4-5538-96cf-608aca87655b")
+	)
+	(wire
+		(pts
+			(xy 213.36 276.86)
+			(xy 217.17 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6eeee1d1-4289-5fef-9f2d-0bf4ec8175e6")
+	)
+	(wire
+		(pts
+			(xy 255.27 279.4)
+			(xy 256.54 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b903d2e-e084-5ad0-8c6e-94f5f3d711b5")
+	)
+	(wire
+		(pts
+			(xy 256.54 279.4)
+			(xy 256.54 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb812b25-43ff-50a6-9d78-86cce2008345")
+	)
+	(wire
+		(pts
+			(xy 256.54 283.21)
+			(xy 217.17 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "422d497f-d91f-5aa1-90f3-a6a0053c2196")
+	)
+	(wire
+		(pts
+			(xy 217.17 283.21)
+			(xy 217.17 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bdddbc4f-d056-5251-b51d-1aa4966ac115")
+	)
+	(wire
+		(pts
+			(xy 255.27 276.86)
+			(xy 259.08 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a806b099-4fc7-5689-95dc-fb29937f13d3")
+	)
+	(wire
+		(pts
+			(xy 297.18 279.4)
+			(xy 298.45 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f0f52be-f05e-5d80-944f-9ddf549aa966")
+	)
+	(wire
+		(pts
+			(xy 298.45 279.4)
+			(xy 298.45 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0dcdc1fb-6fcd-5012-b74d-c31214436463")
+	)
+	(wire
+		(pts
+			(xy 298.45 283.21)
+			(xy 259.08 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e650a552-1499-5c3f-b274-da443723a964")
+	)
+	(wire
+		(pts
+			(xy 259.08 283.21)
+			(xy 259.08 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43f217b7-2fce-5b0b-86eb-7ba693a26efb")
+	)
+	(wire
+		(pts
+			(xy 297.18 276.86)
+			(xy 300.99 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f0f02ba-2a49-5bad-96eb-75cee466f286")
+	)
+	(wire
+		(pts
+			(xy 339.09 279.4)
+			(xy 340.36 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eff15b6b-1c43-508f-981c-1a57cefd4152")
+	)
+	(wire
+		(pts
+			(xy 340.36 279.4)
+			(xy 340.36 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df9298c9-185f-52f3-b524-5ba8153106cb")
+	)
+	(wire
+		(pts
+			(xy 340.36 283.21)
+			(xy 300.99 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58d1b1ac-38be-5553-976b-225540b154fa")
+	)
+	(wire
+		(pts
+			(xy 300.99 283.21)
+			(xy 300.99 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f88d0e6b-ecc9-5196-9b32-4e72ff1b2c9a")
+	)
+	(wire
+		(pts
+			(xy 339.09 276.86)
+			(xy 342.9 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "277229d4-5f5e-505f-9542-8b64629a4b49")
+	)
+	(wire
+		(pts
+			(xy 381 279.4)
+			(xy 382.27 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9124a8e-1fbd-5b68-8ad8-f42a87fa62ff")
+	)
+	(wire
+		(pts
+			(xy 382.27 279.4)
+			(xy 382.27 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9321e3ff-8b0a-52e3-99b7-fa98708b6e0b")
+	)
+	(wire
+		(pts
+			(xy 382.27 283.21)
+			(xy 342.9 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b68935e-a062-5144-a28e-b094e8a58a15")
+	)
+	(wire
+		(pts
+			(xy 342.9 283.21)
+			(xy 342.9 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "15b4f3ab-93a0-51db-b165-ea9496101f12")
+	)
+	(wire
+		(pts
+			(xy 381 276.86)
+			(xy 384.81 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d637929-f166-5784-8cdd-1ff68d285122")
+	)
+	(wire
+		(pts
+			(xy 422.91 279.4)
+			(xy 424.18 279.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "030d60cf-7990-5e62-89fb-b8efe2fb188f")
+	)
+	(wire
+		(pts
+			(xy 424.18 279.4)
+			(xy 424.18 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c8caa76-9ff6-59c0-afb1-d5dbbe7fe59e")
+	)
+	(wire
+		(pts
+			(xy 424.18 283.21)
+			(xy 384.81 283.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c0388713-3f75-50b1-9431-e992f12f8b5d")
+	)
+	(wire
+		(pts
+			(xy 384.81 283.21)
+			(xy 384.81 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91bdf175-df9b-5f4b-90e7-b7a0a7fac4bd")
+	)
+	(wire
+		(pts
+			(xy 422.91 276.86)
+			(xy 516.89 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "685a191d-0075-5ea3-99f5-e7f422aa4126")
+	)
+	(wire
+		(pts
+			(xy 516.89 182.88)
+			(xy 524.51 182.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8666ff69-afe5-5322-aa58-81e3804494d7")
+	)
+	(wire
+		(pts
+			(xy 516.89 182.88)
+			(xy 516.89 276.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95b9976b-5b5f-5fcc-99e2-7065412bfd8d")
+	)
+	(wire
+		(pts
+			(xy 500.38 170.18)
+			(xy 524.51 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26fb50b4-b8e1-589c-8308-118bf8c8d674")
+	)
+	(wire
+		(pts
+			(xy 500.38 236.22)
+			(xy 500.38 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3303a18-8cac-5149-af9d-8c778179b694")
+	)
+	(wire
+		(pts
+			(xy 514.35 172.72)
+			(xy 524.51 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bdca5271-47e9-5325-8d07-6b4ef652f40b")
+	)
+	(wire
+		(pts
+			(xy 500.38 243.84)
+			(xy 500.38 245.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c8166c45-96cf-5572-8743-36004ee75620")
+	)
+	(wire
+		(pts
+			(xy 500.38 245.11)
+			(xy 514.35 245.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71f460a7-631b-5af2-b42e-b119b3d0c3a9")
+	)
+	(wire
+		(pts
+			(xy 514.35 172.72)
+			(xy 514.35 245.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2ecb1a6-f631-51e5-b4d1-b62068df3a03")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 39.37 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "7f7e6eaa-ca1a-525d-ab59-ec6040d33536")
+		(property "Reference" "S1"
+			(at 39.37 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.01"
+			(at 39.37 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 39.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 39.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 39.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 39.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 39.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "13ecb9d0-91b7-5d69-b33f-fa1ebeec450c")
+		)
+		(pin "2"
+			(uuid "3bca3508-5ab2-5922-80e9-9e09be3db3e6")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 82.55 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "d766d01f-112c-536a-b06d-332db5dabfd6")
+		(property "Reference" "S2"
+			(at 82.55 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.02"
+			(at 82.55 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 82.55 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 82.55 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 82.55 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 82.55 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6c54bad9-a69c-5808-83a2-169605e39d4d")
+		)
+		(pin "2"
+			(uuid "4d36a9d2-b791-5468-9db9-ced317fabec8")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 124.46 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "9259580b-7398-56e4-a20d-19e2583c5444")
+		(property "Reference" "S3"
+			(at 124.46 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.03"
+			(at 124.46 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 124.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 124.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 124.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 124.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 124.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7575ba19-f05e-53aa-b43c-8592e82c1c24")
+		)
+		(pin "2"
+			(uuid "a0dfd547-ca56-5f7d-bb8c-bd3167eb6458")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 166.37 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "c23a1298-8ee6-56bb-a1a3-8ffead87471c")
+		(property "Reference" "S4"
+			(at 166.37 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.04"
+			(at 166.37 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 166.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 166.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 166.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 166.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 166.37 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eef263b7-3ce9-539d-99c3-fcde326d6794")
+		)
+		(pin "2"
+			(uuid "073d38e5-af87-59e4-9336-4f9f44bcc8a1")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 208.28 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "093e2a6b-243c-5624-99a7-0dd3bae821ca")
+		(property "Reference" "S5"
+			(at 208.28 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.05"
+			(at 208.28 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 208.28 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 208.28 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 208.28 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 208.28 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 208.28 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "474592e9-eb2d-599f-b58e-c6a1b2765812")
+		)
+		(pin "2"
+			(uuid "4a328615-b9c4-5e81-98c4-00f59ebf204a")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 250.19 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "81b51986-e279-5c5a-b0dc-dea5527fd8d6")
+		(property "Reference" "S6"
+			(at 250.19 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.06"
+			(at 250.19 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 250.19 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "92f5f006-eeec-5460-a338-4589e1c29d1b")
+		)
+		(pin "2"
+			(uuid "3c144b3d-0d0c-5f73-a717-6885ba6e959f")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 292.1 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "17fc376a-314e-5fd4-82ec-1420d2f5b5f6")
+		(property "Reference" "S7"
+			(at 292.1 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.07"
+			(at 292.1 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 292.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 292.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 292.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 292.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 292.1 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "50a3cc03-2829-591f-9d47-5caf057b644d")
+		)
+		(pin "2"
+			(uuid "cdd62938-af03-5010-96ec-fb34f7a7a8dc")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 334.01 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "a83caacc-8694-5417-89e2-b6eb7a1839d3")
+		(property "Reference" "S8"
+			(at 334.01 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.08"
+			(at 334.01 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 334.01 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 334.01 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 334.01 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 334.01 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 334.01 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d4c5ee72-55a3-5afc-b96e-4653fa4ade1b")
+		)
+		(pin "2"
+			(uuid "9687651c-338d-5358-a5a0-bcc347a5fe94")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 375.92 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "3c893bd1-3469-5d9d-9c4e-2fab82c2ffd4")
+		(property "Reference" "S9"
+			(at 375.92 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.09"
+			(at 375.92 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 375.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 375.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 375.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 375.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 375.92 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "53ae0cea-2273-5bb6-bff1-65fcc5bea94d")
+		)
+		(pin "2"
+			(uuid "31f8c107-e1e8-5629-9d4f-598aa14e72bd")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 417.83 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "a8e3995e-be38-59be-a242-972c3db376bd")
+		(property "Reference" "S10"
+			(at 417.83 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W1.10"
+			(at 417.83 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 417.83 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 417.83 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 417.83 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 417.83 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 417.83 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c0bd8788-1075-5308-bdc9-ad3403fb95ca")
+		)
+		(pin "2"
+			(uuid "4998a6c6-4a8d-5606-82b2-a66f28b59dda")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 39.37 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "da1eff6f-35b3-57e4-970b-f65d018ffbc7")
+		(property "Reference" "S11"
+			(at 39.37 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.01"
+			(at 39.37 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 39.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 39.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 39.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 39.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 39.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "edcc89ed-4225-5d9f-a037-d0f781b2e182")
+		)
+		(pin "2"
+			(uuid "f6e66b50-6d0b-5db9-9094-e208122b7745")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 82.55 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "e6fb82e9-f84d-500e-8a00-0a09075c6a61")
+		(property "Reference" "S12"
+			(at 82.55 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.02"
+			(at 82.55 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 82.55 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 82.55 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 82.55 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 82.55 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "90f1923d-30c5-5a3b-bdc3-f01935f0b6eb")
+		)
+		(pin "2"
+			(uuid "a1e93a26-66d1-590b-949a-e20242ef6ee5")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 124.46 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "de09f2ff-158f-5c88-b0a4-f238e37f2db6")
+		(property "Reference" "S13"
+			(at 124.46 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.03"
+			(at 124.46 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 124.46 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 124.46 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 124.46 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 124.46 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 124.46 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8cadd12b-8bd5-5970-abb5-152c4f1f0027")
+		)
+		(pin "2"
+			(uuid "69d4a5a9-10c3-5fc4-809f-c3b6a545d890")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 166.37 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "1a40afa5-3bb0-5be7-ab5c-8d10e9409603")
+		(property "Reference" "S14"
+			(at 166.37 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.04"
+			(at 166.37 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 166.37 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0f0be30b-e366-5589-ada7-3a15948b1fde")
+		)
+		(pin "2"
+			(uuid "e78f0d9e-6a81-5e8c-af1d-9f56613c628b")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 208.28 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "8c3ecab3-fb7c-5460-bf82-fa783b61b36f")
+		(property "Reference" "S15"
+			(at 208.28 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.05"
+			(at 208.28 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 208.28 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 208.28 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 208.28 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 208.28 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 208.28 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f4b45166-e61f-51d1-b05f-71dadd26e836")
+		)
+		(pin "2"
+			(uuid "7927908a-d921-5a8b-abae-11da38bd1037")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 250.19 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "20919fef-893e-5b2a-ab24-be5da06a56c7")
+		(property "Reference" "S16"
+			(at 250.19 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.06"
+			(at 250.19 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 250.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 250.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 250.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 250.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0ff57cf4-d77a-5c84-9ef4-720cff33b1de")
+		)
+		(pin "2"
+			(uuid "e5e9bc3b-8fe6-5a2f-9bed-c14ae6cd3f58")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 292.1 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "fd75c40a-f93a-5e36-b85d-078c8d9a2734")
+		(property "Reference" "S17"
+			(at 292.1 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.07"
+			(at 292.1 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 292.1 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 292.1 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 292.1 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 292.1 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 292.1 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "000f2867-a4f3-5cf2-a14d-8c845f361059")
+		)
+		(pin "2"
+			(uuid "856f27b8-71c9-54ee-8adf-845be50e3317")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 334.01 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "3f13e3b4-9351-5577-890a-d004bbd38d1a")
+		(property "Reference" "S18"
+			(at 334.01 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.08"
+			(at 334.01 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 334.01 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 334.01 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 334.01 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 334.01 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 334.01 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "69881c5c-5b0c-59dd-a69a-35a234df4574")
+		)
+		(pin "2"
+			(uuid "86f51597-2a87-5f60-bb97-bd9498d57c7d")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 375.92 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "041bd11d-77d6-53ee-8efd-782124ec2119")
+		(property "Reference" "S19"
+			(at 375.92 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.09"
+			(at 375.92 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 375.92 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 375.92 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 375.92 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 375.92 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 375.92 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5743269c-f713-5be7-8985-c5d4cb00a9f3")
+		)
+		(pin "2"
+			(uuid "65c83fe0-6c37-539c-a068-e6608acf671b")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 417.83 139.7 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "487dcf59-6ff4-58fa-9dd2-69410f525408")
+		(property "Reference" "S20"
+			(at 417.83 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C1.10"
+			(at 417.83 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 417.83 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 417.83 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 417.83 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 417.83 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 417.83 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0e10f38e-0faa-5f3a-a69b-93a45cee5f14")
+		)
+		(pin "2"
+			(uuid "1a22d597-43c1-597f-a54a-ef9d058145d2")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 39.37 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "bb14b214-2bd1-5504-b18b-523f9a6216fe")
+		(property "Reference" "S21"
+			(at 39.37 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.01"
+			(at 39.37 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 39.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 39.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 39.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 39.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 39.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "45c97a07-c88b-55fc-a90a-3aa09d4f1fe2")
+		)
+		(pin "2"
+			(uuid "d4f70c04-d7ca-5c9b-8736-b3d734709761")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 82.55 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "741ea084-e550-5423-bbc2-3026f1e5804d")
+		(property "Reference" "S22"
+			(at 82.55 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.02"
+			(at 82.55 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 82.55 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 82.55 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 82.55 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 82.55 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f1dab48e-e0c0-5206-bb44-4f30e8730f35")
+		)
+		(pin "2"
+			(uuid "eaa4e64a-5473-5725-b5a8-2b0a4438b04e")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 124.46 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "dd8a8825-68c1-5df2-b165-c36cb4db4964")
+		(property "Reference" "S23"
+			(at 124.46 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.03"
+			(at 124.46 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 124.46 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 124.46 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 124.46 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 124.46 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 124.46 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "55b0c217-da88-532f-ba3e-5d9ea399b333")
+		)
+		(pin "2"
+			(uuid "fae05526-43fc-58c4-afde-82f5cc4316f0")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 166.37 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "3712a1a9-3003-5db9-a63e-d750e45b5a80")
+		(property "Reference" "S24"
+			(at 166.37 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.04"
+			(at 166.37 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 166.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 166.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 166.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 166.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 166.37 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d801760e-8a36-59b0-9c93-d38e6713da09")
+		)
+		(pin "2"
+			(uuid "297730b8-b949-5152-b28e-86852789a61c")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 208.28 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "5b24038f-b959-5099-a236-021b4c490dc4")
+		(property "Reference" "S25"
+			(at 208.28 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.05"
+			(at 208.28 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 208.28 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 208.28 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 208.28 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 208.28 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 208.28 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8c9c444a-60cd-5722-bb50-d1418a8b879d")
+		)
+		(pin "2"
+			(uuid "3e3ed875-1031-5594-a693-457d6e2be15b")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 250.19 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "2fd136d2-04fb-55ef-82eb-5d5685dde828")
+		(property "Reference" "S26"
+			(at 250.19 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.06"
+			(at 250.19 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 250.19 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 250.19 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 250.19 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 250.19 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0e30e2fc-19ca-55d4-a0a0-19113a21b327")
+		)
+		(pin "2"
+			(uuid "3574c7d7-982a-5759-be04-5c71fa7132c5")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 292.1 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "46a33d6b-0f4d-53b7-bdff-983e331aa8c9")
+		(property "Reference" "S27"
+			(at 292.1 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.07"
+			(at 292.1 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 292.1 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 292.1 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 292.1 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 292.1 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 292.1 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b0ab64c5-6c99-5777-ac55-34e6706dbe58")
+		)
+		(pin "2"
+			(uuid "ff0d7a19-4bc1-5294-b5e8-86e7cfe12ffd")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 334.01 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "4af36734-6e17-5048-b4b0-2854c6d63a35")
+		(property "Reference" "S28"
+			(at 334.01 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.08"
+			(at 334.01 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 334.01 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 334.01 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 334.01 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 334.01 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 334.01 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "65fb337f-e09b-5f70-bbf5-a937e5be8911")
+		)
+		(pin "2"
+			(uuid "22c63a6b-095e-59ca-a5d3-1124c467ae08")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 375.92 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "e86010fb-e83c-5f05-a77e-1d678aa3df42")
+		(property "Reference" "S29"
+			(at 375.92 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.09"
+			(at 375.92 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 375.92 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 375.92 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 375.92 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 375.92 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 375.92 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "31e17902-f04b-5778-a187-24fd3432fe32")
+		)
+		(pin "2"
+			(uuid "9426f022-c0d9-5686-bec2-c31c7b766480")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 417.83 209.55 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "970fd503-805f-5e8d-b542-56073d745a69")
+		(property "Reference" "S30"
+			(at 417.83 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG W2.10"
+			(at 417.83 204.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 417.83 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 417.83 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 417.83 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 417.83 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 417.83 209.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8aa1e264-f73a-5f93-bb65-25f055309841")
+		)
+		(pin "2"
+			(uuid "44b15672-609f-5a8d-8295-32666e4f7107")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S30")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 39.37 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "fc5103d9-20d5-540c-9f42-ac244fa4c1ac")
+		(property "Reference" "S31"
+			(at 39.37 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.01"
+			(at 39.37 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 39.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 39.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 39.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 39.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 39.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dd525481-108a-5b05-92ca-61e61143e01f")
+		)
+		(pin "2"
+			(uuid "2e1e7010-23d6-5888-a95c-5d1ab97f5c08")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 82.55 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "7b198cff-1ebe-564c-ac86-0e63f330c0af")
+		(property "Reference" "S32"
+			(at 82.55 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.02"
+			(at 82.55 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 82.55 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 82.55 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 82.55 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 82.55 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c0d26004-735c-5e48-a742-493bbfe041a4")
+		)
+		(pin "2"
+			(uuid "4a4477bb-89b7-5f0f-9fbc-623a416ae47a")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S32")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 124.46 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "7e4adf56-92a0-59fd-9f26-0859f9bca5ca")
+		(property "Reference" "S33"
+			(at 124.46 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.03"
+			(at 124.46 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 124.46 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 124.46 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 124.46 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 124.46 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 124.46 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "739ef15e-ef4b-53f7-b0de-54871977fc71")
+		)
+		(pin "2"
+			(uuid "31c95bc2-7ddf-5d34-af21-4baedd62f1fd")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S33")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 166.37 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "c8a902b5-713b-5057-9402-e408dd266f4d")
+		(property "Reference" "S34"
+			(at 166.37 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.04"
+			(at 166.37 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 166.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 166.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 166.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 166.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 166.37 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f2a8c626-a13f-592f-bdb0-73985b3a1f1d")
+		)
+		(pin "2"
+			(uuid "9e8a8ffe-d744-547c-af7a-9f1a574b7e83")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 208.28 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "acd80f1b-ed2e-54ed-a9d9-3219396dd90c")
+		(property "Reference" "S35"
+			(at 208.28 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.05"
+			(at 208.28 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 208.28 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 208.28 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 208.28 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 208.28 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 208.28 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "adb30149-86a3-53ef-a491-afdbe864cc48")
+		)
+		(pin "2"
+			(uuid "6f6fece8-ed74-59be-a2b1-2500eebb4acd")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S35")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 250.19 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "38b682cd-3ee1-5a25-99ba-314b4e9be9ea")
+		(property "Reference" "S36"
+			(at 250.19 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.06"
+			(at 250.19 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 250.19 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 250.19 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 250.19 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 250.19 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 250.19 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aca550aa-df97-5355-9704-7d667cbec124")
+		)
+		(pin "2"
+			(uuid "21271683-3884-5caf-94c6-6607dba02984")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S36")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 292.1 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "4c6ebf27-9b16-58fd-a1a4-0472e3aa1a61")
+		(property "Reference" "S37"
+			(at 292.1 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.07"
+			(at 292.1 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 292.1 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 292.1 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 292.1 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 292.1 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 292.1 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "45fc6ac9-72b3-5a64-9e6c-29b11f174627")
+		)
+		(pin "2"
+			(uuid "c09c6930-1c71-5ae6-b31b-b03aacffbee1")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S37")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 334.01 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "2b33328f-6566-514e-b148-11676f3a9e0d")
+		(property "Reference" "S38"
+			(at 334.01 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.08"
+			(at 334.01 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 334.01 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 334.01 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 334.01 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 334.01 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 334.01 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f3dbc8b8-a2a8-5bdb-a9d9-24632d6785a5")
+		)
+		(pin "2"
+			(uuid "893483b5-2167-5c8f-9b08-188eef42eed0")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S38")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 375.92 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "569571ee-6dae-5c0a-b513-77e6e3d8acdc")
+		(property "Reference" "S39"
+			(at 375.92 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.09"
+			(at 375.92 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 375.92 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 375.92 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 375.92 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 375.92 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 375.92 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bf4ce908-6750-595a-a518-b7356f05bcb3")
+		)
+		(pin "2"
+			(uuid "545608ab-1350-56c1-afd9-b722ecd5cecc")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S39")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 417.83 279.4 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "4330a20c-3522-5a85-bb50-ee99713690c0")
+		(property "Reference" "S40"
+			(at 417.83 281.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPRIG C2.10"
+			(at 417.83 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubSprigPads"
+			(at 417.83 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 417.83 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 417.83 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 417.83 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"
+			(at 417.83 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f5b0cef3-969d-52d6-8b9f-3ef00800e0ce")
+		)
+		(pin "2"
+			(uuid "15e1c43e-538b-5c4d-b49e-bafb791ec149")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "S40")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x10")
+		(at 529.59 170.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "a4a71e2f-95f7-5fbf-907a-7e92c252b080")
+		(property "Reference" "J1"
+			(at 529.59 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TO CORE J2"
+			(at 529.59 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "eclipse:HubTrunkPads"
+			(at 529.59 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 529.59 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 529.59 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "wire lands"
+			(at 529.59 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "10 x AWG30 PTFE down the trunk to core J2 (1:1)"
+			(at 529.59 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "66b686fc-89b9-583c-b119-6494357ad4ea")
+		)
+		(pin "2"
+			(uuid "128f4549-ad2c-5621-bf4b-1be71fdb884d")
+		)
+		(pin "3"
+			(uuid "44da6b81-17bb-598e-8c91-953b77a0dc70")
+		)
+		(pin "4"
+			(uuid "9d5b9da0-90df-5b83-aff9-792253778fbe")
+		)
+		(pin "5"
+			(uuid "85bfdf43-9359-5cd2-b471-f31cd8a3e128")
+		)
+		(pin "6"
+			(uuid "57cde0da-3fce-5334-b8c8-5a98bc77d0e5")
+		)
+		(pin "7"
+			(uuid "dabceec8-4952-5f37-ba78-ae5180581d9f")
+		)
+		(pin "8"
+			(uuid "1a7f1feb-5493-5064-8cdd-9e9755262663")
+		)
+		(pin "9"
+			(uuid "65a62666-bb2d-5d51-b01d-f0aa98387e35")
+		)
+		(pin "10"
+			(uuid "3d3f90b9-2142-518b-bcf4-03a04bedd3ae")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:Thermistor_NTC")
+		(at 500.38 240.03 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "96923b5a-3195-59c0-b0fc-a6ad5b3b491d")
+		(property "Reference" "TH1"
+			(at 502.92 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k B3380"
+			(at 502.92 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 500.38 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 500.38 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 500.38 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "NCP18XH103F03RB"
+			(at 500.38 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "NTC 10k 1% B=3380, 0603"
+			(at 500.38 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a030030f-c3a0-579c-9c2c-0f8a142671ae")
+		)
+		(pin "2"
+			(uuid "668903f2-17ee-5983-9545-ac1173faae55")
+		)
+		(instances
+			(project "eclipse-hub"
+				(path "/30dcb7a8-4b37-5331-a842-cbd2eddfc107"
+					(reference "TH1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

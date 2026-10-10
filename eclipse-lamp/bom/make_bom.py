@@ -24,30 +24,29 @@ PRICE = {  # MPN -> USD @1k (estimate)
 R0603 = 0.002
 
 MECH = [  # ref, qty, description, material / process, part, unit USD
-    ("M1", 1, "Base upper shell, D150 x 12 (touch skin + stem socket)", "6061-T6, CNC turned+milled, bead blast, graphite anodise; cavity white-painted", "ECL-M-001", 7.50),
-    ("M2", 1, "Weight / reflector disc, D110 x 6.5 (~0.48 kg)", "S235 steel, laser cut, white powder coat (light-chamber reflector)", "ECL-M-002", 1.60),
-    ("M3", 1, "Glow band, D148/D138 x 7", "Light-diffusing PMMA (e.g. PLEXIGLAS Satinice / LED-grade opal), extruded tube cut + polished", "ECL-M-003", 0.70),
+    ("M1", 1, "Base upper shell, D150 x 12 (touch skin + trunk socket)", "6061-T6, CNC turned+milled, bead blast, graphite anodise; cavity white-painted", "ECL-M-001", 7.50),
+    ("M2", 1, "Weight / reflector disc, D110 x 6.5 (~0.48 kg)", "S235 steel, laser cut, white powder coat", "ECL-M-002", 1.60),
+    ("M3", 1, "Root-glow band, D148/D138 x 7", "Light-diffusing PMMA, extruded tube cut + polished", "ECL-M-003", 0.70),
     ("M4", 1, "Plinth, D150 x 3 + 3 posts (~0.42 kg)", "S235 steel, laser cut, posts welded, black powder coat", "ECL-M-004", 2.40),
     ("M5", 1, "Foot ring, D146/D122 x 1", "Cork/rubber composite, die cut, PSA backed", "ECL-M-005", 0.30),
     ("M6", 1, "Touch window, D52 x 3", "Soda-lime glass, satin etch top, screen-printed ring", "ECL-M-006", 1.60),
-    ("M7", 1, "Stem, 12 x 2 tube, 340 mm + R90 bend", "6063 tube, CNC bent, brass-tone PVD", "ECL-M-007", 3.50),
-    ("M8", 1, "Hinge yoke", "6061 CNC, graphite anodise", "ECL-M-008", 2.20),
-    ("M9", 1, "Friction knob, knurled D18", "C360 brass, CNC, clear lacquer", "ECL-M-009", 1.80),
-    ("M10", 1, "Halo cap, D212/D148 x 3 + rear hood + knuckle (heatsink)", "6061 CNC (or ADC12 die-cast), graphite anodise", "ECL-M-010", 5.20),
-    ("M11", 1, "Halo glow body, D212/D148 x 22, hollow, 4-5.4 mm walls", "Light-diffusing PMMA, injection moulded, satin outer finish", "ECL-M-011", 3.80),
-    ("M12", 1, "Thermal pad ring, D200/D160 x 0.5", "Silicone gap pad 1.5 W/mK, die cut", "ECL-M-012", 0.60),
-    ("M13", 1, "Harness, 10 x AWG28, 520 mm, JST PH 1:1", "PHR-10 housings, SPH-002T crimps, PTFE wire", "ECL-W-001", 0.80),
+    ("M7", 1, "Trunk, 14 x 2 tube, S-bent, ~150 mm + root flare", "C260 brass tube, CNC bent, flare spun + brazed", "ECL-M-007", 3.20),
+    ("M8", 1, "Burl (fork knot), 2 cast halves, houses the hub", "Lost-wax cast silicon bronze, ~80 g", "ECL-M-008", 6.50),
+    ("M9", 1, "Crown: 4 limbs, 75 branches + 189 spur twigs (4.7 m)", "C260 brass rod D1-6 mm, hand-formed on a jig from the CAD skeleton, brazed", "ECL-M-009", 18.00),
+    ("M10", 1, "Bark finish, whole tree", "Brown-grey liver-of-sulphur patina + matte lacquer", "ECL-M-010", 2.50),
+    ("M11", 1, "Magnet wire, 80 x 0.15 mm, ~0.35 m each, laid in branch grooves", "Polyurethane-enamelled Cu (solderable), bark-colour", "ECL-W-002", 0.60),
+    ("M12", 1, "Trunk harness, 10 x AWG30 PTFE, 260 mm", "Hub J1 lands -> core J2 (JST PHR-10 + SPH-002T)", "ECL-W-001", 0.70),
+    ("M13", 1, "Burl potting", "Black flexible epoxy, ~4 ml", "ECL-M-013", 0.20),
     ("F1", 3, "Screw M3 x 6, pan head (core PCB)", "A2 stainless", "ISO 14583", 0.02),
-    ("F2", 4, "Screw M2.5 x 5, pan head (halo PCB to cap)", "A2 stainless", "ISO 14583", 0.02),
-    ("F3", 1, "Set screw M4 x 4, cup point (stem)", "A2 stainless", "ISO 4029", 0.02),
-    ("F4", 1, "Shoulder screw D4 x 16 + M3 (hinge pin)", "A2 stainless", "ISO 7379", 0.25),
-    ("F5", 2, "Wave washer D4.2 (hinge friction)", "Spring steel", "DIN 137B", 0.04),
-    ("F6", 3, "Screw M3 x 10, countersunk (plinth posts into shell)", "A2 stainless", "ISO 10642", 0.03),
-    ("F7", 6, "Screw M2 x 5, pan head (glow body to cap)", "A2 stainless", "ISO 14583", 0.02),
+    ("F2", 1, "Set screw M4 x 4, cup point (trunk socket)", "A2 stainless", "ISO 4029", 0.02),
+    ("F3", 3, "Screw M3 x 10, countersunk (plinth posts into shell)", "A2 stainless", "ISO 10642", 0.03),
+    ("F4", 2, "Screw M2 x 6 (burl halves)", "A2 stainless", "ISO 14583", 0.02),
+    ("F5", 40, "Sprig clip: 0.3 mm brass crimp sleeve, sprig root to twig tip", "C260 brass", "ECL-M-014", 0.01),
 ]
 PCB_FAB = [
     ("PCB1", 1, "Core PCB, D124 + USB tab, 2L 1.6 mm FR4, 1 oz, matte black, ENIG", "eclipse-core", 1.20),
-    ("PCB2", 1, "Halo PCB, ring D200/D160, 1L aluminium MCPCB 1.5 mm, white mask, ENIG", "eclipse-halo", 2.50),
+    ("PCB2", 1, "Hub PCB, D36 with D4 hole, 2L 1.0 mm FR4, black, ENIG", "eclipse-hub", 0.35),
+    ("PCB3", 40, "Sprig flex, 2L polyimide 0.11 mm, bronze coverlay, ENIG (panelised)", "eclipse-sprig", 0.22),
 ]
 
 
@@ -64,13 +63,25 @@ def kicad_bom(board):
 
 def main():
     rows = []
-    for board, label in (("core", "Core board (base)"), ("halo", "Halo ring board")):
+    for board, label, mult in (("core", "Core board (base)", 1), ("hub", "Hub board (in the burl)", 1),
+                               ("sprig", "LED sprigs (x40 per lamp)", 40)):
         for r in kicad_bom(board):
             mpn = r["MPN"]
+            if board == "sprig" and r["Value"] == "LEAF":
+                # one sprig design, two LED builds: 20 warm sprigs + 20 cool sprigs
+                per = int(r["Qty"])
+                for cct, cnt in (("2700 K", 20), ("6500 K", 20)):
+                    q = per * cnt
+                    rows.append({"Section": label, "Refs": f"{r['Refs']} on {cnt} sprigs", "Qty": q,
+                                 "Value": f"LEAF {cct}", "Description": f"Leaf LED 0402 white {cct}, If 5 mA",
+                                 "Manufacturer": r["Manufacturer"], "MPN": f"0402 white LED {cct} (select bin)",
+                                 "LCSC": "", "Footprint": r["Footprint"].split(":")[-1],
+                                 "Unit USD": 0.012, "Ext USD": round(0.012 * q, 3), "Note": "same Vf bin per sprig"})
+                continue
             unit = PRICE.get(mpn, R0603 if mpn.startswith("RC0603") else None)
             if unit is None:
                 raise SystemExit(f"no price for {mpn}")
-            qty = int(r["Qty"])
+            qty = int(r["Qty"]) * mult
             dnp = bool(r["DNP"].strip())
             rows.append({"Section": label, "Refs": r["Refs"], "Qty": qty, "Value": r["Value"],
                          "Description": r["Description"], "Manufacturer": r["Manufacturer"], "MPN": mpn,
@@ -94,10 +105,10 @@ def main():
     totals = {}
     for r in rows:
         totals[r["Section"]] = totals.get(r["Section"], 0) + r["Ext USD"]
-    md = ["# ECLIPSE - Bill of Materials", "",
+    md = ["# ECLIPSE Tree - Bill of Materials", "",
           "Generated by `make_bom.py` from the KiCad schematics plus the mechanical parts list.",
           "Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before ordering.", ""]
-    for sec in ("Core board (base)", "Halo ring board", "Bare PCBs", "Mechanical"):
+    for sec in ("Core board (base)", "Hub board (in the burl)", "LED sprigs (x40 per lamp)", "Bare PCBs", "Mechanical"):
         md += [f"## {sec}", "", "| Refs | Qty | Value | Description | Manufacturer | MPN | Unit $ | Ext $ |",
                "|---|---:|---|---|---|---|---:|---:|"]
         for r in rows:

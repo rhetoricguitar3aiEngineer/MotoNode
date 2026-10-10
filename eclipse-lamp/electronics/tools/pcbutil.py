@@ -216,7 +216,7 @@ def patch_models(pcbfile):
     open(pcbfile, "w").write(src)
 
 
-def add_stackup(pcbfile, mask="Black", silk="White", cu=0.035, finish="ENIG", core="FR4"):
+def add_stackup(pcbfile, mask="Black", silk="White", cu=0.035, finish="ENIG", core="FR4", thickness=1.6):
     """Insert a 2-layer stackup (with solder-mask / silk colours) into the board file."""
     src = open(pcbfile).read()
     if "(stackup" in src:
@@ -226,7 +226,7 @@ def add_stackup(pcbfile, mask="Black", silk="White", cu=0.035, finish="ENIG", co
 			(layer "F.Paste" (type "Top Solder Paste"))
 			(layer "F.Mask" (type "Top Solder Mask") (color "{mask}") (thickness 0.01))
 			(layer "F.Cu" (type "copper") (thickness {cu}))
-			(layer "dielectric 1" (type "core") (thickness {1.6 - 2 * cu - 0.02:.3f}) (material "{core}") (epsilon_r 4.5) (loss_tangent 0.02))
+			(layer "dielectric 1" (type "core") (thickness {thickness - 2 * cu - 0.02:.3f}) (material "{core}") (epsilon_r 4.5) (loss_tangent 0.02))
 			(layer "B.Cu" (type "copper") (thickness {cu}))
 			(layer "B.Mask" (type "Bottom Solder Mask") (color "{mask}") (thickness 0.01))
 			(layer "B.Paste" (type "Bottom Solder Paste"))

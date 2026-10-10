@@ -2,7 +2,7 @@
 
     python3 render_blender.py <shot> [--samples N] [--res WxH]
 
-shots: hero, studio, detail, exploded, underside
+shots: hero, cool, studio, leaves, night, detail
 Inputs: ../mechanical/out/*.stl + parts.json, ../electronics/*/eclipse-*.glb
 """
 import argparse, json, math, os, sys
@@ -130,27 +130,65 @@ def glow_mat(name, on, warmth, strength, side=0.3, up=0.1, falloff=1.0):
     return m
 
 
-def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None):
+def bark_material():
+    """Dark bronze bark patina: metallic base, rough, with fine furrowed bump (cedar-elm bark)."""
+    m = bpy.data.materials.new("bark")
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    b.inputs["Base Color"].default_value = (0.105, 0.075, 0.050, 1)
+    b.inputs["Metallic"].default_value = 0.0
+    b.inputs["Roughness"].default_value = 0.75
+    b.inputs["Specular IOR Level"].default_value = 0.18   # patina: little sheen
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping")
+    mp.inputs["Scale"].default_value = (700.0, 700.0, 160.0)   # furrows run along the branches (mostly z)
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Detail"].default_value = 6.0
+    bump = nt.nodes.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = 0.6
+    bump.inputs["Distance"].default_value = 0.0003   # metres: fine furrows, not a 1 m default
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nt.links.new(mp.outputs["Vector"], noise.inputs["Vector"])
+    nt.links.new(noise.outputs["Fac"], bump.inputs["Height"])
+    nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
+    # lighter worn bronze on the high spots
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.color_ramp.elements[0].color = (0.030, 0.022, 0.016, 1)
+    ramp.color_ramp.elements[1].color = (0.13, 0.090, 0.055, 1)
+    nt.links.new(noise.outputs["Fac"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], b.inputs["Base Color"])
+    return m
+
+
+WARM = (1.0, 0.70, 0.40)
+COOL = (0.82, 0.90, 1.0)
+
+
+def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, cool_mix=0.5):
     LEVEL[0] = level
     M = {}
     M["graphite"] = mat("graphite", (0.030, 0.031, 0.034), 1.0, 0.30, aniso=0.2)
-    M["brass"] = mat("brass", (0.80, 0.60, 0.34), 1.0, 0.20)
     M["steel"] = mat("steel", (0.55, 0.56, 0.58), 1.0, 0.35)
-    M["alu"] = mat("alu", (0.70, 0.71, 0.72), 1.0, 0.45)
     M["cork"] = mat("cork", (0.42, 0.28, 0.16), 0.0, 0.85)
     M["glass"] = mat("smoked_glass", (0.006, 0.006, 0.008), 0.0, 0.06, coat=1.0, ior=1.52)
     M["etch"] = mat("etch", (0.55, 0.55, 0.56), 0.0, 0.7, emit=warmth if on else None, strength=0.25 * level if on else 0)
-    M["diffuser"] = glow_mat("halo_glow", on, warmth, 14.0 * level, side=0.06, falloff=0.3)
     band_on = on if band is None else True
     M["band"] = glow_mat("band_glow", band_on, warmth, 0.9 * (level if band is None else band), side=1.0, up=1.0)
     M["white"] = mat("white_powder", (0.85, 0.85, 0.83), 0.0, 0.6)
+    M["bark"] = bark_material()
+    M["flex"] = mat("flex_coverlay", (0.30, 0.17, 0.07), 0.3, 0.35, coat=0.5)
+    # leaves: 0402 LEDs. Off: yellow phosphor dots.  On: tiny emitters (warm / cool channels)
+    w_on, c_on = on, on and cool_mix > 0
+    M["leaf_W"] = mat("leaf_warm", (0.95, 0.80, 0.30), 0.0, 0.3, emit=WARM if w_on else None,
+                      strength=140.0 * level * (1 - cool_mix * 0.5) if w_on else 0)
+    M["leaf_C"] = mat("leaf_cool", (0.95, 0.85, 0.35), 0.0, 0.3, emit=COOL if c_on else None,
+                      strength=140.0 * level * cool_mix if c_on else 0)
     return M
 
 
 PART_MAT = {"base_shell": "graphite", "base_weight": "white", "base_band": "band", "base_plinth": "graphite",
-            "base_foot": "cork",
-            "touch_glass": "glass", "touch_etch": "etch", "stem": "brass", "hinge_yoke": "graphite",
-            "hinge_knob": "brass", "halo_cap": "graphite", "halo_body": "diffuser"}
+            "base_foot": "cork", "touch_glass": "glass", "touch_etch": "etch", "trunk": "bark", "burl": "bark"}
 
 
 # ------------------------------------------------------------------ scene helpers
@@ -292,53 +330,113 @@ def setup_render(samples, res, out):
 
 
 # ------------------------------------------------------------------ lamp
-def build_lamp(M, explode=False, with_pcbs=False):
+def curve_tube(name, polylines, material, radii=None, const_r=None):
+    """One curve object holding many tapered tubes (fast to build and to render)."""
+    cu = bpy.data.curves.new(name, "CURVE")
+    cu.dimensions = "3D"
+    cu.bevel_depth = 1.0 if const_r is None else const_r
+    cu.bevel_resolution = 3
+    cu.use_fill_caps = True
+    for i, pl in enumerate(polylines):
+        sp = cu.splines.new("POLY")
+        sp.points.add(len(pl) - 1)
+        for j, p in enumerate(pl):
+            sp.points[j].co = (p[0] * MM, p[1] * MM, p[2] * MM, 1.0)
+            if radii is not None:
+                sp.points[j].radius = radii[i][j] * MM
+    ob = bpy.data.objects.new(name, cu)
+    bpy.context.scene.collection.objects.link(ob)
+    cu.materials.append(material)
+    return ob
+
+
+def leaf_mesh(name, points, material, r=0.55):
+    """All leaves of one colour as one mesh of tiny boxes (an 0402 LED is 1.0 x 0.5 x 0.35 mm)."""
+    import bmesh
+    bm = bmesh.new()
+    for p in points:
+        geom = bmesh.ops.create_cube(bm, size=1.0)
+        vs = geom["verts"]
+        bmesh.ops.scale(bm, vec=(1.0 * MM * r / 0.55, 0.6 * MM, 0.45 * MM), verts=vs)
+        bmesh.ops.translate(bm, vec=(p[0] * MM, p[1] * MM, p[2] * MM), verts=vs)
+    me = bpy.data.meshes.new(name)
+    bm.to_mesh(me)
+    ob = bpy.data.objects.new(name, me)
+    bpy.context.scene.collection.objects.link(ob)
+    me.materials.append(material)
+    return ob
+
+
+def build_lamp(M, crown_light=0.0):
+    """Base + trunk/burl from STL, branches/sprigs/leaves from the skeleton in parts.json."""
     meta = json.load(open(os.path.join(MECH, "parts.json")))
     obs = {}
     for name in PART_MAT:
         ob = import_stl(name)
         ob.data.materials.append(M[PART_MAT[name]])
         obs[name] = ob
-    if with_pcbs:
-        hp = os.path.join(ELEC, "halo", "eclipse-halo.glb")
-        cp = os.path.join(ELEC, "core", "eclipse-core.glb")
-        rc = meta["ring_center"]
-        if os.path.exists(hp):
-            root, _ = import_glb(hp, "pcb_halo")
-            root.rotation_euler = (0, math.pi, 0)
-            root.location = (0, rc[1] * MM, meta["pcb_halo_z"] * MM)
-            obs["pcb_halo"] = root
-        if os.path.exists(cp):
-            root, _ = import_glb(cp, "pcb_core")
-            root.location = (0, 0, meta["pcb_core_z"] * MM)
-            obs["pcb_core"] = root
-    if M["diffuser"].name.endswith("_on"):
-        # the LED ring as an actual light source (cleaner sampling than the emissive mesh alone)
-        rc = meta["ring_center"]
-        tilt = math.radians(meta.get("tilt", 0.0))
-        for k in range(12):
-            a = 2 * math.pi * k / 12
-            l = bpy.data.lights.new(f"led{k}", "AREA")
+    sk = meta["skeleton"]
+    br = sk["branches"][1:]
+    obs["branches"] = curve_tube("branches", [b["p"] for b in br], M["bark"], radii=[b["r"] for b in br])
+    stems = [st for sp in sk["sprigs"] for st in sp["stems"]]
+    pets = [pt for sp in sk["sprigs"] for pt in sp["pet"]]
+    obs["sprigs"] = curve_tube("sprig_stems", stems, M["flex"], const_r=0.45 * MM)
+    obs["petioles"] = curve_tube("sprig_petioles", pets, M["flex"], const_r=0.28 * MM)
+    for c in ("W", "C"):
+        pts = [l["p"] for l in meta["leaves"] if l["ch"][0] == c]
+        obs["leaves_" + c] = leaf_mesh("leaves_" + c, pts, M["leaf_" + c])
+    if crown_light > 0:
+        # aggregate light of 800 tiny LEDs onto the desk: a few soft area lights inside the crown
+        cc = meta["crown_center"]
+        lv = meta["leaves"]
+        for k in range(6):
+            sub = lv[k::6]
+            x = sum(l["p"][0] for l in sub) / len(sub)
+            y = sum(l["p"][1] for l in sub) / len(sub)
+            z = min(l["p"][2] for l in sub)
+            l = bpy.data.lights.new(f"crown{k}", "AREA")
             l.shape = "DISK"
-            l.size = 0.045
-            l.energy = 4.0 * LEVEL[0]
-            l.color = (1.0, 0.82, 0.64)
-            ob = bpy.data.objects.new(f"led{k}", l)
+            l.size = 0.12
+            l.energy = 6.0 * crown_light
+            l.color = (1.0, 0.80, 0.60)
+            ob = bpy.data.objects.new(f"crown{k}", l)
             bpy.context.scene.collection.objects.link(ob)
-            ob.location = (0.090 * math.cos(a), rc[1] * MM + 0.090 * math.sin(a), (rc[2] - 1.0) * MM)
-            ob.rotation_euler = (0, 0, 0)  # area lights point down -Z by default
-    if explode:
-        dz = {"halo_cap": 120, "pcb_halo": 60, "halo_body": -10,
-              "touch_glass": 150, "touch_etch": 150, "base_shell": 95, "pcb_core": 45,
-              "base_band": 20, "base_weight": 0, "base_plinth": -30, "base_foot": -55}
-        dx = {"hinge_knob": 40}
-        lift = 70  # keep the lowest exploded part above the floor
-        for k, ob in obs.items():
-            ob.location.z += (dz.get(k, 0) + lift) * MM
-        for k, v in dx.items():
-            if k in obs:
-                obs[k].location.x += v * MM
+            ob.location = (x * MM, y * MM, (z - 12.0) * MM)   # just under the crown, firing down
     return obs, meta
+
+
+def glare(strength=0.35, size=0.10):
+    """Compositor fog-glow so each tiny LED leaf blooms a little, like it does to the eye.
+    (Blender 5 node-group compositor.)"""
+    s = bpy.context.scene
+    tree = bpy.data.node_groups.new("comp", "CompositorNodeTree")
+    tree.interface.new_socket("Image", in_out="OUTPUT", socket_type="NodeSocketColor")
+    rl = tree.nodes.new("CompositorNodeRLayers")
+    gl = tree.nodes.new("CompositorNodeGlare")
+    gl.inputs["Type"].default_value = "Fog Glow"
+    gl.inputs["Quality"].default_value = "High"
+    gl.inputs["Threshold"].default_value = 2.5
+    gl.inputs["Strength"].default_value = strength
+    gl.inputs["Size"].default_value = size
+    out = tree.nodes.new("NodeGroupOutput")
+    tree.links.new(rl.outputs["Image"], gl.inputs["Image"])
+    tree.links.new(gl.outputs["Image"], out.inputs[0])
+    s.compositing_node_group = tree
+
+
+def props(M):
+    paper = mat("paper", (0.86, 0.84, 0.79), 0.0, 0.8)
+    cover = mat("cover", (0.07, 0.11, 0.15), 0.0, 0.55)
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(0.17, -0.22, 0.006))
+    nb = bpy.context.active_object
+    nb.scale = (0.15, 0.21, 0.012)
+    nb.rotation_euler = (0, 0, math.radians(-14))
+    nb.data.materials.append(cover)
+    bpy.ops.mesh.primitive_cube_add(size=1, location=(-0.05, -0.26, 0.0012))
+    sh = bpy.context.active_object
+    sh.scale = (0.21, 0.297, 0.0024)
+    sh.rotation_euler = (0, 0, math.radians(9))
+    sh.data.materials.append(paper)
 
 
 def main():
@@ -353,101 +451,95 @@ def main():
     bpy.ops.wm.read_factory_settings(use_empty=True)
     out = args.out or os.path.join(HERE, f"eclipse_{args.shot}.png")
     shot = args.shot
-    T = (0.0, -0.095, 0.225)
+    T = (0.0, 0.0, 0.20)
 
     if shot == "hero":
-        # evening desk: oak top, dark wall, lamp on and lighting the desk
-        M = build_materials(on=True, level=1.0)
-        obs, meta = build_lamp(M)
+        # evening desk: the tree lit, leaves sparkling, a warm pool on the desk
+        M = build_materials(on=True, level=1.0, cool_mix=0.35)
+        obs, meta = build_lamp(M, crown_light=1.0)
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
-        wall = mat("wall", (0.30, 0.29, 0.27), 0.0, 0.95)
-        add_plane("wall", 4.0, (0, 0.42, 1.0), wall, rot=(math.pi / 2, 0, 0))
-        paper = mat("paper", (0.86, 0.84, 0.79), 0.0, 0.8)
-        cover = mat("cover", (0.07, 0.11, 0.15), 0.0, 0.55)
-        bpy.ops.mesh.primitive_cube_add(size=1, location=(0.10, -0.17, 0.006))
-        nb = bpy.context.active_object
-        nb.scale = (0.15, 0.21, 0.012)
-        nb.rotation_euler = (0, 0, math.radians(-14))
-        nb.data.materials.append(cover)
-        bpy.ops.mesh.primitive_cube_add(size=1, location=(-0.06, -0.20, 0.0012))
-        sh = bpy.context.active_object
-        sh.scale = (0.21, 0.297, 0.0024)
-        sh.rotation_euler = (0, 0, math.radians(9))
-        sh.data.materials.append(paper)
-        bpy.ops.mesh.primitive_cylinder_add(radius=0.0035, depth=0.15, location=(-0.02, -0.26, 0.006),
-                                            rotation=(0, math.pi / 2, math.radians(30)))
-        bpy.context.active_object.data.materials.append(M["brass"])
-        world((0.010, 0.012, 0.018), 1.0)
-        area("fill", orbit(-150, 25, 1.6, T), T, 1.5, 6, (0.55, 0.65, 1.0))
-        area("rim", orbit(60, 35, 1.2, T), T, 0.8, 10, (1.0, 0.9, 0.8))
-        tgt = (0.0, -0.11, 0.235)
-        camera(orbit(-62, 9, 1.32, tgt), tgt, lens=50, dof=1.32, fstop=4.0)
-        bpy.context.scene.view_settings.exposure = -0.6
+        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.26, 0.25, 0.23), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
+        props(M)
+        world((0.008, 0.010, 0.016), 1.0)
+        area("fill", orbit(-150, 25, 1.6, T), T, 1.5, 4, (0.55, 0.65, 1.0))
+        area("rim", orbit(60, 35, 1.2, T), T, 0.8, 6, (1.0, 0.9, 0.8))
+        tgt = (0.0, 0.0, 0.215)
+        camera(orbit(-60, 8, 1.12, tgt), tgt, lens=45)
+        bpy.context.scene.view_settings.exposure = -0.4
+        glare()
     elif shot == "studio":
-        M = build_materials(on=True, level=0.45)
+        # daylight product shot: the lamp off, read as a bronze sculpture
+        M = build_materials(on=False)
         obs, meta = build_lamp(M)
         BACKDROP_ROT = 125 - 90
         backdrop(mat("sweep", (0.80, 0.80, 0.80), 0.0, 0.6), width=9, depth=6, height=4, radius=1.0)
         world((0.6, 0.6, 0.62), 0.25)
         area("key", orbit(-125, 40, 1.8, T), T, 1.8, 260)
         area("fill", orbit(-20, 15, 1.8, T), T, 1.8, 90)
-        area("top", (0, -0.1, 1.8), (0, -0.1, 0), 1.4, 120)
-        camera(orbit(-55, 10, 1.55, T), T, lens=60)
+        area("top", (0, 0.0, 1.8), (0, 0.0, 0), 1.4, 120)
+        tgt = (0.0, 0.0, 0.20)
+        camera(orbit(-55, 10, 1.45, tgt), tgt, lens=50)
+    elif shot == "leaves":
+        # macro: flex sprigs and 0402 LED leaves
+        M = build_materials(on=True, level=0.35, cool_mix=0.35)
+        obs, meta = build_lamp(M, crown_light=0.3)
+        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.18, 0.17, 0.16), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
+        add_plane("desk", 3.0, (0, 0, 0), wood_material())
+        world((0.01, 0.011, 0.016), 1.0)
+        area("rim", orbit(40, 30, 0.8, T), T, 0.6, 4, (1.0, 0.9, 0.8))
+        lv = sorted(meta["leaves"], key=lambda l: (l["p"][1], -l["p"][0]))
+        cx = lv[len(lv) // 8]["p"]
+        tgt = (cx[0] * MM, cx[1] * MM, cx[2] * MM)
+        camera(orbit(-70, 5, 0.22, tgt), tgt, lens=85, dof=0.22, fstop=6.0)
+        bpy.context.scene.view_settings.exposure = -0.3
+        glare(size=0.08)
+    elif shot == "night":
+        # night mode: crown dimmed to embers, the base band (roots) breathing a warm glow
+        M = build_materials(on=True, level=0.02, band=4.0, cool_mix=0.0)
+        obs, meta = build_lamp(M, crown_light=0.02)
+        add_plane("desk", 3.0, (0, 0, 0), wood_material())
+        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.20, 0.19, 0.18), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
+        world((0.004, 0.005, 0.009), 1.0)
+        area("moon", orbit(150, 30, 1.5, T), T, 1.2, 8.0, (0.55, 0.65, 1.0))
+        tgt = (0.0, 0.0, 0.17)
+        camera(orbit(-62, 10, 1.25, tgt), tgt, lens=45)
+        glare(size=0.12)
     elif shot == "detail":
-        M = build_materials(on=True, level=0.6)
-        obs, meta = build_lamp(M)
+        M = build_materials(on=True, level=0.6, cool_mix=0.35)
+        obs, meta = build_lamp(M, crown_light=0.4)
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         world((0.02, 0.022, 0.03), 1.0)
         area("key", (-0.5, -0.5, 0.6), (0, -0.03, 0.02), 0.5, 18, (1.0, 0.95, 0.9))
         area("rim", (0.4, 0.4, 0.3), (0, 0, 0.02), 0.4, 8, (0.8, 0.85, 1.0))
         camera((0.16, -0.30, 0.17), (0.0, -0.02, 0.02), lens=85, dof=0.36, fstop=3.2)
-    elif shot == "exploded":
-        M = build_materials(on=False)
-        obs, meta = build_lamp(M, explode=True, with_pcbs=True)
-        BACKDROP_ROT = 130 - 90
-        backdrop(mat("sweep", (0.86, 0.86, 0.86), 0.0, 0.6), width=9, depth=6, height=4, radius=1.0)
-        world((0.7, 0.7, 0.72), 0.3)
-        area("key", orbit(-125, 40, 1.8, T), T, 1.8, 260)
-        area("fill", orbit(-20, 15, 1.8, T), T, 1.8, 90)
-        area("top", (0, -0.1, 1.8), (0, -0.1, 0), 1.4, 140)
-        tgt = (0, -0.095, 0.33)
-        camera(orbit(-52, 14, 1.85, tgt), tgt, lens=50)
-    elif shot == "underside":
-        M = build_materials(on=True, level=0.12)
-        obs, meta = build_lamp(M)
-        BACKDROP_ROT = 125 - 90
-        backdrop(mat("sweep", (0.10, 0.10, 0.11), 0.0, 0.7), width=9, depth=6, height=4, radius=1.0)
-        world((0.02, 0.02, 0.025), 1.0)
-        area("rim", orbit(-20, 50, 1.0, (0, -0.15, 0.44)), (0, -0.15, 0.44), 1.0, 30)
-        area("key", orbit(-120, 10, 1.2, (0, -0.1, 0.3)), (0, -0.1, 0.3), 1.2, 25, (0.8, 0.85, 1.0))
-        tgt = (0.0, -0.13, 0.36)
-        camera(orbit(-70, -8, 0.95, tgt), tgt, lens=40)
-    elif shot == "glow":
-        # close-up: light diffusing through the body of the halo
-        M = build_materials(on=True, level=0.35)
-        obs, meta = build_lamp(M)
+    elif shot == "cool":
+        # same scene as hero with the colour temperature slid to daylight
+        M = build_materials(on=True, level=1.0, cool_mix=1.0)
+        obs, meta = build_lamp(M, crown_light=1.0)
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
-        wall = mat("wall", (0.20, 0.19, 0.18), 0.0, 0.95)
-        add_plane("wall", 4.0, (0, 0.42, 1.0), wall, rot=(math.pi / 2, 0, 0))
-        world((0.008, 0.009, 0.012), 1.0)
-        rc = meta["ring_center"]
-        tgt = (0.07, (rc[1] - 95) * MM, (rc[2] + 8) * MM)
-        camera(orbit(-40, -6, 0.42, tgt), tgt, lens=85)
-        bpy.context.scene.view_settings.exposure = -0.5
-    elif shot == "night":
-        # night mode: halo off, the base band breathes a warm glow through its body
-        M = build_materials(on=False, band=6.0)
-        obs, meta = build_lamp(M)
-        add_plane("desk", 3.0, (0, 0, 0), wood_material())
-        wall = mat("wall", (0.20, 0.19, 0.18), 0.0, 0.95)
-        add_plane("wall", 4.0, (0, 0.42, 1.0), wall, rot=(math.pi / 2, 0, 0))
-        world((0.004, 0.005, 0.009), 1.0)
-        area("moon", orbit(150, 30, 1.5, T), T, 1.2, 8.0, (0.55, 0.65, 1.0))
-        tgt = (0.0, -0.06, 0.12)
-        camera(orbit(-62, 12, 1.0, tgt), tgt, lens=50)
+        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.26, 0.25, 0.23), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
+        props(M)
+        world((0.008, 0.010, 0.016), 1.0)
+        for ob in bpy.data.objects:
+            if ob.name.startswith("crown"):
+                ob.data.color = (0.85, 0.92, 1.0)
+        tgt = (0.0, 0.0, 0.215)
+        camera(orbit(-60, 8, 1.12, tgt), tgt, lens=45)
+        bpy.context.scene.view_settings.exposure = -0.4
+        glare()
     else:
         raise SystemExit("unknown shot " + shot)
 
+    # the crown helper lights stand in for 800 LEDs lighting the room: they must not light the tree
+    tree_parts = {"trunk", "burl", "branches", "sprig_stems", "sprig_petioles", "leaves_W", "leaves_C"}
+    crown = [o for o in bpy.data.objects if o.name.startswith("crown")]
+    if crown:
+        coll = bpy.data.collections.new("lit_by_crown")
+        for o in bpy.data.objects:
+            if o.type in ("MESH", "CURVE") and o.name not in tree_parts:
+                coll.objects.link(o)
+        for o in crown:
+            o.light_linking.receiver_collection = coll
     setup_render(args.samples, res, out)
     bpy.ops.render.render(write_still=True)
     print("rendered", out)

@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")/.."
 export KICAD9_3DMODEL_DIR=${KICAD9_3DMODEL_DIR:-/usr/share/kicad/3dmodels}
-for b in core halo; do
+for b in core hub sprig; do
   P=$b/eclipse-$b
   F=$b/fab
   rm -rf $F && mkdir -p $F/gerbers

@@ -170,7 +170,7 @@ def silk(board):
     text(board, "ECLIPSE  CORE  rev A", *P(0, -52), 1.6, bold=True)
     text(board, "USB-C PD 9V  |  4x TPS61165  |  ATtiny1616", *P(0, 49.5), 1.0, layer=pcbnew.B_SilkS, mirror=True)
     B = dict(layer=pcbnew.B_SilkS, mirror=True)
-    text(board, "TO HALO", *P(-25, -40.5), 1.0, **B)
+    text(board, "TO TREE HUB", *P(-25, -40.5), 1.0, **B)
     text(board, "UPDI", *P(14, -30.5), 0.9, **B)
     for n, (bx, by) in enumerate(BOOSTS):
         text(board, ["W1", "C1", "W2", "C2"][n], *P(bx, by + 8.4), 1.0, **B)

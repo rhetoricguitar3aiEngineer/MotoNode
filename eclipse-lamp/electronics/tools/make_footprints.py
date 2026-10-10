@@ -1,5 +1,6 @@
 """Write the custom touch-electrode footprints into ../lib/eclipse.pretty."""
 import math, os
+import hub_layout as H
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "lib", "eclipse.pretty")
 R_IN, R_OUT, HALF = 9.5, 22.5, 58.0   # wheel segment: radii and half-angle (deg)
@@ -49,7 +50,67 @@ def wheel():
 """
 
 
+
+
+def sprig_root():
+    """Root pads of the LED sprig flex: A (pad 1) and K (pad 2), soldered to a twig wire pair."""
+    return """(footprint "SprigRoot"
+	(version 20241229)
+	(generator "eclipse-gen")
+	(layer "F.Cu")
+	(descr "Solder pads at the root of an LED sprig flex (2 x magnet-wire lands)")
+	(attr smd exclude_from_bom)
+	(property "Reference" "REF**" (at -2.5 0 90) (layer "F.Fab") (effects (font (size 0.5 0.5) (thickness 0.08))))
+	(property "Value" "SprigRoot" (at -3.2 0 90) (layer "F.Fab") (effects (font (size 0.5 0.5) (thickness 0.08))))
+	(fp_rect (start -1.9 -1.4) (end -0.4 1.4) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
+	(pad "1" smd roundrect (at -1.15 -0.7) (size 1.2 1.0) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25))
+	(pad "2" smd roundrect (at -1.15 0.7) (size 1.2 1.0) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25))
+)
+"""
+
+
+def hub_sprig_pads():
+    """One sprig wire pair on the hub: pad 1 (A) outer, pad 2 (K) inner, radial (local -y = outward)."""
+    d = (H.R_OUT - H.R_IN) / 2
+    return f"""(footprint "HubSprigPads"
+	(version 20241229)
+	(generator "eclipse-gen")
+	(layer "F.Cu")
+	(descr "Hub land pair for one LED sprig (A outer, K inner), 0.15 mm magnet wire")
+	(attr smd exclude_from_bom)
+	(property "Reference" "REF**" (at 0.9 0 90) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.06))))
+	(property "Value" "HubSprigPads" (at -0.9 0 90) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.06))))
+	(fp_rect (start -0.55 {-d - 0.85:.3f}) (end 0.55 {d + 0.85:.3f}) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
+	(pad "1" smd roundrect (at 0 {-d:.3f}) (size 0.8 1.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25))
+	(pad "2" smd roundrect (at 0 {d:.3f}) (size 0.8 1.4) (layers "F.Cu" "F.Mask") (roundrect_rratio 0.25))
+)
+"""
+
+
+def hub_trunk_pads():
+    """The 10 trunk-wire lands around the central hole (origin = hub centre)."""
+    pads = []
+    for pin in range(1, 11):
+        r, a = H.j1_pad_pos(pin)
+        x, y = H.polar(r, a)
+        pads.append(f'	(pad "{pin}" smd circle (at {x:.3f} {y:.3f}) (size 1.15 1.15) (layers "F.Cu" "F.Mask"))')
+    return """(footprint "HubTrunkPads"
+	(version 20241229)
+	(generator "eclipse-gen")
+	(layer "F.Cu")
+	(descr "Trunk harness lands on the ECLIPSE Tree hub (AWG30 PTFE), pinout = core J2")
+	(attr smd exclude_from_bom)
+	(property "Reference" "REF**" (at 0 -1.2 0) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.06))))
+	(property "Value" "HubTrunkPads" (at 0 1.2 0) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.06))))
+	(fp_circle (center 0 0) (end 8.4 0) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
+""" + "\n".join(pads) + "\n)\n"
+
+
 os.makedirs(OUT, exist_ok=True)
 open(os.path.join(OUT, "TouchKey_D14.kicad_mod"), "w").write(key())
 open(os.path.join(OUT, "TouchWheel_Seg120.kicad_mod"), "w").write(wheel())
 print("ok")
+open(os.path.join(OUT, "SprigRoot.kicad_mod"), "w").write(sprig_root())
+open(os.path.join(OUT, "HubSprigPads.kicad_mod"), "w").write(hub_sprig_pads())
+open(os.path.join(OUT, "HubTrunkPads.kicad_mod"), "w").write(hub_trunk_pads())
+print("ok tree footprints")

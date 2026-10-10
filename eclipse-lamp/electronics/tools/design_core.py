@@ -3,7 +3,7 @@
 USB-C PD sink (9 V) -> 4x TPS61165 boost constant-current LED drivers
 (2x warm 2700 K strings, 2x cool 6500 K strings, 100 mA each),
 ATtiny1616 with PTC capacitive touch (center key + 3-segment wheel),
-NTC read-back from the halo ring, status glow LED, UPDI programming.
+NTC read-back from the tree hub, base body-glow LEDs, status glow LED, UPDI programming.
 """
 from schgen import Part, Schematic
 
@@ -24,10 +24,10 @@ def g(n):
 
 
 def build():
-    s = Schematic("eclipse-core", "ECLIPSE - Core board (base): power, drivers, touch MCU", "A",
+    s = Schematic("eclipse-core", "ECLIPSE Tree - Core board (base): power, drivers, touch MCU", "A",
                   comments=("USB-C PD 9 V sink, 4ch boost CC LED drivers, ATtiny1616 capacitive touch",
                             "Board: 2 layers, 1.6 mm FR4, 1 oz, matte black mask, ENIG",
-                            "Mates with eclipse-halo ring board through J2 / 10-wire JST-PH harness (1:1)"))
+                            "J2: 10-wire harness up the trunk to the eclipse-hub board (1:1)"))
     P = lambda *a, **k: s.add(Part(*a, **k))
 
     def R(ref, val, x, y, n1, n2, fp=R0603, mpn="", mfr="Yageo", desc="", **kw):
@@ -163,8 +163,8 @@ def build():
     R("R26", "100", 206, 70, "GLOW_PWM", "GLOW_G", mpn="RC0603FR-07100RL", desc="Gate series", rot=90)
     R("R27", "100k", 210, 80, "GLOW_G", "GND", mpn="RC0603FR-07100KL", desc="Gate pull-down")
     s.text("PC0 = TCD0 WOC PWM: breathing night-glow through the base", g(200), g(96), 1.5)
-    s.box(g(198), g(152), g(232), g(206), "10  HALO HARNESS")
-    P("J2", "Connector_Generic_MountingPin:Conn_01x10_MountingPin", "TO HALO",
+    s.box(g(198), g(152), g(232), g(206), "10  TRUNK HARNESS (to the tree hub)")
+    P("J2", "Connector_Generic_MountingPin:Conn_01x10_MountingPin", "TO HUB",
       "Connector_JST:JST_PH_S10B-PH-SM4-TB_1x10-1MP_P2.00mm_Horizontal", (g(222), g(176)),
       {"1": "LED_C1_K", "2": "LED_C1_A", "3": "LED_W1_A", "4": "LED_W1_K", "5": "NTC", "6": "GND",
        "7": "LED_W2_K", "8": "LED_W2_A", "9": "LED_C2_A", "10": "LED_C2_K", "MP": "GND"},
@@ -172,7 +172,7 @@ def build():
     for i, (ref, x) in enumerate([("H1", 204), ("H2", 212), ("H3", 220)]):
         P(ref, "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_3.2mm_M3", (g(x), g(14)), {},
           fields={"Manufacturer": "-", "MPN": "-", "Description": "M3 mounting hole"}, in_bom=False)
-    s.text("1:1 harness to halo J1 (through the stem)", g(200), g(203), 1.5)
+    s.text("1:1 harness to hub J1 (up the trunk)", g(200), g(203), 1.5)
     return s
 
 

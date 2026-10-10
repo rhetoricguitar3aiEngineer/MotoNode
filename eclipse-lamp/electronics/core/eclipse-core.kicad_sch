@@ -5,13 +5,13 @@
 	(uuid "391240e6-34be-5aa0-88f8-04263b12956e")
 	(paper "A2")
 	(title_block
-		(title "ECLIPSE - Core board (base): power, drivers, touch MCU")
+		(title "ECLIPSE Tree - Core board (base): power, drivers, touch MCU")
 		(date "2026-10-07")
 		(rev "A")
 		(company "ECLIPSE desk lamp - open hardware")
 		(comment 1 "USB-C PD 9 V sink, 4ch boost CC LED drivers, ATtiny1616 capacitive touch")
 		(comment 2 "Board: 2 layers, 1.6 mm FR4, 1 oz, matte black mask, ENIG")
-		(comment 3 "Mates with eclipse-halo ring board through J2 / 10-wire JST-PH harness (1:1)")
+		(comment 3 "J2: 10-wire harness up the trunk to the eclipse-hub board (1:1)")
 	)
 	(lib_symbols
 		(symbol "power:PWR_FLAG"
@@ -4728,7 +4728,7 @@
 		)
 		(uuid "fb09d185-35cf-5554-82c5-2fe2747f7b1c")
 	)
-	(text "10  HALO HARNESS"
+	(text "10  TRUNK HARNESS (to the tree hub)"
 		(exclude_from_sim no)
 		(at 384.27 298.64 0)
 		(effects
@@ -4738,9 +4738,9 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "b7c9869f-5c2f-5464-878e-9b8540023cf4")
+		(uuid "563dbaf0-31da-5254-a003-d18a5d4ba74a")
 	)
-	(text "1:1 harness to halo J1 (through the stem)"
+	(text "1:1 harness to hub J1 (up the trunk)"
 		(exclude_from_sim no)
 		(at 386.08 391.16 0)
 		(effects
@@ -4749,7 +4749,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "26366a34-908e-5469-8488-c89ea0e85fe4")
+		(uuid "0a0aa55c-a094-5a6c-b43e-8c7e0ce4cd8b")
 	)
 	(rectangle
 		(start 12.7 12.7)
@@ -21109,7 +21109,7 @@
 				)
 			)
 		)
-		(property "Value" "TO HALO"
+		(property "Value" "TO HUB"
 			(at 429.26 355.6 0)
 			(effects
 				(font

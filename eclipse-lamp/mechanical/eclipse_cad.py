@@ -1,9 +1,9 @@
-"""ECLIPSE desk lamp - parametric 3D model (CadQuery).
+"""ECLIPSE Tree desk lamp - parametric 3D model (CadQuery).
 
 Frame: X right, Y toward the REAR of the lamp, Z up; origin = centre of the
 base footprint on the desk.  All dimensions in mm.
 
-    python3 eclipse_cad.py [--tilt DEG] [--out DIR]
+    python3 eclipse_cad.py [--out DIR]
 
 Writes one STEP + STL per part, a coloured assembly STEP and a JSON file with
 part placements (consumed by the Blender render script).
@@ -19,22 +19,15 @@ BASE_D, BASE_H = 150.0, 22.0
 BASE_WALL, BASE_SKIN = 6.0, 3.0
 TOUCH_XY, TOUCH_D = (0.0, -30.0), 52.0
 STEM_XY = (0.0, 58.0)
-STEM_OD, STEM_ID = 12.0, 8.0
-STEM_TOP = 350.0                 # where the vertical run ends
-BEND_R = 90.0                    # radius of the forward bend
+STEM_OD, STEM_ID = 14.0, 10.0       # trunk socket in the base
 USB_PHI = 90.0                   # USB-C direction (deg, clockwise from rear seen from above)
 PCB_TOP_Z = BASE_H - BASE_SKIN   # core PCB top face pressed against the skin
-HINGE_Z = STEM_TOP + BEND_R      # 440
-HINGE_Y = STEM_XY[1] - BEND_R - 10.0
-RING_OD, RING_ID, RING_H = 212.0, 148.0, 25.0   # total halo height (diffusing body + cap)
-CAP_T = 3.0                      # graphite aluminium cap on top of the glowing body
-BODY_H = RING_H - CAP_T          # solid light-diffusing PMMA body
+import tree_gen as TG                  # procedural cedar-elm skeleton (seeded)
+HUB_D, HUB_T = 36.0, 1.0               # hub PCB inside the burl
+BURL_RX, BURL_RZ = 22.0, 15.0          # burl (fork knot) half-sizes
 SHELL_Z0 = 10.0                  # aluminium upper shell of the base starts here
 BAND_Z0, BAND_Z1 = 3.0, SHELL_Z0  # glowing opal band between plinth and shell
 WEIGHT_D = 110.0                 # leaves an annular light chamber behind the band
-RING_GAP = 10.0                  # hinge axis -> ring outer edge
-RING_CY = HINGE_Y - RING_GAP - RING_OD / 2
-RING_TOP_Z = HINGE_Z + 1.0
 
 
 # ----------------------------------------------------------------- base
@@ -124,91 +117,70 @@ def touch_etch():
     return e.union(cq.Workplane("XY").workplane(offset=BASE_H - 0.15).center(*TOUCH_XY).circle(1.2).extrude(0.14))
 
 
-# ----------------------------------------------------------------- stem & hinge
-def stem_path():
-    x, y = STEM_XY
-    return (cq.Workplane("YZ").moveTo(y, 10.0).lineTo(y, STEM_TOP)
-            .radiusArc((y - BEND_R, STEM_TOP + BEND_R), -BEND_R)
-            .lineTo(HINGE_Y + 9.0, HINGE_Z))
+# ----------------------------------------------------------------- tree
+def _tube(points, radii):
+    """Tapered round 'wood' along a polyline: cones per segment + spheres at the joints."""
+    out = []
+    for i, (p, q) in enumerate(zip(points, points[1:])):
+        d = cq.Vector(*q) - cq.Vector(*p)
+        h = d.Length
+        if h < 1e-3:
+            continue
+        if abs(radii[i] - radii[i + 1]) < 1e-4:
+            out.append(cq.Solid.makeCylinder(radii[i], h, cq.Vector(*p), d.normalized()))
+        else:
+            out.append(cq.Solid.makeCone(radii[i], radii[i + 1], h, cq.Vector(*p), d.normalized()))
+        if 0 < i:
+            out.append(cq.Solid.makeSphere(radii[i], cq.Vector(*p), angleDegrees1=-90, angleDegrees2=90))
+    return out
 
 
-def stem():
-    path = stem_path().wire().val()
-    prof = cq.Workplane("XY").workplane(offset=10.0).center(*STEM_XY).circle(STEM_OD / 2).circle(STEM_ID / 2)
-    return prof.sweep(cq.Workplane().add(path), transition="round")
+def tree_solids(tree):
+    trunk = _tube(tree.branches[0]["points"], tree.branches[0]["radii"])
+    # root flare into the base collar
+    x, y, z = TG.TRUNK_FOOT
+    trunk.append(cq.Solid.makeCone(12.0, TG.TRUNK_D / 2, 24.0, cq.Vector(x, y, z), cq.Vector(0, 0, 1)))
+    wood = []
+    for b in tree.branches[1:]:
+        wood += _tube(b["points"], b["radii"])
+    return cq.Compound.makeCompound(trunk), cq.Compound.makeCompound(wood)
 
 
-def hinge_yoke():
-    """Fork clamped on the stem end; two cheeks carry the pivot."""
-    y0 = HINGE_Y + 14.0
-    hub = (cq.Workplane("XZ").workplane(offset=-y0).center(0, HINGE_Z).circle(8.0).extrude(5.0))
-    cheeks = None
-    for sx in (-1, 1):
-        c = (cq.Workplane("YZ").workplane(offset=sx * 9.5 - 2.0).center(HINGE_Y, HINGE_Z)
-             .circle(7.0).extrude(4.0))
-        bar = cq.Workplane("XY").box(4.0, y0 - HINGE_Y, 14.0).translate((sx * 9.5, (y0 + HINGE_Y) / 2, HINGE_Z))
-        c = c.union(bar)
-        cheeks = c if cheeks is None else cheeks.union(c)
-    bridge = cq.Workplane("XY").box(23.0, 6.0, 14.0).translate((0, y0 - 3.0, HINGE_Z))
-    y = hub.union(cheeks).union(bridge)
-    y = y.cut(cq.Workplane("XZ").workplane(offset=-(y0 + 6)).center(0, HINGE_Z).circle(STEM_OD / 2 + 0.05).extrude(8))
-    y = y.cut(cq.Workplane("YZ").workplane(offset=-20).center(HINGE_Y, HINGE_Z).circle(2.0).extrude(40))
-    return y
+def burl():
+    """Fork knot: an irregular ellipsoid hiding the hub PCB; limbs and trunk grow out of it."""
+    s = cq.Solid.makeSphere(1.0, angleDegrees1=-90, angleDegrees2=90)
+    from OCP.gp import gp_GTrsf, gp_Mat, gp_XYZ
+    from OCP.BRepBuilderAPI import BRepBuilderAPI_GTransform
+    g = gp_GTrsf()
+    g.SetVectorialPart(gp_Mat(BURL_RX, 0, 0, 0, BURL_RX * 0.9, 0, 0, 0, BURL_RZ))
+    g.SetTranslationPart(gp_XYZ(*TG.BURL))
+    shp = BRepBuilderAPI_GTransform(s.wrapped, g, True).Shape()
+    return cq.Workplane().add(cq.Shape.cast(shp))
 
 
-def hinge_knob():
-    k = (cq.Workplane("YZ").workplane(offset=11.5).center(HINGE_Y, HINGE_Z).circle(9.0).extrude(6.0)
-         .faces(">X").edges().fillet(1.5))
-    for i in range(24):  # knurl flutes
-        a = 2 * math.pi * i / 24
-        f = (cq.Workplane("YZ").workplane(offset=11.5).center(HINGE_Y + 9.0 * math.cos(a), HINGE_Z + 9.0 * math.sin(a))
-             .circle(0.7).extrude(5.0))
-        k = k.cut(f)
-    return k
+def sprig_solids(tree):
+    """Flex sprigs: polyimide ribbons modelled as thin rods (stem 0.45, petiole 0.28 mm radius)."""
+    out = []
+    for sp in tree.sprig_paths:
+        for st in sp["stems"]:
+            out += _tube(st, [0.45] * len(st))
+        for b, p in sp["petioles"]:
+            out += _tube([b, p], [0.28, 0.28])
+    return cq.Compound.makeCompound(out)
 
 
-# ----------------------------------------------------------------- halo head (built at origin, then placed)
-def _cap_local():
-    """Graphite cap + hinge knuckle in the halo frame (centre at origin, halo bottom at z=0)."""
-    ro, ri, h = RING_OD / 2, RING_ID / 2, RING_H
-    cap = (cq.Workplane("XY").workplane(offset=BODY_H).circle(ro).circle(ri).extrude(CAP_T)
-           .faces(">Z").edges().fillet(1.2))
-    groove = cq.Workplane("XY").workplane(offset=h - 0.4).circle(96.4).circle(95.6).extrude(1)
-    cap = cap.cut(groove)
-    axis_y = ro + RING_GAP
-    axis_z = HINGE_Z - (RING_TOP_Z - RING_H)
-    # rear hood: covers the PCB connector tab and carries the knuckle
-    hood = cq.Workplane("XY").box(32.0, 16.0, 11.0).translate((0, ro + 1.0, h - 5.5))
-    neck = cq.Workplane("XY").box(14.0, RING_GAP + 4.0, 7.0).translate((0, ro + RING_GAP / 2, h - 3.5))
-    barrel = cq.Workplane("YZ").workplane(offset=-7.0).center(axis_y, axis_z).circle(6.5).extrude(14.0)
-    cap = cap.union(hood).union(neck).union(barrel)
-    cap = cap.cut(cq.Workplane("XY").cylinder(16, 2.05, direct=(1, 0, 0)).translate((0, axis_y, axis_z)))
-    # inside the hood: room for the connector tab, and the harness channel to the knuckle
-    cap = cap.cut(cq.Workplane("XY").box(29.0, 13.0, 9.0).translate((0, ro - 0.5, BODY_H - 4.5)))
-    cap = cap.cut(cq.Workplane("XY").box(6.0, RING_GAP + 4.0, 5.0).translate((0, ro + RING_GAP / 2, h - 5.0)))
-    return cap
-
-
-def _body_local():
-    """Light-diffusing PMMA halo body (moulded as an inverted U). The LED board closes its top
-    and fires down into it: the whole body glows, brightest through its underside."""
-    ro, ri = RING_OD / 2, RING_ID / 2
-    b = cq.Workplane("XY").circle(ro).circle(ri).extrude(BODY_H)
-    b = b.faces("<Z").edges().fillet(9.0)
-    # hollow light-mixing chamber, open at the top where the LED board closes it:
-    # 4 mm diffusing floor, 5.4 mm diffusing side walls (keeps the head light: ~200 g)
-    b = b.cut(cq.Workplane("XY").workplane(offset=4.0).circle(100.6).circle(79.4).extrude(BODY_H))
-    # rear notch for the connector tab under the hood
-    b = b.cut(cq.Workplane("XY").box(30.0, 14.0, 9.5).translate((0, ro - 3.0, BODY_H - 4.75)))
-    return b
-
-
-def ring_place(shape, tilt):
-    """Ring frame -> world: knuckle axis lands on (0, HINGE_Y, HINGE_Z); then tilt about it."""
-    s = shape.translate((0, RING_CY, RING_TOP_Z - RING_H))
-    if tilt:
-        s = s.rotate((0, HINGE_Y, HINGE_Z), (1, HINGE_Y, HINGE_Z), tilt)
-    return s
+def leaf_solids(tree, channel_prefix):
+    """0402 LEDs (1.0 x 0.5 x 0.35) at the end of every petiole: the leaves."""
+    out = []
+    for lf in tree.leaves:
+        if lf["channel"][0] != channel_prefix:
+            continue
+        d = cq.Vector(*lf["dir"])
+        ref = cq.Vector(0, 0, 1) if abs(d.z) < 0.9 else cq.Vector(1, 0, 0)
+        n = d.cross(ref).normalized()
+        pl = cq.Plane(origin=lf["pos"], xDir=d, normal=n)
+        out.append(cq.Solid.makeBox(1.0, 0.5, 0.35, pnt=cq.Vector(-0.5, -0.25, -0.175)).locate(cq.Location(pl)))
+    return cq.Compound.makeCompound(out)
 
 
 # ----------------------------------------------------------------- PCBs (KiCad STEP)
@@ -222,50 +194,46 @@ def kicad_step(board, z, flip=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tilt", type=float, default=0.0, help="halo tilt about the hinge (deg, + = front up)")
     ap.add_argument("--out", default=os.path.join(HERE, "out"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
+    tree = TG.Tree()
+    trunk, wood = tree_solids(tree)
     parts = {
         "base_shell": (base_shell(), "anodised aluminium, graphite"),
         "base_weight": (base_weight(), "steel, white powder coat (reflector)"),
-        "base_band": (base_band(), "light-diffusing opal PMMA ring"),
+        "base_band": (base_band(), "light-diffusing opal PMMA ring (glowing roots)"),
         "base_plinth": (base_plinth(), "steel foot plate, black powder coat"),
         "base_foot": (base_foot(), "silicone/cork ring"),
         "touch_glass": (touch_glass(), "3 mm soda-lime glass, satin etch"),
         "touch_etch": (touch_etch(), "etch marks"),
-        "stem": (stem(), "aluminium tube 12x2, brass PVD"),
-        "hinge_yoke": (hinge_yoke(), "machined aluminium, graphite"),
-        "hinge_knob": (hinge_knob(), "machined brass"),
-        "halo_cap": (ring_place(_cap_local(), args.tilt), "machined aluminium cap + knuckle, graphite"),
-        "halo_body": (ring_place(_body_local(), args.tilt), "solid light-diffusing PMMA, injection moulded"),
+        "trunk": (cq.Workplane().add(trunk), "brass tube 14x2 (harness inside), bark patina"),
+        "burl": (burl(), "cast bronze knot (2 halves), bark patina - houses the hub PCB"),
+        "branches": (cq.Workplane().add(wood), "brass rod/tube, hand-formed + brazed, bark patina"),
+        "sprigs": (cq.Workplane().add(sprig_solids(tree)), "40 x polyimide flex sprigs, bronze coverlay"),
+        "leaves_warm": (cq.Workplane().add(leaf_solids(tree, "W")), "400 x 0402 LED 2700 K"),
+        "leaves_cool": (cq.Workplane().add(leaf_solids(tree, "C")), "400 x 0402 LED 6500 K"),
     }
-    # electronics from KiCad (exported with --user-origin 150x150mm, so XY already match)
     core = kicad_step("core", 0)
     if core is not None:
-        # core board: top face at PCB_TOP_Z; KiCad puts the board bottom at z=0 -> top at 1.6
         parts["pcb_core"] = (core.translate((0, 0, PCB_TOP_Z - 1.6)), "PCBA core")
-    halo = kicad_step("halo", 0)
-    if halo is not None:
-        # halo board hangs upside-down under the ring skin (LEDs face the desk). Its hinge tab is
-        # at KiCad -y (screen up) = +Y, matching the knuckle.  Flip about Y, then place.
-        ro = RING_OD / 2
-        h = halo.rotate((0, 0, 0), (0, 1, 0), 180)
-        h = h.translate((0, RING_CY, RING_TOP_Z - CAP_T))
-        if args.tilt:
-            h = h.rotate((0, HINGE_Y, HINGE_Z), (1, HINGE_Y, HINGE_Z), args.tilt)
-        parts["pcb_halo"] = (h, "PCBA halo")
+    hub = kicad_step("hub", 0)
+    if hub is not None:
+        parts["pcb_hub"] = (hub.translate((TG.BURL[0], TG.BURL[1], TG.BURL[2] - 0.5)), "PCBA hub (in the burl)")
 
     asm = cq.Assembly(name="eclipse_lamp")
     colors = {"base_shell": (0.18, 0.18, 0.19), "base_weight": (0.6, 0.6, 0.62), "bottom_cover": (0.3, 0.3, 0.3),
               "base_foot": (0.55, 0.42, 0.3), "base_band": (0.97, 0.95, 0.9), "base_plinth": (0.18, 0.18, 0.19), "touch_glass": (0.1, 0.1, 0.12), "touch_etch": (0.8, 0.8, 0.8),
-              "stem": (0.78, 0.64, 0.42), "hinge_yoke": (0.18, 0.18, 0.19), "hinge_knob": (0.78, 0.64, 0.42),
-              "halo_cap": (0.18, 0.18, 0.19), "halo_body": (0.98, 0.97, 0.94),
+              "trunk": (0.30, 0.22, 0.14), "branches": (0.30, 0.22, 0.14), "burl": (0.28, 0.20, 0.12),
+              "sprigs": (0.45, 0.32, 0.12), "leaves_warm": (1.0, 0.85, 0.5), "leaves_cool": (0.85, 0.92, 1.0),
               "pcb_core": (0.1, 0.3, 0.15), "pcb_halo": (0.95, 0.95, 0.95)}
     meta = {}
     for name, (shape, mat) in parts.items():
-        cq.exporters.export(shape, os.path.join(args.out, name + ".stl"), tolerance=0.02, angularTolerance=0.08)
+        fine = name.startswith("base") or name.startswith("touch")
+        if name not in ("sprigs", "leaves_warm", "leaves_cool"):   # those are rendered from the skeleton
+            cq.exporters.export(shape, os.path.join(args.out, name + ".stl"),
+                                tolerance=0.02 if fine else 0.1, angularTolerance=0.08 if fine else 0.6)
         if not name.startswith("pcb_"):
             cq.exporters.export(shape, os.path.join(args.out, name + ".step"))
         asm.add(shape, name=name, color=cq.Color(*colors.get(name, (0.5, 0.5, 0.5))))
@@ -273,9 +241,26 @@ def main():
         meta[name] = {"material": mat, "bbox": [bb.xmin, bb.ymin, bb.zmin, bb.xmax, bb.ymax, bb.zmax]}
         print(f"{name:14s} {bb.xlen:7.1f} x {bb.ylen:7.1f} x {bb.zlen:7.1f}  {mat}")
     asm.save(os.path.join(args.out, "eclipse_lamp_assembly.step"))
-    json.dump({"tilt": args.tilt, "hinge": [0, HINGE_Y, HINGE_Z], "ring_center": [0, RING_CY, RING_TOP_Z - RING_H],
-               "touch": list(TOUCH_XY), "pcb_halo_z": RING_TOP_Z - CAP_T, "pcb_core_z": PCB_TOP_Z - 1.6,
-               "parts": meta}, open(os.path.join(args.out, "parts.json"), "w"), indent=1)
+    # zip the heavy STEP files (thousands of tiny solids compress ~6x)
+    import zipfile
+    for f in sorted(os.listdir(args.out)):
+        fp = os.path.join(args.out, f)
+        if f.endswith(".step") and os.path.getsize(fp) > 3e6:
+            with zipfile.ZipFile(fp + ".zip", "w", zipfile.ZIP_DEFLATED) as z:
+                z.write(fp, f)
+            os.remove(fp)
+    lx = [l["pos"] for l in tree.leaves]
+    cen = [sum(p[i] for p in lx) / len(lx) for i in range(3)]
+    json.dump({"crown_center": cen, "touch": list(TOUCH_XY), "burl": list(TG.BURL),
+               "pcb_core_z": PCB_TOP_Z - 1.6,
+               "skeleton": dict(
+                   branches=[dict(p=[[round(c, 2) for c in q] for q in b["points"]],
+                                  r=[round(r, 3) for r in b["radii"]]) for b in tree.branches],
+                   sprigs=[dict(stems=[[[round(c, 2) for c in q] for q in st] for st in sp["stems"]],
+                                pet=[[[round(c, 2) for c in b], [round(c, 2) for c in q]] for b, q in sp["petioles"]],
+                                ch=sp["channel"]) for sp in tree.sprig_paths]),
+               "leaves": [dict(p=[round(c, 2) for c in l["pos"]], ch=l["channel"], s=l["sprig"]) for l in tree.leaves],
+               "parts": meta}, open(os.path.join(args.out, "parts.json"), "w"), indent=0)
 
 
 if __name__ == "__main__":
