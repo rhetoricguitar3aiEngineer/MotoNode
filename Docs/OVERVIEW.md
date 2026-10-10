@@ -18,26 +18,33 @@ has its own detailed README.
 | 2026-10-03 | **Ignition Rev E**: hub sensors merged in, push-in terminals, routed 6-layer board | `Ignition/RevE/` (**live**) |
 | 2026-10-10 | PC reorganized into one `MotoNodeIQ` folder | this repo mirrors it |
 
-**Which architecture is current:** the live hardware is `Boards/` (ESP32-S3, CAN, PROFET high-side
-outputs) plus `Ignition/RevE/`. The Codex brief in `Docs/` (C6 hub, wireless leaves, LIN, 4 × 3 in
+**Which architecture is current:** the hub *is* the ignition board (owner decision, 2026-10-10).
+The live system is `Ignition/RevE/` (hub + ignition) plus `Boards/front` and `Boards/rear`
+(ESP32-S3, CAN, PROFET high-side outputs). `Boards/hub/` is superseded. The Codex brief in `Docs/` (C6 hub, wireless leaves, LIN, 4 × 3 in
 hub with integrated ignition) and NodeIQ Rev G are **reference only**. Reusable ideas from them
 (press-latch connectors, hardware trip latches, the per-board $25 cost discipline, the status-table
 format) are worth carrying forward, but they don't override the Rev B / Rev E designs.
 
 ## 2. How the live boards fit together
 
-- **Power and network:** `Boards/hub` takes the battery (XT60, 30 A fuse), feeds front and rear
-  through PROFET smart switches, and talks to them over CAN 2.0B at 500 kbit/s. Front and rear are the
-  bus ends (JP251 bridged); the hub, mid-bus, leaves it open.
-- **Ignition:** hub J4 supplies `IGN_FEED` and a CAN tap to the ignition controller. Rev E does not
-  use CAN yet.
-- **Kill switch:** this is hardware only. Handlebar switch → front → hub, where Q401B forces
-  IGN_FEED off whenever the loop is open.
+```
+ battery ── fuse ──► HUB = Ignition Rev E ── coils (J201)
+                          │   (TCI/CDI, IMU, GPS, AUX inputs)
+                          ├── FRONT_FEED + CAN + KILL ──► Boards/front
+                          └── REAR_FEED  + CAN ─────────► Boards/rear
+ phone ◄── BLE ── hub ESP32-S3 (telemetry firmware to be ported from Telemetry/)
+```
+
+- **The hub is the ignition board.** Front and rear modules talk CAN 2.0B at 500 kbit/s and are the
+  bus ends (JP251 bridged on both).
+- **Kill switch:** this must stay hardware-only. On the Rev B hub, the handlebar loop forced
+  IGN_FEED off through Q401B. With ignition on the hub, that loop has to cut the ignition
+  safety chain (`VDRV_SW` / ARM) directly.
 - All boards use an ESP32-S3, the same TVS → reverse block → 5 V buck → 3.3 V LDO chain, and
   Tag-Connect TC2030 native-USB programming.
 - **Telemetry** is a separate classic-ESP32 node today (GPS on GPIO 16/17, I2C on 21/22), using a
-  56-byte BLE frame at 20 Hz. The archive also mentions 48- and 80-byte branches; shared UUIDs don't
-  make those formats compatible.
+  56-byte BLE frame at 20 Hz. Since the hub now carries the MPU-6050 and NEO-6M, the sketch can move
+  onto the hub's ESP32-S3 (Rev E pins: I2C IO47/IO48, IMU_INT IO42, GPS on TXD0/RXD0).
 
 ## 3. Ignition Rev E, the short version
 
@@ -51,9 +58,25 @@ format) are worth carrying forward, but they don't override the Rev B / Rev E de
 
 ## 4. Open issues
 
-**Owner's open decision (from the README)**
-- **Hub board vs Ignition Rev E.** Both carry GPS/IMU/sensor inputs. Decide whether the 3-board
-  system keeps its own hub.
+**Hub functions Rev E doesn't have yet** (follows from "ignition is part of the hub")
+
+Rev E merged only the IMU, GPS port and two AUX inputs. These `Boards/hub` Rev B functions have
+no home until they're ported onto the ignition/hub board:
+
+| Function | On Boards/hub Rev B | Needed on the hub because |
+|---|---|---|
+| CAN transceiver (TJA1051T/3) + trunk connectors | J2/J3 Micro-Fit 2x5 | Front/rear modules are CAN-only |
+| Front / rear feeds | 2 × BTS7004 PROFET, ~15 A each | Modules are powered only while the hub enables them |
+| Starter-relay drive + aux output | PROFET channels on J4 | Start interlock |
+| KEY, NEUTRAL, SIDESTAND, OIL inputs | MUN5211 input cells | Rev E has only AUX1/AUX2 |
+| Kill-loop gate | Q401B forcing IGN_FEED off | Must now cut the ignition safety chain directly |
+| Power latch (HOLD) | KEY starts buck, IO15 holds | ~0 mA parked draw |
+| Battery input sized for the whole bike | XT60, 30 A fuse | Rev E's 20 A push-in J101 and 10 A ATO F101 only cover the ignition |
+
+Rev E is already 100 × 70 mm, 6 layers, and full. It is 24 mm narrower than the Codex 4 × 3 in
+(101.6 × 76.2 mm) hub outline, so the extra functions probably mean a Rev F on that outline or
+larger. The ESP32-S3 pin budget also needs checking: CAN TX/RX, 4–5 PROFET IN pins, their sense
+ADCs (ADC1 only) and 4 more inputs, on top of Rev E's use.
 
 **Design limits documented in the board folders**
 1. **24 V jump start / ISO 16750-2 load dump** fails on the ignition board: D102 takes 123 J and
@@ -66,8 +89,8 @@ format) are worth carrying forward, but they don't override the Rev B / Rev E de
 5. **The MUN5211DW1 pinout** needs confirming against the datasheet; every Boards input depends on it.
 
 **Consistency checks worth doing**
-1. Boards hub J4 → ignition wiring was written against Rev D2. Re-check it against Rev E's
-   push-in terminals (J201 pin 6 is now the coil feed).
+1. The hub J4 → ignition harness no longer exists. Front/rear trunk pinouts (Boards README) become
+   the hub's own connectors and should switch to push-in terminals to match Rev E.
 2. Telemetry firmware targets a classic ESP32. Moving it onto an S3 board needs a new pin map.
 3. `Archive/Ignition_RevD2/generator/route_io.py` and the Codex build scripts still point at old
    `D:\` paths.
@@ -76,7 +99,8 @@ format) are worth carrying forward, but they don't override the Rev B / Rev E de
 
 | Board | Source of truth | Regenerate with |
 |---|---|---|
-| Boards hub/front/rear | `Boards/generator/hub.py`, `front.py`, `rear.py`, `blocks.py` | `cd Boards/generator && python build.py hub front rear` |
+| Boards front/rear | `Boards/generator/front.py`, `rear.py`, `blocks.py` | `cd Boards/generator && python build.py front rear` |
+| Boards hub (superseded; port source) | `Boards/generator/hub.py` | `python build.py hub` |
 | NodeIQ Front Rev G | `Boards/generator/nodeiq_front.py` | `python build_sch.py nodeiq_front_revG` |
 | Ignition Rev E schematic | `netlist.py` (+ `kfinal.py` and check scripts) | `python kfinal.py` |
 | Ignition Rev E layout | routed `.kicad_pcb` (master); scripts in `pcb_layout/` | edit in KiCad, "Update PCB from Schematic" |
