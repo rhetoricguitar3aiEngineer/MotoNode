@@ -35,3 +35,10 @@ desktop.ini
 # Installers that live next to the projects on the PC
 *.exe
 *.msi
+
+# Android signing keys: irreplaceable, never commit (see README)
+_Keys/
+keyMN1*
+*.jks
+*.keystore
+*.p12
