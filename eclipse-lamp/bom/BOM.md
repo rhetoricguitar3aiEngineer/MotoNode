@@ -18,24 +18,27 @@ Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before o
 | D1 | 1 | SMAJ15CA | TVS 15 V standoff, bidirectional, 400 W | Littelfuse | SMAJ15CA | 0.050 | 0.05 |
 | D2 | 1 | WHITE | 0603 white - glow under touch glass | Lite-On | LTW-C191TS5 | 0.030 | 0.03 |
 | D3,D4,D5,D6 | 4 | MBRA160 | Schottky 60 V 1 A | onsemi | MBRA160T3G | 0.060 | 0.24 |
+| D7,D8,D9,D10,D11,D12,D13,D14 | 8 | 2700K | 2835 warm white, fires down into the white-lined base cavity | Samsung | LM281B+ 2700K | 0.030 | 0.24 |
 | F1 | 1 | 1.5A | PTC resettable fuse 1.5 A hold, 24 V | Bourns | MF-MSMF150/24X-2 | 0.100 | 0.10 |
 | J1 | 1 | USB-C 16P | USB Type-C receptacle, 16P, SMD + THT shell | Korean Hroparts | TYPE-C-31-M-12 | 0.120 | 0.12 |
 | J2 | 1 | TO HALO | PH 2.0 mm 10-pin side-entry SMD | JST | S10B-PH-SM4-TB | 0.250 | 0.25 |
 | J3 | 1 | UPDI | UPDI programming header (DNP) | - | DNP (pogo pads) | 0.000 | 0.00 |
 | L1,L2,L3,L4 | 4 | 10uH | 10 uH shielded, Isat 1.6 A | Bourns | SRN4018-100M | 0.120 | 0.48 |
+| Q1 | 1 | AO3400A | N-MOSFET 30 V, low-side glow switch | Alpha & Omega | AO3400A | 0.030 | 0.03 |
 | R1,R7,R8,R9,R10 | 5 | 1k | CH224K VDD feed,PTC series resistor | Yageo | RC0603FR-071KL | 0.002 | 0.01 |
 | R2 | 1 | 6.8k | CFG1: 6.8k = 9 V request | Yageo | RC0603FR-076K8L | 0.002 | 0.00 |
 | R3,R6 | 2 | 10k | NTC pull-up,PG pull-up | Yageo | RC0603FR-0710KL | 0.002 | 0.00 |
-| R4,R12,R13 | 3 | 100k | Keeps drivers off during reset,VIN sense divider top | Yageo | RC0603FR-07100KL | 0.002 | 0.01 |
+| R4,R12,R13,R27 | 4 | 100k | Gate pull-down,Keeps drivers off during reset,VIN sense divider top | Yageo | RC0603FR-07100KL | 0.002 | 0.01 |
 | R5 | 1 | 15k | VIN sense divider bottom | Yageo | RC0603FR-0715KL | 0.002 | 0.00 |
 | R11 | 1 | 470 | Status LED | Yageo | RC0603FR-07470RL | 0.002 | 0.00 |
 | R14,R15,R16,R17 | 4 | 2.0 | Sense: 200 mV / 2.0 R = 100 mA | Yageo | RC0805FR-072RL | 0.004 | 0.02 |
+| R18,R19,R20,R21,R22,R23,R24,R25,R26 | 9 | 100 | Gate series,Glow LED ballast, ~5 mA | Yageo | RC0603FR-07100RL | 0.002 | 0.02 |
 | U1 | 1 | CH224K | USB PD/QC sink trigger, resistor-configured output voltage | WCH | CH224K | 0.350 | 0.35 |
 | U2 | 1 | AMS1117-3.3 | LDO 3.3 V 1 A | Advanced Monolithic Systems | AMS1117-3.3 | 0.050 | 0.05 |
 | U3 | 1 | ATtiny1616-S | AVR 16 kB, PTC touch, 20 MHz | Microchip | ATTINY1616-SNR | 0.850 | 0.85 |
 | U4,U5,U6,U7 | 4 | TPS61165 | 38 V boost white-LED driver, 1.2 A switch | Texas Instruments | TPS61165DBVR | 0.550 | 2.20 |
 
-**Subtotal: $5.21**
+**Subtotal: $5.50**
 
 ## Halo ring board
 
@@ -61,33 +64,35 @@ Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before o
 
 | Refs | Qty | Value | Description | Manufacturer | MPN | Unit $ | Ext $ |
 |---|---:|---|---|---|---|---:|---:|
-| M1 | 1 |  | Base shell, D150 x 22 | 6061-T6, CNC turned+milled, bead blast, graphite anodise | ECL-M-001 | 9.000 | 9.00 |
-| M2 | 1 |  | Base weight disc, D137 x 7 (~0.8 kg) | S235 steel, laser cut, zinc plated | ECL-M-002 | 2.200 | 2.20 |
-| M3 | 1 |  | Bottom cover, D137 x 1.2 | 5052 aluminium, laser cut, anodise | ECL-M-003 | 1.200 | 1.20 |
-| M4 | 1 |  | Foot ring, D146/D122 x 1 | Cork/rubber composite, die cut, PSA backed | ECL-M-004 | 0.300 | 0.30 |
-| M5 | 1 |  | Touch window, D52 x 3 | Soda-lime glass, satin etch top, screen-printed ring | ECL-M-005 | 1.600 | 1.60 |
-| M6 | 1 |  | Stem, 12 x 2 tube, 340 mm + R90 bend | 6063 tube, CNC bent, brass-tone PVD | ECL-M-006 | 3.500 | 3.50 |
-| M7 | 1 |  | Hinge yoke | 6061 CNC, graphite anodise | ECL-M-007 | 2.200 | 2.20 |
-| M8 | 1 |  | Friction knob, knurled D18 | C360 brass, CNC, clear lacquer | ECL-M-008 | 1.800 | 1.80 |
-| M9 | 1 |  | Halo housing, D212/D148 x 14 + knuckle | ADC12 die-cast + CNC, graphite anodise-look powder | ECL-M-009 | 6.500 | 6.50 |
-| M10 | 1 |  | Diffuser ring, D208/D152 x 2 | Opal PMMA (55 % T), laser cut, polished edge | ECL-M-010 | 0.900 | 0.90 |
-| M11 | 1 |  | Thermal pad ring, D200/D160 x 0.5 | Silicone gap pad 1.5 W/mK, die cut | ECL-M-011 | 0.600 | 0.60 |
-| M12 | 1 |  | Harness, 10 x AWG28, 520 mm, JST PH 1:1 | PHR-10 housings, SPH-002T crimps, PTFE wire | ECL-W-001 | 0.800 | 0.80 |
+| M1 | 1 |  | Base upper shell, D150 x 12 (touch skin + stem socket) | 6061-T6, CNC turned+milled, bead blast, graphite anodise; cavity white-painted | ECL-M-001 | 7.500 | 7.50 |
+| M2 | 1 |  | Weight / reflector disc, D110 x 6.5 (~0.48 kg) | S235 steel, laser cut, white powder coat (light-chamber reflector) | ECL-M-002 | 1.600 | 1.60 |
+| M3 | 1 |  | Glow band, D148/D138 x 7 | Light-diffusing PMMA (e.g. PLEXIGLAS Satinice / LED-grade opal), extruded tube cut + polished | ECL-M-003 | 0.700 | 0.70 |
+| M4 | 1 |  | Plinth, D150 x 3 + 3 posts (~0.42 kg) | S235 steel, laser cut, posts welded, black powder coat | ECL-M-004 | 2.400 | 2.40 |
+| M5 | 1 |  | Foot ring, D146/D122 x 1 | Cork/rubber composite, die cut, PSA backed | ECL-M-005 | 0.300 | 0.30 |
+| M6 | 1 |  | Touch window, D52 x 3 | Soda-lime glass, satin etch top, screen-printed ring | ECL-M-006 | 1.600 | 1.60 |
+| M7 | 1 |  | Stem, 12 x 2 tube, 340 mm + R90 bend | 6063 tube, CNC bent, brass-tone PVD | ECL-M-007 | 3.500 | 3.50 |
+| M8 | 1 |  | Hinge yoke | 6061 CNC, graphite anodise | ECL-M-008 | 2.200 | 2.20 |
+| M9 | 1 |  | Friction knob, knurled D18 | C360 brass, CNC, clear lacquer | ECL-M-009 | 1.800 | 1.80 |
+| M10 | 1 |  | Halo cap, D212/D148 x 3 + rear hood + knuckle (heatsink) | 6061 CNC (or ADC12 die-cast), graphite anodise | ECL-M-010 | 5.200 | 5.20 |
+| M11 | 1 |  | Halo glow body, D212/D148 x 22, hollow, 4-5.4 mm walls | Light-diffusing PMMA, injection moulded, satin outer finish | ECL-M-011 | 3.800 | 3.80 |
+| M12 | 1 |  | Thermal pad ring, D200/D160 x 0.5 | Silicone gap pad 1.5 W/mK, die cut | ECL-M-012 | 0.600 | 0.60 |
+| M13 | 1 |  | Harness, 10 x AWG28, 520 mm, JST PH 1:1 | PHR-10 housings, SPH-002T crimps, PTFE wire | ECL-W-001 | 0.800 | 0.80 |
 | F1 | 3 |  | Screw M3 x 6, pan head (core PCB) | A2 stainless | ISO 14583 | 0.020 | 0.06 |
-| F2 | 4 |  | Screw M2.5 x 5, pan head (halo PCB) | A2 stainless | ISO 14583 | 0.020 | 0.08 |
+| F2 | 4 |  | Screw M2.5 x 5, pan head (halo PCB to cap) | A2 stainless | ISO 14583 | 0.020 | 0.08 |
 | F3 | 1 |  | Set screw M4 x 4, cup point (stem) | A2 stainless | ISO 4029 | 0.020 | 0.02 |
 | F4 | 1 |  | Shoulder screw D4 x 16 + M3 (hinge pin) | A2 stainless | ISO 7379 | 0.250 | 0.25 |
 | F5 | 2 |  | Wave washer D4.2 (hinge friction) | Spring steel | DIN 137B | 0.040 | 0.08 |
-| F6 | 4 |  | Screw M2 x 4, countersunk (bottom cover) | A2 stainless | ISO 10642 | 0.020 | 0.08 |
+| F6 | 3 |  | Screw M3 x 10, countersunk (plinth posts into shell) | A2 stainless | ISO 10642 | 0.030 | 0.09 |
+| F7 | 6 |  | Screw M2 x 5, pan head (glow body to cap) | A2 stainless | ISO 14583 | 0.020 | 0.12 |
 
-**Subtotal: $31.17**
+**Subtotal: $32.70**
 
 ## Summary
 
 | Section | USD |
 |---|---:|
-| Core board (base) | 5.21 |
+| Core board (base) | 5.50 |
 | Halo ring board | 5.08 |
 | Bare PCBs | 3.70 |
-| Mechanical | 31.17 |
-| **Total material (excl. assembly, packaging, PSU)** | **45.16** |
+| Mechanical | 32.70 |
+| **Total material (excl. assembly, packaging, PSU)** | **46.98** |

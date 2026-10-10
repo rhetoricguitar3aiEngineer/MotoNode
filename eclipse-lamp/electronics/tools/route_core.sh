@@ -3,10 +3,10 @@
 # Freerouting is not fully deterministic, so retry until DRC is clean.
 set -e
 cd "$(dirname "$0")"
-for attempt in 1 2 3 4 5 6; do
+for attempt in 1 2 3 4 5 6 7 8; do
   python3 pcb_core.py place
   rm -f ../core/eclipse-core.ses
-  (cd ../core && timeout 240 xvfb-run -a java -jar ${FREEROUTING_JAR:-/opt/fr/fr19.jar} \
+  (cd ../core && timeout 600 xvfb-run -a java -jar ${FREEROUTING_JAR:-/opt/fr/fr19.jar} \
       -de eclipse-core.dsn -do eclipse-core.ses -mp 40 > /tmp/freerouting.log 2>&1) || true
   pkill -f "^java -jar /opt/fr" || true
   if [ ! -f ../core/eclipse-core.ses ]; then echo "attempt $attempt: router timed out"; continue; fi

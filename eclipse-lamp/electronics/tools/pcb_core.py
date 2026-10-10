@@ -120,6 +120,15 @@ def placement(fps):
             pl(ref, bx + dx, by + dy, rot)
     # halo harness next to the stem foot, mating face toward the rear wall
     pl("J2", -25.0, -44.0, 180)
+    # body-glow LEDs: around the rim, firing down into the white-lined cavity so the
+    # opal band of the base glows from inside
+    GLOW_PHI = (20, 62, 118, 163, 200, 240, 285, 305)
+    for k, phi in enumerate(GLOW_PHI):
+        pl(f"D{7 + k}", *polar(58.0, phi), (-phi) % 360)
+        pl(f"R{18 + k}", *polar(53.5, phi), (90 - phi) % 360)
+    pl("Q1", -16.0, -12.0, 0)
+    pl("R26", -16.0, -8.0, 0)
+    pl("R27", -19.5, -8.0, 90)
     # mounting holes
     for ref, phi in (("H1", 150), ("H2", 220), ("H3", 312)):
         pl(ref, *polar(55.0, phi))

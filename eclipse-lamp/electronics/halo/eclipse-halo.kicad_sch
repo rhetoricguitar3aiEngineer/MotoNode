@@ -1250,7 +1250,7 @@
 		)
 		(uuid "41d9993a-995e-59cf-a434-cf549288f225")
 	)
-	(text "Head temperature: firmware derates above 65 C NTC reading"
+	(text "Head temperature: firmware derates above 60 C NTC reading (PMMA body limit)"
 		(exclude_from_sim no)
 		(at 302.26 185.42 0)
 		(effects
@@ -1259,7 +1259,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9283e2d2-192d-517a-aea3-b3f43e85f233")
+		(uuid "3e3ecb7c-9755-57c4-9055-e6354b151189")
 	)
 	(rectangle
 		(start 15.24 35.56)

@@ -76,7 +76,61 @@ def wood_material():
 LEVEL = [1.0]
 
 
-def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0):
+def glow_mat(name, on, warmth, strength, side=0.3, up=0.1, falloff=1.0):
+    """Light-diffusing PMMA that glows through its whole body.
+
+    Emission is weighted by the surface normal: faces looking down (the halo's
+    underside, where the LEDs fire) are brightest, the side walls glow softly.
+    Off, it is a milky translucent opal.
+    """
+    m = bpy.data.materials.new(name + ("_on" if on else "_off"))
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    b.inputs["Base Color"].default_value = (0.94, 0.93, 0.90, 1)
+    b.inputs["Roughness"].default_value = 0.42
+    b.inputs["Subsurface Weight"].default_value = 1.0
+    b.inputs["Subsurface Radius"].default_value = (0.006, 0.005, 0.004)
+    b.inputs["Transmission Weight"].default_value = 0.25
+    b.inputs["Coat Weight"].default_value = 0.3
+    if not on:
+        return m
+    geo = nt.nodes.new("ShaderNodeNewGeometry")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    mr = nt.nodes.new("ShaderNodeMapRange")
+    mr.inputs["From Min"].default_value = -1.0
+    mr.inputs["From Max"].default_value = 1.0
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    els = ramp.color_ramp.elements
+    els[0].position, els[0].color = 0.0, (1, 1, 1, 1)
+    els[1].position, els[1].color = 1.0, (up * side, up * side, up * side, 1)
+    mid = els.new(0.5)
+    mid.color = (side, side, side, 1)
+    # vertical falloff: walls glow brightest near the underside, fading toward the cap
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    sepg = nt.nodes.new("ShaderNodeSeparateXYZ")
+    fall = nt.nodes.new("ShaderNodeMapRange")
+    fall.inputs["To Min"].default_value = 1.0
+    fall.inputs["To Max"].default_value = falloff
+    nt.links.new(tc.outputs["Generated"], sepg.inputs["Vector"])
+    nt.links.new(sepg.outputs["Z"], fall.inputs["Value"])
+    mul0 = nt.nodes.new("ShaderNodeMath")
+    mul0.operation = "MULTIPLY"
+    nt.links.new(fall.outputs["Result"], mul0.inputs[1])
+    mul = nt.nodes.new("ShaderNodeMath")
+    mul.operation = "MULTIPLY"
+    mul.inputs[1].default_value = strength
+    nt.links.new(geo.outputs["Normal"], sep.inputs["Vector"])
+    nt.links.new(sep.outputs["Z"], mr.inputs["Value"])
+    nt.links.new(mr.outputs["Result"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], mul0.inputs[0])
+    nt.links.new(mul0.outputs["Value"], mul.inputs[0])
+    nt.links.new(mul.outputs["Value"], b.inputs["Emission Strength"])
+    b.inputs["Emission Color"].default_value = (*warmth, 1)
+    return m
+
+
+def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None):
     LEVEL[0] = level
     M = {}
     M["graphite"] = mat("graphite", (0.030, 0.031, 0.034), 1.0, 0.30, aniso=0.2)
@@ -86,17 +140,17 @@ def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0):
     M["cork"] = mat("cork", (0.42, 0.28, 0.16), 0.0, 0.85)
     M["glass"] = mat("smoked_glass", (0.006, 0.006, 0.008), 0.0, 0.06, coat=1.0, ior=1.52)
     M["etch"] = mat("etch", (0.55, 0.55, 0.56), 0.0, 0.7, emit=warmth if on else None, strength=0.25 * level if on else 0)
-    if on:
-        M["diffuser"] = mat("diffuser_on", (0.95, 0.94, 0.92), 0.0, 0.4, emit=warmth, strength=420.0 * level,
-                            subsurface=0.2)
-    else:
-        M["diffuser"] = mat("diffuser_off", (0.92, 0.92, 0.90), 0.0, 0.35, transmission=0.15, subsurface=0.5)
+    M["diffuser"] = glow_mat("halo_glow", on, warmth, 14.0 * level, side=0.06, falloff=0.3)
+    band_on = on if band is None else True
+    M["band"] = glow_mat("band_glow", band_on, warmth, 0.9 * (level if band is None else band), side=1.0, up=1.0)
+    M["white"] = mat("white_powder", (0.85, 0.85, 0.83), 0.0, 0.6)
     return M
 
 
-PART_MAT = {"base_shell": "graphite", "base_weight": "steel", "bottom_cover": "alu", "base_foot": "cork",
+PART_MAT = {"base_shell": "graphite", "base_weight": "white", "base_band": "band", "base_plinth": "graphite",
+            "base_foot": "cork",
             "touch_glass": "glass", "touch_etch": "etch", "stem": "brass", "hinge_yoke": "graphite",
-            "hinge_knob": "brass", "halo_housing": "graphite", "halo_diffuser": "diffuser"}
+            "hinge_knob": "brass", "halo_cap": "graphite", "halo_body": "diffuser"}
 
 
 # ------------------------------------------------------------------ scene helpers
@@ -252,13 +306,13 @@ def build_lamp(M, explode=False, with_pcbs=False):
         if os.path.exists(hp):
             root, _ = import_glb(hp, "pcb_halo")
             root.rotation_euler = (0, math.pi, 0)
-            root.location = (0, rc[1] * MM, (rc[2] + 14.0 - 2.5) * MM)
+            root.location = (0, rc[1] * MM, meta["pcb_halo_z"] * MM)
             obs["pcb_halo"] = root
         if os.path.exists(cp):
             root, _ = import_glb(cp, "pcb_core")
-            root.location = (0, 0, (19.0 - 1.6) * MM)
+            root.location = (0, 0, meta["pcb_core_z"] * MM)
             obs["pcb_core"] = root
-    if M["diffuser"].name.startswith("diffuser_on"):
+    if M["diffuser"].name.endswith("_on"):
         # the LED ring as an actual light source (cleaner sampling than the emissive mesh alone)
         rc = meta["ring_center"]
         tilt = math.radians(meta.get("tilt", 0.0))
@@ -267,16 +321,16 @@ def build_lamp(M, explode=False, with_pcbs=False):
             l = bpy.data.lights.new(f"led{k}", "AREA")
             l.shape = "DISK"
             l.size = 0.045
-            l.energy = 2.2 * LEVEL[0]
+            l.energy = 4.0 * LEVEL[0]
             l.color = (1.0, 0.82, 0.64)
             ob = bpy.data.objects.new(f"led{k}", l)
             bpy.context.scene.collection.objects.link(ob)
-            ob.location = (0.090 * math.cos(a), rc[1] * MM + 0.090 * math.sin(a), (rc[2] + 0.2) * MM)
+            ob.location = (0.090 * math.cos(a), rc[1] * MM + 0.090 * math.sin(a), (rc[2] - 1.0) * MM)
             ob.rotation_euler = (0, 0, 0)  # area lights point down -Z by default
     if explode:
-        dz = {"halo_housing": 120, "pcb_halo": 60, "halo_diffuser": -10,
+        dz = {"halo_cap": 120, "pcb_halo": 60, "halo_body": -10,
               "touch_glass": 150, "touch_etch": 150, "base_shell": 95, "pcb_core": 45,
-              "base_weight": 0, "bottom_cover": -30, "base_foot": -55}
+              "base_band": 20, "base_weight": 0, "base_plinth": -30, "base_foot": -55}
         dx = {"hinge_knob": 40}
         lift = 70  # keep the lowest exploded part above the floor
         for k, ob in obs.items():
@@ -368,6 +422,29 @@ def main():
         area("key", orbit(-120, 10, 1.2, (0, -0.1, 0.3)), (0, -0.1, 0.3), 1.2, 25, (0.8, 0.85, 1.0))
         tgt = (0.0, -0.13, 0.36)
         camera(orbit(-70, -8, 0.95, tgt), tgt, lens=40)
+    elif shot == "glow":
+        # close-up: light diffusing through the body of the halo
+        M = build_materials(on=True, level=0.35)
+        obs, meta = build_lamp(M)
+        add_plane("desk", 3.0, (0, 0, 0), wood_material())
+        wall = mat("wall", (0.20, 0.19, 0.18), 0.0, 0.95)
+        add_plane("wall", 4.0, (0, 0.42, 1.0), wall, rot=(math.pi / 2, 0, 0))
+        world((0.008, 0.009, 0.012), 1.0)
+        rc = meta["ring_center"]
+        tgt = (0.07, (rc[1] - 95) * MM, (rc[2] + 8) * MM)
+        camera(orbit(-40, -6, 0.42, tgt), tgt, lens=85)
+        bpy.context.scene.view_settings.exposure = -0.5
+    elif shot == "night":
+        # night mode: halo off, the base band breathes a warm glow through its body
+        M = build_materials(on=False, band=6.0)
+        obs, meta = build_lamp(M)
+        add_plane("desk", 3.0, (0, 0, 0), wood_material())
+        wall = mat("wall", (0.20, 0.19, 0.18), 0.0, 0.95)
+        add_plane("wall", 4.0, (0, 0.42, 1.0), wall, rot=(math.pi / 2, 0, 0))
+        world((0.004, 0.005, 0.009), 1.0)
+        area("moon", orbit(150, 30, 1.5, T), T, 1.2, 8.0, (0.55, 0.65, 1.0))
+        tgt = (0.0, -0.06, 0.12)
+        camera(orbit(-62, 12, 1.0, tgt), tgt, lens=50)
     else:
         raise SystemExit("unknown shot " + shot)
 

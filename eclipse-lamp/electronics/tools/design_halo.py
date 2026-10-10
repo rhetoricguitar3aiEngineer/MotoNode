@@ -77,7 +77,7 @@ def build():
                    (g(30 + k * 10), g(yb + 5)), {},
                    fields={"Manufacturer": "-", "MPN": "-", "Description": "M2.5 mounting hole"}, in_bom=False))
     s.flag("GND", g(385), g(150))
-    s.text("Head temperature: firmware derates above 65 C NTC reading", g(302), g(185), 1.5)
+    s.text("Head temperature: firmware derates above 60 C NTC reading (PMMA body limit)", g(302), g(185), 1.5)
     return s
 
 

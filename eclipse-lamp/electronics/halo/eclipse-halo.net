@@ -1,7 +1,7 @@
 (export (version "E")
   (design
     (source "/home/user/MotoNode/eclipse-lamp/electronics/halo/eclipse-halo.kicad_sch")
-    (date "2026-10-07T19:07:53+0000")
+    (date "2026-10-10T03:50:34+0000")
     (tool "Eeschema 9.0.9-9.0.9~ubuntu24.04.1")
     (sheet (number "1") (name "/") (tstamps "/")
       (title_block
@@ -1019,7 +1019,7 @@
     (library (logical "Mechanical")
       (uri "/usr/share/kicad/symbols//Mechanical.kicad_sym")))
   (nets
-    (net (code "1") (name "GND") (class "Default")
+    (net (code "1") (name "GND") (class "Sense")
       (node (ref "J1") (pin "6") (pinfunction "Pin_6") (pintype "passive"))
       (node (ref "J1") (pin "MP") (pinfunction "MountPin") (pintype "passive"))
       (node (ref "TH1") (pin "2") (pintype "passive")))
@@ -1155,6 +1155,6 @@
     (net (code "45") (name "Net-(D40-A)") (class "Default")
       (node (ref "D40") (pin "2") (pinfunction "A") (pintype "passive"))
       (node (ref "J1") (pin "8") (pinfunction "Pin_8") (pintype "passive")))
-    (net (code "46") (name "Net-(J1-Pin_5)") (class "Default")
+    (net (code "46") (name "Net-(J1-Pin_5)") (class "Sense")
       (node (ref "J1") (pin "5") (pinfunction "Pin_5") (pintype "passive"))
       (node (ref "TH1") (pin "1") (pintype "passive")))))

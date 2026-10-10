@@ -90,7 +90,7 @@ def build():
       {"1": "+3V3", "20": "GND", "16": "UPDI", "17": "VSENSE", "18": "PD_PG", "19": "NTC",
        "2": "TCH0", "3": "TCH1", "4": "TCH2", "5": "TCH3",
        "11": "PWM_W", "10": "PWM_C", "9": "LED_STAT", "8": None, "7": None, "6": None,
-       "12": None, "13": None, "14": None, "15": None},
+       "12": "GLOW_PWM", "13": None, "14": None, "15": None},
       fields={"Manufacturer": "Microchip", "MPN": "ATTINY1616-SNR", "Description": "AVR 16 kB, PTC touch, 20 MHz"})
     C("C6", "100nF", 12, 76, "+3V3", "GND", mpn="GRM188R71H104KA93D", desc="MCU decoupling")
     C("C7", "1uF", 20, 76, "+3V3", "GND", mpn="GRM188R61E105KA12D", desc="MCU decoupling")
@@ -148,15 +148,29 @@ def build():
           desc="Sense: 200 mV / 2.0 R = 100 mA")
 
     # ------------------------------------------------------------------ ring connector
-    s.box(g(198), g(4), g(232), g(100), "11  MECHANICAL")
+    s.box(g(198), g(4), g(232), g(100), "11  BODY GLOW (lights the opal base band) + MECHANICAL")
+    for k in range(8):
+        x = 201 + k * 4
+        R(f"R{18 + k}", "100", x, 38, "+3V3", f"GLOW_A{k}", mpn="RC0603FR-07100RL",
+          desc="Glow LED ballast, ~5 mA")
+        P(f"D{7 + k}", "Device:LED", "2700K", "LED_SMD:LED_PLCC_2835", (g(x), g(50)),
+          {"2": f"GLOW_A{k}", "1": "GLOW_K"}, rot=90,
+          fields={"Manufacturer": "Samsung", "MPN": "LM281B+ 2700K",
+                  "Description": "2835 warm white, fires down into the white-lined base cavity"})
+    P("Q1", "Transistor_FET:AO3400A", "AO3400A", "Package_TO_SOT_SMD:SOT-23", (g(216), g(68)),
+      {"1": "GLOW_G", "3": "GLOW_K", "2": "GND"},
+      fields={"Manufacturer": "Alpha & Omega", "MPN": "AO3400A", "Description": "N-MOSFET 30 V, low-side glow switch"})
+    R("R26", "100", 206, 70, "GLOW_PWM", "GLOW_G", mpn="RC0603FR-07100RL", desc="Gate series", rot=90)
+    R("R27", "100k", 210, 80, "GLOW_G", "GND", mpn="RC0603FR-07100KL", desc="Gate pull-down")
+    s.text("PC0 = TCD0 WOC PWM: breathing night-glow through the base", g(200), g(96), 1.5)
     s.box(g(198), g(152), g(232), g(206), "10  HALO HARNESS")
     P("J2", "Connector_Generic_MountingPin:Conn_01x10_MountingPin", "TO HALO",
       "Connector_JST:JST_PH_S10B-PH-SM4-TB_1x10-1MP_P2.00mm_Horizontal", (g(222), g(176)),
       {"1": "LED_C1_K", "2": "LED_C1_A", "3": "LED_W1_A", "4": "LED_W1_K", "5": "NTC", "6": "GND",
        "7": "LED_W2_K", "8": "LED_W2_A", "9": "LED_C2_A", "10": "LED_C2_K", "MP": "GND"},
       fields={"Manufacturer": "JST", "MPN": "S10B-PH-SM4-TB", "Description": "PH 2.0 mm 10-pin side-entry SMD"})
-    for i, (ref, x) in enumerate([("H1", 204), ("H2", 214), ("H3", 224)]):
-        P(ref, "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_3.2mm_M3", (g(x), g(30)), {},
+    for i, (ref, x) in enumerate([("H1", 204), ("H2", 212), ("H3", 220)]):
+        P(ref, "Mechanical:MountingHole", "M3", "MountingHole:MountingHole_3.2mm_M3", (g(x), g(14)), {},
           fields={"Manufacturer": "-", "MPN": "-", "Description": "M3 mounting hole"}, in_bom=False)
     s.text("1:1 harness to halo J1 (through the stem)", g(200), g(203), 1.5)
     return s

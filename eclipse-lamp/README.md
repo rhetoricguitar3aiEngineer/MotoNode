@@ -1,18 +1,38 @@
-# ECLIPSE: cantilevered halo desk lamp
+# ECLIPSE: a desk lamp that glows through its body
 
 ![ECLIPSE on a desk](renders/eclipse_hero.png)
 
-ECLIPSE is a desk lamp built around a thin graphite ring of light that floats in front
-of a single brass arc. The ring is a 212 mm aluminium halo hanging from a friction hinge.
-It has no visible light source, only a continuous opal line of tunable-white light that
-throws an even, shadow-softened pool onto the desk. The centre of the ring is open, so
-you look through the lamp rather than at it. The weighted base carries
-a flush glass touch window with a capacitive wheel for brightness and colour temperature.
+ECLIPSE has no lampshade and no visible light source. **The light comes out through the
+body of the lamp itself.** The 212 mm halo is a moulded ring of light-diffusing acrylic
+under a thin graphite cap. Forty LEDs fire down into it, and the light scatters through the
+material. The underside gives an even, bright task light, while the walls glow softly and
+fade toward the dark cap, like the corona around an eclipsed sun. The weighted base works
+the same way: a band of the same opal material sits between the graphite shell and the
+plinth and glows from a light chamber inside, either as a breathing night-light or as
+touch feedback.
 
 | | |
 |---|---|
-| ![studio](renders/eclipse_studio.png) | ![halo](renders/eclipse_underside.png) |
+| ![glow](renders/eclipse_glow.png) | ![night](renders/eclipse_night.png) |
+| ![halo](renders/eclipse_underside.png) | ![studio](renders/eclipse_studio.png) |
 | ![detail](renders/eclipse_detail.png) | ![exploded](renders/eclipse_exploded.png) |
+
+## How the light gets through the body
+
+```
+            graphite cap (heatsink, blocks up-light)
+   ┌───────────────────────────────────────────────┐
+   │ ▓▓▓▓▓ halo PCB, 40 LEDs firing DOWN ▓▓▓▓▓▓▓▓▓ │
+   ├──┐                                         ┌──┤
+   │  │   air light-mixing chamber (15 mm)       │  │  ← 5.4 mm diffusing walls:
+   │  │                                          │  │    soft side glow, fading upward
+   │  └──────────────────────────────────────────┘  │
+   ╰──────── 4 mm diffusing floor: task light ──────╯  ← brightest face
+```
+
+The base uses the same idea in miniature: 8 warm 2835 LEDs on the rim of the core board fire
+down onto the white powder-coated steel weight. The light bounces around that chamber and
+leaves through the 7 mm opal band.
 
 ## Key specs
 
@@ -20,16 +40,17 @@ a flush glass touch window with a capacitive wheel for brightness and colour tem
 |---|---|
 | Overall height | 449 mm (top of hinge knuckle) |
 | Reach | Halo centre 158 mm in front of the base centre |
-| Halo | Ø212 / Ø148 × 14 mm, tilt ±30° on a friction hinge |
-| Base | Ø150 × 22 mm, graphite anodised 6061 with an 0.8 kg steel weight |
-| Mass / stability | ≈1.55 kg. The CoG sits 50 mm behind the base's front edge, so tipping it needs about 9 N pressed on the halo |
+| Halo | Ø212 / Ø148 × 25 mm: a 22 mm hollow light-diffusing PMMA body plus a 3 mm graphite cap, tilt ±30° on a friction hinge |
+| Base | Ø150 × 22 mm: graphite 6061 shell, Ø148 × 7 mm glowing opal band, steel plinth, white steel reflector/weight |
+| Mass / stability | ≈1.69 kg. The CoG sits 40 mm behind the base's front edge, so tipping it needs about 8 N pressed on the halo |
 | Light source | 40 × Luminus MP-3030-1100, CRI 90: 20 × 2700 K + 20 × 6500 K, interleaved |
 | Drive | 4 strings × 10 LEDs at 100 mA constant current (4 × TPS61165 boost) |
-| LED power | 11.6 W max. Firmware caps it at about 8.5 W, which is roughly 750-850 lm out of the diffuser (estimated) |
+| LED power | 11.6 W max. Firmware caps it at about 8.5 W, which is roughly 650-750 lm out of the body (estimated) |
+| Body glow (base) | 8 × 2835 2700 K at about 5 mA, PWM night-glow / feedback (≈0.13 W) |
 | CCT | 2700-6500 K continuous (warm/cool mixing), flicker-free analogue dimming |
 | Power | USB-C PD sink at 9 V (CH224K). Needs an 18 W+ charger. A plain 5 V port falls back to reduced brightness |
-| Controls | Capacitive touch through 3 mm glass. Tap the centre key for on/off, slide the wheel for brightness, hold the key and slide for colour temperature. A glow dot gives feedback |
-| Protection | 1.5 A PTC fuse, 15 V TVS, LED open-string OVP (38 V), NTC derating on the halo (>65 °C) |
+| Controls | Capacitive touch through 3 mm glass. Tap the centre key for on/off, slide the wheel for brightness, hold the key and slide for colour temperature. Double-tap toggles the night-glow |
+| Protection | 1.5 A PTC fuse, 15 V TVS, LED open-string OVP (38 V), NTC derating on the halo (>60 °C) |
 
 ## What's in this folder
 
@@ -66,6 +87,8 @@ touch glass and carries only the copper touch electrodes and the glow LED.
   and PWM on CTRL gives analogue (flicker-free) dimming
 * **ATtiny1616**: PTC self-capacitance touch (key + 3-segment wheel), TCA0 PWM for the warm
   and cool channels, VIN sense, NTC read-back, UPDI programming pads
+* **Body glow**: 8 × 2835 warm LEDs around the board rim, switched by an AO3400A from
+  PC0 (TCD0 PWM), light the base's opal band through the internal light chamber
 * AMS1117-3.3 logic supply, JST-PH 10-pin harness to the halo through the stem
 
 **Halo board** (in the ring): a 200/160 mm annulus. All copper is on one layer, so it can be
@@ -107,7 +130,7 @@ python3 pcb_halo.py                   # ring board: parametric placement + routi
 ./export_fab.sh                       # gerbers, drill, P&P, PDFs, STEP/GLB, reports
 cd ../../mechanical && python3 eclipse_cad.py
 cd ../bom && python3 make_bom.py
-cd ../renders && python3 render_blender.py hero   # hero | studio | detail | underside | exploded
+cd ../renders && python3 render_blender.py hero   # hero | studio | glow | night | detail | underside | exploded
 ```
 
 See [docs/DESIGN.md](docs/DESIGN.md) for the design rationale, the calculations and the
