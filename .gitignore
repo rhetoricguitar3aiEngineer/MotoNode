@@ -1,0 +1,37 @@
+# KiCad
+*.kicad_prl
+*-backups/
+_autosave-*
+*.bak
+*.lck
+fp-info-cache
+~*.lck
+\#auto_saved_files\#
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Android / Gradle
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+.idea/
+*.iml
+captures/
+
+# OS / editors / tool state
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+.claude/settings.local.json
+.headroom_*
+
+# Installers that live next to the projects on the PC
+*.exe
+*.msi

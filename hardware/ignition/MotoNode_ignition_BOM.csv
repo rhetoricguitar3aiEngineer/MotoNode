@@ -1,0 +1,111 @@
+References,Qty,Value,MPN,Manufacturer,Footprint,Unit USD (qty 100),Ext USD,Price source,Datasheet
+C113,1,1uF 630V MKP,B32672P6105K000,TDK/EPCOS,MotoNode:C_Rect_L18.0mm_W11.0mm_P15.00mm_FKS3_FKP3,0.610,0.61,est,https://www.mouser.com/datasheet/2/136/MKP_B3267_P-220901.pdf
+C101,1,100uF 35V,EEE-FK1V101P,Panasonic,MotoNode:CP_Elec_8x10,0.150,0.15,est,https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1181.pdf
+C103,1,47uF 35V,EEE-FK1V470P,Panasonic,MotoNode:CP_Elec_6.3x5.8,0.120,0.12,est,https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1181.pdf
+C108 C115 C201 C207 C206 C302 C304 C315 C316 C320 C321 C322 C323 C318 C319 C306 C307 C308 C309 C401 C402,21,100nF,GRM155R71C104KA88D,Murata,MotoNode:C_0402_1005Metric,0.004,0.08,est,
+C120 C303,2,22uF 10V,GRM21BR61A226ME44L,Murata,MotoNode:C_0805_2012Metric,0.020,0.04,est,
+C110 C117 C202 C203 C204 C205 C317 C406 C407,9,1nF,GRM155R71H102KA01D,Murata,MotoNode:C_0402_1005Metric,0.004,0.04,est,
+C106,1,10uF 50V,GRM31CR61H106KA12L,Murata,MotoNode:C_1206_3216Metric,0.030,0.03,est,
+C121,1,100pF 1kV,GRM31A5C3A101JW01D,Murata,MotoNode:C_1206_3216Metric,0.030,0.03,est,
+C118,1,4.7uF 50V,GRM31CR71H475KA12L,Murata,MotoNode:C_1206_3216Metric,0.030,0.03,est,
+C114 C116 C310 C327 C312 C404,6,10nF,GRM155R71H103KA88D,Murata,MotoNode:C_0402_1005Metric,0.004,0.02,est,
+C112,1,10nF 250V,GRM31BR72E103KW01L,Murata,MotoNode:C_1206_3216Metric,0.020,0.02,est,
+C405,1,10uF 10V,GRM21BR61A106KE19L,Murata,MotoNode:C_0805_2012Metric,0.020,0.02,est,
+C102,1,1uF 50V,GRM21BR71H105KA12L,Murata,MotoNode:C_0805_2012Metric,0.010,0.01,est,
+C105,1,4.7uF 10V,GRM188R61A475KE15D,Murata,MotoNode:C_0603_1608Metric,0.006,0.01,est,
+C104,1,330nF 50V,GRM188R71H334KA61D,Murata,MotoNode:C_0603_1608Metric,0.004,0.00,est,
+C107,1,100nF 50V,GRM155R71H104KE14D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C109,1,1nF C0G,GRM1555C1H102JA01D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C111,1,470pF,GRM155R71H471KA01D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C119,1,100nF 25V,GRM155R71E104KE14D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C305,1,1uF,GRM155R61A105KE15D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C326,1,22nF,GRM155R71C223KA01D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C313,1,220nF,GRM155R71C224KA12D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C314,1,470nF,GRM155R61C474KE01D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+C403,1,2.2nF 50V,GRM155R71H222KA01D,Murata,MotoNode:C_0402_1005Metric,0.004,0.00,est,
+D102,1,SMCJ18A,SMCJ18A,Littelfuse,MotoNode:D_SMC_Littelfuse-LP,0.100,0.10,est,https://www.littelfuse.com/assetdocs/tvs-diodes-smcj-datasheet
+D104 D108 D204 D311 D310 D302 D303 D304 D305,9,BAT54WS,BAT54WS-7-F,Diodes Inc,MotoNode:D_SOD-323,0.010,0.09,est,https://www.diodes.com/datasheet/download/BAT54WS.pdf
+D106 D109 D211,3,US1M,US1M-E3/61T,Vishay,MotoNode:D_SMA,0.030,0.09,est,https://www.vishay.com/docs/88768/us1_test_dcicons.pdf
+D115,1,SS16,SS16T3G,onsemi,MotoNode:D_SMA,0.070,0.07,est,https://www.onsemi.com/pdf/datasheet/ss16-d.pdf
+D116,1,SMBJ33CA,SMBJ33CA,Littelfuse,MotoNode:D_SMB,0.060,0.06,est,https://www.littelfuse.com/assetdocs/tvs-diodes-smbj-datasheet
+D110,1,ES3J,ES3J-E3/57T,Vishay,MotoNode:D_SMC_Littelfuse-LP,0.060,0.06,est,https://www.vishay.com/docs/88683/es3.pdf
+D114 D307 D309 D401 D402 D403,6,BAT54S,"BAT54S,215",Nexperia,MotoNode:SOT-23_Diodes-LP,0.010,0.06,est,https://assets.nexperia.com/documents/data-sheet/BAT54S.pdf
+D202 D203,2,ES2J,ES2J R5G,Taiwan Semiconductor,MotoNode:D_SMB,0.030,0.06,est,https://www.mouser.com/datasheet/2/395/ES2A_SERIES_K1701-1918379.pdf
+D111 D113 D306,3,1N4148WS,1N4148WS-G3-08,Vishay,MotoNode:D_SOD-323,0.010,0.03,est,https://www.vishay.com/docs/86460/1n4148ws-g.pdf
+D101 D201,2,BZX84C15,"BZX84-C15,215",Nexperia,MotoNode:SOT-23_Diodes-LP,0.010,0.02,est,https://assets.nexperia.com/documents/data-sheet/BZX84_SER.pdf
+D103,1,SS14,SS14,onsemi,MotoNode:D_SMA,0.020,0.02,est,
+D105,1,ES1D,ES1D-E3/61T,Vishay,MotoNode:D_SMA,0.020,0.02,est,https://www.vishay.com/docs/88586/es1.pdf
+D107,1,LED red,150060RS75000,Wurth Elektronik,MotoNode:LED_0603_1608Metric,0.010,0.01,est,
+D112,1,BZX84C12,"BZX84-C12,215",Nexperia,MotoNode:SOT-23_Diodes-LP,0.010,0.01,est,https://assets.nexperia.com/documents/data-sheet/BZX84_SER.pdf
+D301,1,LED grn,150060GS75000,Wurth Elektronik,MotoNode:LED_0603_1608Metric,0.010,0.01,est,
+D308,1,BAT54C,"BAT54C,215",Nexperia,MotoNode:SOT-23_Diodes-LP,0.010,0.01,est,https://assets.nexperia.com/documents/data-sheet/BAT54C.pdf
+F101,1,10A ATO,178.6164.0001 + 10 A ATO fuse,Littelfuse,MotoNode:Fuseholder_Blade_ATO_Littelfuse_Pudenz_2_Pin,0.300,0.30,est,https://www.littelfuse.com/assetdocs/ato-flr-datasheet
+F401,1,PTC 0.2A,MF-NSMF020X-2,Bourns,MotoNode:Fuse_1206_3216Metric,0.060,0.06,est,https://www.bourns.com/docs/product-datasheets/mf-nsmf.pdf
+J201,1,Coils 6p push-in,691406710006B,Wurth Elektronik,MotoNode:TerminalBlock_Wuerth_691406710006B_1x06_P5.00mm_Horizontal,2.600,2.60,est,https://www.we-online.com/components/products/datasheet/691406710006B.pdf
+J102,1,Signals 8p push-in,"1771017 (PTSM 0,5/ 8-2,5-V THR R44)",Phoenix Contact,"MotoNode:TerminalBlock_Phoenix_PTSM-0,5-8-2.5-V-THR_1x08_P2.50mm_Vertical",1.900,1.90,est,https://www.electricautomationnetwork.com/en/phoenixcontact/pcb-terminal-phoenix-contact-ptsm-05-8-25-v-thr-r44-177101
+J101,1,Battery 2p push-in,691406710002B,Wurth Elektronik,MotoNode:TerminalBlock_Wuerth_691406710002B_1x02_P5.00mm_Horizontal,1.100,1.10,est,https://www.we-online.com/components/products/datasheet/691406710002B.pdf
+L101,1,22uH 1.5A,SRN5040TA-220M,Bourns,MotoNode:L_Bourns_SRN5040TA,0.120,0.12,est,https://www.bourns.com/docs/Product-Datasheets/SRN5040TA.pdf
+Q203 Q204 Q205 Q206,4,NGD8201N,NGD8201NT4G,onsemi,MotoNode:TO-252-2,0.950,3.80,Octopart,https://media.digikey.com/pdf/Data%20Sheets/ON%20Semiconductor%20PDFs/NGD8201N_AN.pdf
+Q105 Q207,2,BT151S-800R,"BT151S-800R,118",WeEn,MotoNode:TO-252-2,1.290,2.58,LCSC,https://www.ween-semi.com/datasheet/BT151S-800R.pdf
+Q102,1,CSD19537Q3,CSD19537Q3,Texas Instruments,MotoNode:VSON-8_3.3x3.3mm_P0.65mm_NexFET,1.300,1.30,est,https://www.ti.com/lit/ds/symlink/csd19537q3.pdf
+Q101 Q201,2,SUD50P06-15,SUD50P06-15-GE3,Vishay,MotoNode:TO-252-2,0.550,1.10,est,https://www.vishay.com/docs/68940/sud50p06-15.pdf
+Q103 Q104 Q202,3,2N7002,"2N7002,215",Nexperia,MotoNode:SOT-23_Diodes-LP,0.010,0.03,est,https://assets.nexperia.com/documents/data-sheet/2N7002.pdf
+Q106,1,AO3400A,AO3400A,Alpha & Omega,MotoNode:SOT-23_Diodes-LP,0.020,0.02,est,https://www.aosmd.com/res/datasheets/AO3400A.pdf
+Q301,1,AO3401A,AO3401A,Alpha & Omega,MotoNode:SOT-23_Diodes-LP,0.020,0.02,est,https://www.aosmd.com/sites/default/files/res/datasheets/AO3401A.pdf
+Q208,1,BC817-40,"BC817-40,215",Nexperia,MotoNode:SOT-23_Diodes-LP,0.010,0.01,est,https://assets.nexperia.com/documents/data-sheet/BC817_SER.pdf
+R215 R216 R217 R218,4,10m 2512,WSL2512R0100FEA,Vishay,MotoNode:R_2512_6332Metric_Vishay-WSL-LP,0.060,0.24,est,https://www.vishay.com/docs/30100/wsl.pdf
+R201,1,2m 2512,CSS2H-2512K-2L00F,Bourns,MotoNode:R_2512_6332Metric_Vishay-WSL-LP,0.080,0.08,est,https://www.bourns.com/docs/product-datasheets/css2h-2512.pdf
+R123 R126 R204 R133 R339 R318 R321 R336 R304 R314 R305 R315 R306 R316 R307 R317 R308 R309 R310 R311 R312 R405 R407 R409,24,100k,RC0402FR-07100KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.07,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R105 R106 R107 R117 R118 R119 R127 R128 R129,9,1M,RC1206FR-071ML,Yageo,MotoNode:R_1206_3216Metric,0.006,0.05,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R101 R103 R110 R209 R210 R211 R212 R301 R319 R320 R331 R333 R341 R338,14,10k,RC0402FR-0710KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.04,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R111,1,0R1 1W,WSL2512R1000FEA,Vishay,MotoNode:R_2512_6332Metric_Vishay-WSL-LP,0.030,0.03,est,https://www.vishay.com/docs/30100/wsl.pdf
+R113,1,2.7k 1W,RC2512FK-072K7L,Yageo,MotoNode:R_2512_6332Metric_Vishay-WSL-LP,0.030,0.03,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R141,1,470R 1W,RC2512FK-07470RL,Yageo,MotoNode:R_2512_6332Metric_Vishay-WSL-LP,0.030,0.03,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+RT301,1,NTC 10k B3380,NCP15XH103F03RC,Murata,MotoNode:R_0402_1005Metric,0.020,0.02,est,https://www.lcsc.com/product-detail/C77131.html
+R114 R115 R116,3,330k,RC1206FR-07330KL,Yageo,MotoNode:R_1206_3216Metric,0.006,0.02,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R214 R223 R205 R206 R207 R208,6,100R,RC0402FR-07100RL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.02,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R334 R406 R408,3,47k,RC1206FR-0747KL,Yageo,MotoNode:R_1206_3216Metric,0.006,0.02,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R109 R219 R220 R221 R222,5,10R,RC0402FR-0710RL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.01,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R112 R125 R213 R303 R403,5,1k,RC0402FR-071KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.01,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R132 R326,2,40.2k 1%,RC0402FR-0740K2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.01,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R342 R335,2,470k,RC0402FR-07470KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.01,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R330 R404,2,2.2k,RC0402FR-072K2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.01,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R401 R402,2,4.7k,RC0402FR-074K7L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.01,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R102,1,10R,RC0603FR-0710RL,Yageo,MotoNode:R_0603_1608Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R104,1,4.7M,RC0402FR-074M7L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R108,1,19.6k 1%,RC0402FR-0719K6L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R120,1,8.2k 1%,RC0402FR-078K2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R121,1,42.2k 1%,RC0402FR-0742K2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R122,1,10k 1%,RC0402FR-0710KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R124,1,47R,RC0603FR-0747RL,Yageo,MotoNode:R_0603_1608Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R130,1,68k 1%,RC0402FR-0768KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R202,1,1.5k,RC1206FR-071K5L,Yageo,MotoNode:R_1206_3216Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R203,1,1k,RC0603FR-071KL,Yageo,MotoNode:R_0603_1608Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R131,1,124k 1%,RC0402FR-07124KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R313,1,33k,RC0402FR-0733KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R322,1,16.9k 1%,RC0402FR-0716K9L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R340,1,16.2k 1%,RC0402FR-0716K2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R323,1,30k 1%,RC0402FR-0730KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R324,1,1.69k 1%,RC0402FR-071K69L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R325,1,1.2k 1%,RC0402FR-071K2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R329,1,2.2M,RC0402FR-072M2L,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R327,1,20k 1%,RC0402FR-0720KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R328,1,1M,RC0402FR-071ML,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R332,1,20k,RC0402FR-0720KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+R337,1,22k,RC0402FR-0722KL,Yageo,MotoNode:R_0402_1005Metric,0.003,0.00,est,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf
+T102,1,WE-AGDT 1:1,750319331,Wurth Elektronik,MotoNode:Transformer_Wurth_WE-AGDT-EP7,3.500,3.50,est,https://www.we-online.com/components/products/datasheet/750319331.pdf
+T101,1,Flyback 1:15 EFD15,Custom: B66414B6008T001 former + B66413U0050J187 core pair,TDK/EPCOS,MotoNode:Transformer_TDK_EFD15-8-5_SMD_B66414B6008T001,1.800,1.80,est,https://www.tdk-electronics.tdk.com/inf/80/db/fer/efd_15_8_5.pdf
+U302,1,ESP32-S3-MINI-1,ESP32-S3-MINI-1-N8,Espressif,MotoNode:ESP32-S3-MINI-1,3.380,3.38,LCSC,https://documentation.espressif.com/esp32-s3-mini-1_mini-1u_datasheet_en.pdf
+U401,1,MPU-6050,MPU-6050,TDK InvenSense,MotoNode:InvenSense_QFN-24_4x4mm_P0.5mm,1.600,1.60,LCSC,https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/mpu-6000-datasheet1.pdf
+U202,1,INA4180A1,INA4180A1IPWR,Texas Instruments,MotoNode:TSSOP-14_4.4x5mm_P0.65mm,0.550,0.55,LCSC,https://www.ti.com/lit/ds/symlink/ina180.pdf
+U201,1,INA186A1,INA186A1IDCKR,Texas Instruments,MotoNode:SOT-363_SC-70-6_TI-DCK-LP,0.500,0.50,LCSC,https://www.ti.com/lit/ds/symlink/ina186.pdf
+U103,1,MP2459GJ,MP2459GJ-Z,MPS,MotoNode:TSOT-23-6,0.350,0.35,LCSC,https://www.mouser.com/datasheet/2/277/MP2459-1384200.pdf
+U102,1,UC3845,"UC3845 (D, SOIC-8)",Texas Instruments,MotoNode:SOIC-8_3.9x4.9mm_P1.27mm_TI-D-LP,0.200,0.20,est,https://www.ti.com/lit/ds/symlink/uc3845.pdf
+U306 U307,2,LM339,LM339PWR,Texas Instruments,MotoNode:TSSOP-14_4.4x5mm_P0.65mm,0.070,0.14,est,https://www.ti.com/lit/ds/symlink/lm339.pdf
+U304,1,74AHCT02,"74AHCT02PW,118",Nexperia,MotoNode:TSSOP-14_4.4x5mm_P0.65mm,0.100,0.10,est,https://assets.nexperia.com/documents/data-sheet/74AHC_AHCT02.pdf
+U305,1,74AHCT08,"74AHCT08PW,118",Nexperia,MotoNode:TSSOP-14_4.4x5mm_P0.65mm,0.100,0.10,est,https://assets.nexperia.com/documents/data-sheet/74AHC_AHCT08.pdf
+U303,1,74LVC14A,"74LVC14APW,118",Nexperia,MotoNode:TSSOP-14_4.4x5mm_P0.65mm,0.080,0.08,est,https://assets.nexperia.com/documents/data-sheet/74LVC14A.pdf
+U101,1,MC78L05ACH,MC78L05ACHT1G,onsemi,MotoNode:SOT-89-3,0.050,0.05,est,https://www.onsemi.com/download/data-sheet/pdf/mc78l00a-d.pdf
+U308,1,LM393,LM393DGKR,Texas Instruments,MotoNode:VSSOP-8_3.0x3.0mm_P0.65mm,0.050,0.05,est,https://www.ti.com/lit/ds/symlink/lm393.pdf
+
+"TOTAL (components, qty 100, excl. PCB/assembly)",237,,,,,,30.08,,

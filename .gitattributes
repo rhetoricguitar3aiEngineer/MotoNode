@@ -1,0 +1,21 @@
+* text=auto
+
+# KiCad text formats: keep LF so diffs stay clean across Windows/Linux
+*.kicad_pro text eol=lf
+*.kicad_sch text eol=lf
+*.kicad_pcb text eol=lf
+*.kicad_sym text eol=lf
+*.kicad_mod text eol=lf
+*.kicad_dru text eol=lf
+fp-lib-table text eol=lf
+sym-lib-table text eol=lf
+
+*.py text eol=lf
+*.sh text eol=lf
+*.csv text
+
+# Binary outputs
+*.pdf binary
+*.png binary
+*.step binary
+*.zip binary

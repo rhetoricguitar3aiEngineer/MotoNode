@@ -1,0 +1,87 @@
+==============================================================================
+[PASS] All nets declared with a voltage envelope
+[PASS] Every net has >= 2 connections
+[PASS] No declared-but-unused nets
+[PASS] Unique designators
+[PASS] Voltage ratings vs worst-case stress
+[PASS] Clamp devices (conduct by design; dissipation not checked here)
+        D101, D102, D116, D112, D201, Q203, Q204, Q205, Q206
+[PASS] Interlock + safety chain: 65536 states, 16 invariants, reset, hang
+[PASS] ESP32-S3 pins (flash/PSRAM, strapping, USB, ADC1-only analog, pull-downs)
+[PASS] HV fault injection: 10 source cases (+ and - polarity) x 346 faults
+[WARN] accepted residual ('Q201', 'short'): 4 cases
+        High-side P-FET stuck ON in CDI mode feeds +12V through D202/D203 into COIL1_TOP (not an HV bridge: both 600 V diodes still block). Mitigation: U308A high-side trip + firmware check of V_COIL_MON / I_HS before each SCR trigger; F101 backstop.
+==============================================================================
+
+Voltage stress table (worst case, V):
+  Q101  SUD50P06-15                  stress     44  rating     60  margin    26%  ok
+  R101  10k                          stress     29  rating     50  margin    42%  ok
+  C101  100uF 35V                    stress     29  rating     35  margin    17%  ok
+  C102  1uF 50V                      stress     29  rating     50  margin    42%  ok
+  D103  SS14                         stress     29  rating     40  margin    27%  ok
+  C103  47uF 35V                     stress     29  rating     35  margin    17%  ok
+  U101  MC78L05ACH IN                stress     29  rating     30  margin     3%  ok
+  C104  330nF 50V                    stress     29  rating     50  margin    42%  ok
+  U102  UC3845 VCC                   stress     29  rating     30  margin     3%  ok
+  R102  10R                          stress     29  rating     50  margin    42%  ok
+  C106  10uF 50V                     stress     29  rating     50  margin    42%  ok
+  C107  100nF 50V                    stress     29  rating     50  margin    42%  ok
+  R105  1M                           stress    140  rating    200  margin    30%  ok
+  R106  1M                           stress    140  rating    200  margin    30%  ok
+  R107  1M                           stress    137  rating    200  margin    32%  ok
+  Q102  CSD19537Q3                   stress     80  rating    100  margin    20%  ok
+  T101  pri-sec isolation            stress    420  rating   2000  margin    79%  ok
+  D105  ES1D                         stress     80  rating    200  margin    60%  ok
+  C112  10nF 250V                    stress     80  rating    250  margin    68%  ok
+  R113  2.7k 1W                      stress     80  rating    200  margin    60%  ok
+  D106  US1M                         stress    600  rating   1000  margin    40%  ok
+  C121  100pF 1kV                    stress    179  rating   1000  margin    82%  ok
+  C113  1uF 630V MKP                 stress    420  rating    630  margin    33%  ok
+  R114  330k                         stress    140  rating    200  margin    30%  ok
+  R115  330k                         stress    140  rating    200  margin    30%  ok
+  R116  330k                         stress    137  rating    200  margin    32%  ok
+  R117  1M                           stress    140  rating    200  margin    30%  ok
+  R118  1M                           stress    140  rating    200  margin    30%  ok
+  R119  1M                           stress    137  rating    200  margin    32%  ok
+  Q105  BT151S-800R                  stress    432  rating    800  margin    46%  ok
+  D109  US1M                         stress    422  rating   1000  margin    58%  ok
+  D110  ES3J                         stress    420  rating    600  margin    30%  ok
+  T102  pri-sec isolation            stress    430  rating   4000  margin    89%  ok
+  T102  pri-sec working V            stress    430  rating    567  margin    24%  ok
+  R127  1M                           stress    140  rating    200  margin    30%  ok
+  R128  1M                           stress    140  rating    200  margin    30%  ok
+  R129  1M                           stress    137  rating    200  margin    32%  ok
+  R201  2m 2512                      stress     29  rating     50  margin    42%  ok
+  Q201  SUD50P06-15                  stress     31  rating     60  margin    48%  ok
+  R202  1.5k                         stress     29  rating     50  margin    42%  ok
+  R203  1k                           stress     29  rating     50  margin    42%  ok
+  Q202  2N7002                       stress     29  rating     60  margin    51%  ok
+  D202  ES2J                         stress    422  rating    600  margin    30%  ok
+  D203  ES2J                         stress    422  rating    600  margin    30%  ok
+  J201  Coils 6p push-in             stress    422  rating   1000  margin    58%  ok
+  Q207  BT151S-800R                  stress    421  rating    800  margin    47%  ok
+  D211  US1M                         stress    421  rating   1000  margin    58%  ok
+  U103  MP2459GJ IN                  stress     29  rating     60  margin    51%  ok
+  D115  SS16                         stress     29  rating     60  margin    51%  ok
+  C118  4.7uF 50V                    stress     29  rating     50  margin    42%  ok
+  R334  47k                          stress    103  rating    200  margin    48%  ok
+  R336  100k                         stress     29  rating     50  margin    42%  ok
+  J102  Signals 8p push-in           stress    129  rating    160  margin    19%  ok
+  R403  1k                           stress     29  rating     50  margin    42%  ok
+  R404  2.2k                         stress     29  rating     50  margin    42%  ok
+  R406  47k                          stress     29  rating    200  margin    85%  ok
+  R408  47k                          stress     29  rating    200  margin    85%  ok
+
+Worst LV-net voltage seen during HV fault injection:
+  CDL_E        -7.73 V  (lim -20..6)  src=COIL1_BOT@-150V fault=('R215', 'open')
+  CDL_B        -7.66 V  (lim -20..6)  src=COIL1_BOT@-150V fault=('R215', 'open')
+  V_COIL_MON    3.30 V  (lim -0.6..3.6)  src=COIL1_TOP@+420V fault=('R127', 'short')
+  V_HV_MON      3.30 V  (lim -0.6..3.6)  src=HV_BUS@+420V fault=('R120', 'open')
+  VFB           5.00 V  (lim -0.6..6)  src=HV_BUS@+420V fault=('R108', 'open')
+  CDL_G        -8.50 V  (lim -15..15)  src=COIL1_BOT@-150V fault=('R215', 'open')
+  IG1_DRV       2.87 V  (lim -0.6..6)  src=COIL1_TOP@+420V fault=('Q203', 'short')
+  CMP_RC        2.72 V  (lim -0.6..6)  src=HV_BUS@+420V fault=('C110', 'short')
+  COMP          2.71 V  (lim -0.6..6)  src=HV_BUS@+420V fault=('C110', 'short')
+  I_SH1        -8.57 V  (lim -26..26)  src=COIL1_BOT@-150V fault=('R215', 'open')
+  IG1_G         2.87 V  (lim -15..15)  src=COIL1_TOP@+420V fault=('Q203', 'short')
+  ISF1          2.78 V  (lim -26..26)  src=COIL1_TOP@+420V fault=('Q207', 'short')
