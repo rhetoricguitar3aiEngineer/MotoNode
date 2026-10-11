@@ -1,8 +1,9 @@
 """ECLIPSE Tree - HUB board (hidden in the burl at the trunk fork).
 
-Lands the 40 sprig wire pairs and chains each colour channel's 10 sprigs in series
-(~29 V at 100 mA), so only the same 10-wire harness as before runs down the trunk to
-core J2.  Carries the crown NTC.
+Lands the 40 sprig wire pairs and chains each colour channel's 10 sprigs in series, after a
+4-LED 'light engine' group (2 top LEDs light the fibre bundle -> glowing samaras, 2 bottom
+LEDs fire down the trunk's light-guide core -> glowing bark fissures).  ~31.5 V at 100 mA.
+Only the same 10-wire harness as before runs down the trunk to core J2.  Carries the NTC.
 """
 from schgen import Part, Schematic
 import hub_layout as H
@@ -20,9 +21,9 @@ def sprig_ref(ch, k):
 
 
 def build():
-    s = Schematic("eclipse-hub", "ECLIPSE Tree - Hub board (sprig chaining, in the burl)", "A", paper="A2",
-                  comments=("40 sprig lands, 4 series chains of 10 sprigs (W1, C1, W2, C2), crown NTC",
-                            "Board: D36 mm, 2 layers 1.0 mm FR4, 1 oz, black mask, ENIG; potted in the burl",
+    s = Schematic("eclipse-hub", "ECLIPSE Tree - Hub light engine (in the burl)", "B", paper="A2",
+                  comments=("Per channel: 4 x 2835 (2 fibre / 2 trunk core) + 10 sprigs in series; crown NTC",
+                            "Board: D56 mm, 2 layers 1.0 mm FR4, 1 oz, white mask (reflector), ENIG, in the burl",
                             "J1 = 10 trunk-wire lands, pinout identical to core J2"))
     nets = {pin: net for pin, net in H.J1_PIN_NET.items()}
     jn = {}
@@ -30,12 +31,21 @@ def build():
         jn[str(pin)] = "NTC_RET" if net == "GND" else net
     for row, ch in enumerate(H.CHANNEL_ORDER):
         y = 70 + row * 70
-        s.box(g(15), g(y - 30), g(470), g(y + 30), f"CHAIN {ch}  ({CH_NAMES[ch]}, 10 sprigs in series, 100 mA)")
+        s.box(g(15), g(y - 30), g(470), g(y + 30),
+              f"CHAIN {ch}  ({CH_NAMES[ch]}: light engine + 10 sprigs in series, 100 mA)")
+        led = "LM281B+ 2700K" if ch[0] == "W" else "LM281B+ 6500K"
+        n0 = H.CHANNEL_ORDER.index(ch) * 4
+        for j, (side, x) in enumerate((("top", 24), ("top", 38), ("bottom", 52), ("bottom", 66))):
+            s.add(Part(f"D{n0 + j + 1}", "Device:LED", "2700K" if ch[0] == "W" else "6500K",
+                       "LED_SMD:LED_PLCC_2835", (g(x), g(y)), {"2": f"{ch}_A", "1": f"{ch}_G"}, rot=90,
+                       fields={"Manufacturer": "Samsung", "MPN": led,
+                               "Description": ("Fibre-bundle light source (top)" if side == "top"
+                                               else "Trunk light-guide source (bottom)") + ", 25 mA"}))
         for k in range(10):
-            a = f"{ch}_A" if k == 0 else f"{ch}_L{k}"
+            a = f"{ch}_G" if k == 0 else f"{ch}_L{k}"
             kk = f"{ch}_K" if k == 9 else f"{ch}_L{k + 1}"
             s.add(Part(sprig_ref(ch, k), "Connector_Generic:Conn_01x02", f"SPRIG {ch}.{k + 1:02d}",
-                       "eclipse:HubSprigPads", (g(40 + k * 42), g(y)), {"1": a, "2": kk}, rot=180,
+                       "eclipse:HubSprigPads", (g(95 + k * 37), g(y)), {"1": a, "2": kk}, rot=180,
                        fields={"Manufacturer": "-", "MPN": "wire lands",
                                "Description": "Magnet-wire pair from one LED sprig (1 = A, 2 = K)"},
                        in_bom=False))

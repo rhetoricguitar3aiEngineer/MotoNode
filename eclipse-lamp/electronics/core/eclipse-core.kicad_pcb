@@ -1262,7 +1262,7 @@
 			(uuid "0450f519-04cc-4333-86ab-eef229303d7e")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -3028,7 +3028,7 @@
 			(uuid "9c893769-51fb-4244-bb02-7fe4ff020e2c")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -3794,7 +3794,7 @@
 			(uuid "c6737a25-6518-45d3-b177-dad8f22b521e")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7160,7 +7160,7 @@
 			(uuid "043a2cd7-00c6-4a4d-85a4-8b3c3b40a635")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8078,7 +8078,7 @@
 			(uuid "36b73b97-2f49-485c-a4a7-1173c36ac89a")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11997,7 +11997,7 @@
 			(uuid "645896a1-dfb7-451a-84ed-cf9f121cbd70")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -14321,7 +14321,7 @@
 			(uuid "71eed85f-178a-4611-b646-3aaf8b022755")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -14955,7 +14955,7 @@
 			(uuid "26ffba07-8de0-4fda-a5b1-36421bc526b9")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step"
+		(model "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step"
 			(offset
 				(xyz 0 0 0)
 			)

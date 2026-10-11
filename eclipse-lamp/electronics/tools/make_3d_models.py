@@ -46,3 +46,13 @@ for sx in (-1, 1):
             name=f"term{sx}", color=cq.Color(0.8, 0.8, 0.82))
 asm.save(os.path.join(OUT, "Fuse_1812.step"))
 print("ok usb/fuse")
+
+# PLCC 2835 mid-power LED (light engine + base glow): KiCad has no model for it
+body = cq.Workplane("XY").box(3.5, 2.8, 0.7, centered=(True, True, False)).edges("|Z").chamfer(0.2)
+cup = cq.Workplane("XY").workplane(offset=0.25).rect(3.0, 2.3).extrude(0.5)
+asm = cq.Assembly()
+asm.add(body.cut(cup), name="housing", color=cq.Color(0.96, 0.96, 0.94))
+asm.add(cq.Workplane("XY").workplane(offset=0.25).rect(3.0, 2.3).extrude(0.35), name="phosphor",
+        color=cq.Color(0.98, 0.86, 0.35))
+asm.save(os.path.join(OUT, "LED_PLCC_2835.step"))
+print("ok 2835")

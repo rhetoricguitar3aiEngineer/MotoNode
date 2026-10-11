@@ -102,7 +102,6 @@ def hub_trunk_pads():
 	(attr smd exclude_from_bom)
 	(property "Reference" "REF**" (at 0 -1.2 0) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.06))))
 	(property "Value" "HubTrunkPads" (at 0 1.2 0) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.06))))
-	(fp_circle (center 0 0) (end 8.4 0) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
 """ + "\n".join(pads) + "\n)\n"
 
 

@@ -18,7 +18,7 @@ PRICE = {  # MPN -> USD @1k (estimate)
     "SRN4018-100M": 0.12, "MBRA160T3G": 0.06, "GRM31MR71H105KA88L": 0.04, "CL21A106KAYNNNE": 0.02,
     "CL21A226MAQNNNE": 0.02, "GRM188R71E224KA88D": 0.006, "GRM188R71H104KA93D": 0.004,
     "GRM188R61E105KA12D": 0.006, "RC0805FR-072RL": 0.004, "LTW-C191TS5": 0.03, "S10B-PH-SM4-TB": 0.25,
-    "MP-3030-1100-27-90": 0.12, "MP-3030-1100-65-90": 0.12, "NCP18XH103F03RB": 0.03, "LM281B+ 2700K": 0.03, "AO3400A": 0.03,
+    "MP-3030-1100-27-90": 0.12, "MP-3030-1100-65-90": 0.12, "NCP18XH103F03RB": 0.03, "LM281B+ 2700K": 0.03, "LM281B+ 6500K": 0.03, "AO3400A": 0.03,
     "DNP (pogo pads)": 0.0, "PCB copper electrode": 0.0,
 }
 R0603 = 0.002
@@ -30,13 +30,18 @@ MECH = [  # ref, qty, description, material / process, part, unit USD
     ("M4", 1, "Plinth, D150 x 3 + 3 posts (~0.42 kg)", "S235 steel, laser cut, posts welded, black powder coat", "ECL-M-004", 2.40),
     ("M5", 1, "Foot ring, D146/D122 x 1", "Cork/rubber composite, die cut, PSA backed", "ECL-M-005", 0.30),
     ("M6", 1, "Touch window, D52 x 3", "Soda-lime glass, satin etch top, screen-printed ring", "ECL-M-006", 1.60),
-    ("M7", 1, "Trunk, 14 x 2 tube, S-bent, ~150 mm + root flare", "C260 brass tube, CNC bent, flare spun + brazed", "ECL-M-007", 3.20),
-    ("M8", 1, "Burl (fork knot), 2 cast halves, houses the hub", "Lost-wax cast silicon bronze, ~80 g", "ECL-M-008", 6.50),
-    ("M9", 1, "Crown: 4 limbs, 75 branches + 189 spur twigs (4.7 m)", "C260 brass rod D1-6 mm, hand-formed on a jig from the CAD skeleton, brazed", "ECL-M-009", 18.00),
+    ("M7", 1, "Trunk shell D44 -> D34, S-curved, 6 buttress roots, open bark fissures", "Lost-wax cast silicon bronze, 2.5 mm wall, 2 halves", "ECL-M-007", 14.00),
+    ("M7a", 1, "Trunk light-guide core, 150 mm, 6 mm wire bore", "Light-diffusing PMMA (LED-grade, low haze), cast + polished, white-dot extraction print", "ECL-M-016", 3.50),
+    ("M7b", 1, "Trunk spigot, D14 x 2 tube, 40 mm (into the base socket)", "C260 brass, brazed into the trunk casting", "ECL-M-017", 0.60),
+    ("M8", 1, "Burl (fork knot) D68, 2 cast halves, knot holes, houses the light engine", "Lost-wax cast silicon bronze, ~180 g", "ECL-M-008", 9.00),
+    ("M9", 1, "Crown: 4 limbs, 73 branches + 1222 spur twigs (5x the previous crown)", "Brass tube (limbs) + C260 rod/wire D0.7-10 mm, jig-formed from the CAD skeleton, brazed", "ECL-M-009", 42.00),
+    ("M9a", 1, "End-glow optical fibre, 657 x 0.5 mm, ~0.3 m each, in 4 bundles", "PMMA POF, end-glow, black jacket stripped at the tips", "ECL-O-001", 4.50),
+    ("M9b", 4, "Fibre bundle ferrule (over the hub's top LED pair)", "Machined aluminium, polished fibre face, optical gel", "ECL-O-002", 0.40),
+    ("M9c", 657, "Samara (seed) diffuser, 6 x 4 x 1.2 mm, dip-moulded on each fibre tip", "Diffusing epoxy (TiO2 0.2 %), warm tint", "ECL-O-003", 0.004),
     ("M10", 1, "Bark finish, whole tree", "Brown-grey liver-of-sulphur patina + matte lacquer", "ECL-M-010", 2.50),
     ("M11", 1, "Magnet wire, 80 x 0.15 mm, ~0.35 m each, laid in branch grooves", "Polyurethane-enamelled Cu (solderable), bark-colour", "ECL-W-002", 0.60),
     ("M12", 1, "Trunk harness, 10 x AWG30 PTFE, 260 mm", "Hub J1 lands -> core J2 (JST PHR-10 + SPH-002T)", "ECL-W-001", 0.70),
-    ("M13", 1, "Burl potting", "Black flexible epoxy, ~4 ml", "ECL-M-013", 0.20),
+    ("M13", 1, "Burl potting + light-engine optical gel", "Black flexible epoxy (back side) + clear silicone gel (LED faces)", "ECL-M-013", 0.40),
     ("F1", 3, "Screw M3 x 6, pan head (core PCB)", "A2 stainless", "ISO 14583", 0.02),
     ("F2", 1, "Set screw M4 x 4, cup point (trunk socket)", "A2 stainless", "ISO 4029", 0.02),
     ("F3", 3, "Screw M3 x 10, countersunk (plinth posts into shell)", "A2 stainless", "ISO 10642", 0.03),
@@ -45,7 +50,7 @@ MECH = [  # ref, qty, description, material / process, part, unit USD
 ]
 PCB_FAB = [
     ("PCB1", 1, "Core PCB, D124 + USB tab, 2L 1.6 mm FR4, 1 oz, matte black, ENIG", "eclipse-core", 1.20),
-    ("PCB2", 1, "Hub PCB, D36 with D4 hole, 2L 1.0 mm FR4, black, ENIG", "eclipse-hub", 0.35),
+    ("PCB2", 1, "Hub light-engine PCB, D56 with D5 hole, 2L 1.0 mm FR4, white mask, ENIG, 2-side SMT", "eclipse-hub", 0.60),
     ("PCB3", 40, "Sprig flex, 2L polyimide 0.11 mm, bronze coverlay, ENIG (panelised)", "eclipse-sprig", 0.22),
 ]
 

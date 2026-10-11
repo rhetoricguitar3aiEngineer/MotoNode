@@ -203,6 +203,8 @@ MODEL_SUBST = {
         "${KIPRJMOD}/../lib/eclipse.3dshapes/JST_PH_S10B-PH-SM4-TB.step",
     "${KICAD9_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_HRO_TYPE-C-31-M-12.step":
         "${KIPRJMOD}/../lib/eclipse.3dshapes/USB_C_HRO_TYPE-C-31-M-12.step",
+    "${KICAD9_3DMODEL_DIR}/LED_SMD.3dshapes/LED_PLCC_2835.step":
+        "${KIPRJMOD}/../lib/eclipse.3dshapes/LED_PLCC_2835.step",
     "${KICAD9_3DMODEL_DIR}/Fuse.3dshapes/Fuse_1812_4532Metric.step":
         "${KIPRJMOD}/../lib/eclipse.3dshapes/Fuse_1812.step",
 }

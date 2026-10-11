@@ -2,7 +2,7 @@
 
     python3 render_blender.py <shot> [--samples N] [--res WxH]
 
-shots: hero, cool, studio, leaves, night, detail
+shots: hero, trunk, cool, studio, leaves, night, detail
 Inputs: ../mechanical/out/*.stl + parts.json, ../electronics/*/eclipse-*.glb
 """
 import argparse, json, math, os, sys
@@ -161,11 +161,77 @@ def bark_material():
     return m
 
 
+def bark_glow_material(strength, warmth=(1.0, 0.62, 0.30)):
+    """Bark with fissures that glow: the trunk is a bronze shell around a light-guide core, and
+    the light leaks out where the bark is cracked open (Voronoi edge network, stretched along
+    the grain), plus the knot holes of the burl."""
+    m = bark_material()
+    m.name = "bark_glow"
+    if strength <= 0:
+        return m
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    mp = nt.nodes.new("ShaderNodeMapping")
+    mp.inputs["Scale"].default_value = (110.0, 110.0, 16.0)
+    vor = nt.nodes.new("ShaderNodeTexVoronoi")
+    vor.feature = "DISTANCE_TO_EDGE"
+    vor.inputs["Scale"].default_value = 1.0
+    vor.inputs["Randomness"].default_value = 0.9
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.color_ramp.elements[0].position = 0.0
+    ramp.color_ramp.elements[0].color = (1, 1, 1, 1)
+    ramp.color_ramp.elements[1].position = 0.028
+    ramp.color_ramp.elements[1].color = (0, 0, 0, 1)
+    # break the network up so only some fissures are open
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 30.0
+    gate = nt.nodes.new("ShaderNodeMapRange")
+    gate.inputs["From Min"].default_value = 0.50
+    gate.inputs["From Max"].default_value = 0.62
+    mul = nt.nodes.new("ShaderNodeMath")
+    mul.operation = "MULTIPLY"
+    mul2 = nt.nodes.new("ShaderNodeMath")
+    mul2.operation = "MULTIPLY"
+    mul2.inputs[1].default_value = strength
+    nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
+    nt.links.new(mp.outputs["Vector"], vor.inputs["Vector"])
+    nt.links.new(vor.outputs["Distance"], ramp.inputs["Fac"])
+    nt.links.new(tc.outputs["Object"], noise.inputs["Vector"])
+    nt.links.new(noise.outputs["Fac"], gate.inputs["Value"])
+    nt.links.new(ramp.outputs["Color"], mul.inputs[0])
+    nt.links.new(gate.outputs["Result"], mul.inputs[1])
+    nt.links.new(mul.outputs["Value"], mul2.inputs[0])
+    nt.links.new(mul2.outputs["Value"], b.inputs["Emission Strength"])
+    b.inputs["Emission Color"].default_value = (*warmth, 1)
+    # the fissures are grooves: chain a relief bump on top of the fine bark grain
+    old = [l for l in nt.links if l.to_socket == b.inputs["Normal"]][0].from_socket
+    clamp = nt.nodes.new("ShaderNodeMath")
+    clamp.operation = "MINIMUM"
+    clamp.inputs[1].default_value = 0.12
+    bump2 = nt.nodes.new("ShaderNodeBump")
+    bump2.inputs["Strength"].default_value = 0.9
+    bump2.inputs["Distance"].default_value = 0.0015
+    nt.links.new(vor.outputs["Distance"], clamp.inputs[0])
+    nt.links.new(clamp.outputs["Value"], bump2.inputs["Height"])
+    nt.links.new(old, bump2.inputs["Normal"])
+    nt.links.new(bump2.outputs["Normal"], b.inputs["Normal"])
+    return m
+
+
+def samara_material(name, color, strength):
+    """Diffusing epoxy samara lit from inside by its fibre: translucent, softly glowing."""
+    m = mat(name, (0.95, 0.88, 0.70), 0.0, 0.35, emit=color if strength > 0 else None, strength=strength,
+            transmission=0.35, subsurface=0.8)
+    return m
+
+
 WARM = (1.0, 0.70, 0.40)
 COOL = (0.82, 0.90, 1.0)
 
 
-def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, cool_mix=0.5):
+def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, cool_mix=0.5, trunk=None):
+    trunk = level if trunk is None else trunk
     LEVEL[0] = level
     M = {}
     M["graphite"] = mat("graphite", (0.030, 0.031, 0.034), 1.0, 0.30, aniso=0.2)
@@ -177,6 +243,9 @@ def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, coo
     M["band"] = glow_mat("band_glow", band_on, warmth, 0.9 * (level if band is None else band), side=1.0, up=1.0)
     M["white"] = mat("white_powder", (0.85, 0.85, 0.83), 0.0, 0.6)
     M["bark"] = bark_material()
+    M["bark_glow"] = bark_glow_material(3.2 * trunk if on or trunk else 0.0)
+    M["samara_W"] = samara_material("samara_warm", (1.0, 0.72, 0.42), 2.2 * level if on else 0)
+    M["samara_C"] = samara_material("samara_cool", (0.85, 0.92, 1.0), 2.2 * level * cool_mix if on else 0)
     M["flex"] = mat("flex_coverlay", (0.30, 0.17, 0.07), 0.3, 0.35, coat=0.5)
     # leaves: 0402 LEDs. Off: yellow phosphor dots.  On: tiny emitters (warm / cool channels)
     w_on, c_on = on, on and cool_mix > 0
@@ -188,7 +257,7 @@ def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, coo
 
 
 PART_MAT = {"base_shell": "graphite", "base_weight": "white", "base_band": "band", "base_plinth": "graphite",
-            "base_foot": "cork", "touch_glass": "glass", "touch_etch": "etch", "trunk": "bark", "burl": "bark"}
+            "base_foot": "cork", "touch_glass": "glass", "touch_etch": "etch", "burl": "bark_glow"}
 
 
 # ------------------------------------------------------------------ scene helpers
@@ -367,6 +436,31 @@ def leaf_mesh(name, points, material, r=0.55):
     return ob
 
 
+def samara_mesh(name, seeds, material):
+    """Flat oval seed wafers (6 x 4 x 1.2 mm) along each fibre tip's direction."""
+    import bmesh
+    from mathutils import Matrix
+    bm = bmesh.new()
+    for s in seeds:
+        d = Vector(s["d"]).normalized()
+        u = d.cross(Vector((0, 0, 1)))
+        u = u.normalized() if u.length > 1e-6 else Vector((1, 0, 0))
+        w = d.cross(u).normalized()
+        c = Vector(s["p"]) + d * 2.5
+        M4 = Matrix(((d.x * 3.0, u.x * 2.0, w.x * 0.6, c.x), (d.y * 3.0, u.y * 2.0, w.y * 0.6, c.y),
+                     (d.z * 3.0, u.z * 2.0, w.z * 0.6, c.z), (0, 0, 0, 1)))
+        M4 = Matrix.Scale(MM, 4) @ M4
+        bmesh.ops.create_uvsphere(bm, u_segments=10, v_segments=6, radius=1.0, matrix=M4)
+    me = bpy.data.meshes.new(name)
+    bm.to_mesh(me)
+    for p in me.polygons:
+        p.use_smooth = True
+    ob = bpy.data.objects.new(name, me)
+    bpy.context.scene.collection.objects.link(ob)
+    me.materials.append(material)
+    return ob
+
+
 def build_lamp(M, crown_light=0.0):
     """Base + trunk/burl from STL, branches/sprigs/leaves from the skeleton in parts.json."""
     meta = json.load(open(os.path.join(MECH, "parts.json")))
@@ -376,8 +470,18 @@ def build_lamp(M, crown_light=0.0):
         ob.data.materials.append(M[PART_MAT[name]])
         obs[name] = ob
     sk = meta["skeleton"]
-    br = sk["branches"][1:]
+    tr = sk["branches"][0]
+    obs["trunk"] = curve_tube("trunk", [tr["p"]], M["bark_glow"], radii=[tr["r"]])
+    obs["trunk"].data.bevel_resolution = 10
+    br = [b for b in sk["branches"][1:] if b.get("l", 1) >= 0]
+    roots = [b for b in sk["branches"] if b.get("l", 1) < 0]
     obs["branches"] = curve_tube("branches", [b["p"] for b in br], M["bark"], radii=[b["r"] for b in br])
+    if roots:
+        obs["roots"] = curve_tube("roots", [b["p"] for b in roots], M["bark_glow"], radii=[b["r"] for b in roots])
+    for c in ("W", "C"):
+        ss = [s for s in meta.get("samaras", []) if s["ch"][0] == c]
+        if ss:
+            obs["samaras_" + c] = samara_mesh("samaras_" + c, ss, M["samara_" + c])
     stems = [st for sp in sk["sprigs"] for st in sp["stems"]]
     pets = [pt for sp in sk["sprigs"] for pt in sp["pet"]]
     obs["sprigs"] = curve_tube("sprig_stems", stems, M["flex"], const_r=0.45 * MM)
@@ -454,18 +558,18 @@ def main():
     T = (0.0, 0.0, 0.20)
 
     if shot == "hero":
-        # evening desk: the tree lit, leaves sparkling, a warm pool on the desk
-        M = build_materials(on=True, level=1.0, cool_mix=0.35)
+        # evening: the crown sparkling, the trunk glowing through its fissures, a pool on the desk
+        M = build_materials(on=True, level=1.0, cool_mix=0.35, trunk=1.0)
         obs, meta = build_lamp(M, crown_light=1.0)
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
-        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.26, 0.25, 0.23), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
+        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.24, 0.23, 0.21), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
         props(M)
-        world((0.008, 0.010, 0.016), 1.0)
-        area("fill", orbit(-150, 25, 1.6, T), T, 1.5, 4, (0.55, 0.65, 1.0))
-        area("rim", orbit(60, 35, 1.2, T), T, 0.8, 6, (1.0, 0.9, 0.8))
-        tgt = (0.0, 0.0, 0.215)
-        camera(orbit(-60, 8, 1.12, tgt), tgt, lens=45)
-        bpy.context.scene.view_settings.exposure = -0.4
+        world((0.004, 0.005, 0.009), 1.0)
+        area("fill", orbit(-150, 25, 1.6, T), T, 1.5, 2, (0.55, 0.65, 1.0))
+        area("rim", orbit(60, 35, 1.2, T), T, 0.8, 4, (1.0, 0.9, 0.8))
+        tgt = (0.0, 0.0, 0.205)
+        camera(orbit(-58, 4, 1.05, tgt), tgt, lens=40)
+        bpy.context.scene.view_settings.exposure = -0.2
         glare()
     elif shot == "studio":
         # daylight product shot: the lamp off, read as a bronze sculpture
@@ -512,6 +616,17 @@ def main():
         area("key", (-0.5, -0.5, 0.6), (0, -0.03, 0.02), 0.5, 18, (1.0, 0.95, 0.9))
         area("rim", (0.4, 0.4, 0.3), (0, 0, 0.02), 0.4, 8, (0.8, 0.85, 1.0))
         camera((0.16, -0.30, 0.17), (0.0, -0.02, 0.02), lens=85, dof=0.36, fstop=3.2)
+    elif shot == "trunk":
+        # close-up: light leaking from the trunk's light-guide core through the bark fissures
+        M = build_materials(on=True, level=0.25, cool_mix=0.25, trunk=0.9)
+        obs, meta = build_lamp(M, crown_light=0.15)
+        add_plane("desk", 3.0, (0, 0, 0), wood_material())
+        add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.18, 0.17, 0.16), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
+        world((0.006, 0.007, 0.010), 1.0)
+        area("rim", orbit(70, 25, 0.9, (0, 0.03, 0.1)), (0, 0.03, 0.1), 0.6, 3, (0.8, 0.85, 1.0))
+        tgt = (0.0, 0.025, 0.105)
+        camera(orbit(-65, 6, 0.48, tgt), tgt, lens=60, dof=0.48, fstop=5.6)
+        glare(size=0.08)
     elif shot == "cool":
         # same scene as hero with the colour temperature slid to daylight
         M = build_materials(on=True, level=1.0, cool_mix=1.0)
@@ -531,7 +646,8 @@ def main():
         raise SystemExit("unknown shot " + shot)
 
     # the crown helper lights stand in for 800 LEDs lighting the room: they must not light the tree
-    tree_parts = {"trunk", "burl", "branches", "sprig_stems", "sprig_petioles", "leaves_W", "leaves_C"}
+    tree_parts = {"trunk", "burl", "branches", "roots", "sprig_stems", "sprig_petioles", "leaves_W", "leaves_C",
+                  "samaras_W", "samaras_C"}
     crown = [o for o in bpy.data.objects if o.name.startswith("crown")]
     if crown:
         coll = bpy.data.collections.new("lit_by_crown")

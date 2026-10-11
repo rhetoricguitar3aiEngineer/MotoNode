@@ -23,8 +23,9 @@ STEM_OD, STEM_ID = 14.0, 10.0       # trunk socket in the base
 USB_PHI = 90.0                   # USB-C direction (deg, clockwise from rear seen from above)
 PCB_TOP_Z = BASE_H - BASE_SKIN   # core PCB top face pressed against the skin
 import tree_gen as TG                  # procedural cedar-elm skeleton (seeded)
-HUB_D, HUB_T = 36.0, 1.0               # hub PCB inside the burl
-BURL_RX, BURL_RZ = 22.0, 15.0          # burl (fork knot) half-sizes
+HUB_D, HUB_T = 56.0, 1.0               # hub light-engine PCB inside the burl
+BURL_RX, BURL_RZ = TG.BURL_R, TG.BURL_R * 0.68   # burl (fork knot) half-sizes
+SHELL_T = 2.5                          # cast bronze trunk shell around the light-guide core
 SHELL_Z0 = 10.0                  # aluminium upper shell of the base starts here
 BAND_Z0, BAND_Z1 = 3.0, SHELL_Z0  # glowing opal band between plinth and shell
 WEIGHT_D = 110.0                 # leaves an annular light chamber behind the band
@@ -139,11 +140,39 @@ def tree_solids(tree):
     trunk = _tube(tree.branches[0]["points"], tree.branches[0]["radii"])
     # root flare into the base collar
     x, y, z = TG.TRUNK_FOOT
-    trunk.append(cq.Solid.makeCone(12.0, TG.TRUNK_D / 2, 24.0, cq.Vector(x, y, z), cq.Vector(0, 0, 1)))
+    trunk.append(cq.Solid.makeCone(TG.TRUNK_D / 2 + 6.0, TG.TRUNK_D / 2, 18.0, cq.Vector(x, y, z), cq.Vector(0, 0, 1)))
     wood = []
     for b in tree.branches[1:]:
         wood += _tube(b["points"], b["radii"])
     return cq.Compound.makeCompound(trunk), cq.Compound.makeCompound(wood)
+
+
+def trunk_core(tree):
+    """Light-diffusing PMMA light guide inside the trunk shell (TIR rod with a 6 mm wire bore):
+    lit from the top by the hub's 8 bottom LEDs; light escapes through the bark fissures."""
+    b = tree.branches[0]
+    return cq.Compound.makeCompound(_tube(b["points"], [max(4.0, r - SHELL_T) for r in b["radii"]]))
+
+
+def samara_solids(tree):
+    """Samaras (cedar-elm seeds): 6 x 4 x 1.2 mm diffusing epoxy wafers on the fibre tips."""
+    from OCP.gp import gp_GTrsf, gp_Mat, gp_XYZ
+    from OCP.BRepBuilderAPI import BRepBuilderAPI_GTransform
+    unit = cq.Solid.makeSphere(1.0, angleDegrees1=-90, angleDegrees2=90).wrapped
+    out = []
+    for s in tree.samaras:
+        d = cq.Vector(*s["dir"]).normalized()
+        u = d.cross(cq.Vector(0, 0, 1))
+        u = u.normalized() if u.Length > 1e-6 else cq.Vector(1, 0, 0)
+        w = d.cross(u).normalized()
+        # columns: seed long axis along the twig (3 mm half), width 2 mm, thickness 0.6 mm
+        m = gp_Mat(d.x * 3.0, u.x * 2.0, w.x * 0.6, d.y * 3.0, u.y * 2.0, w.y * 0.6, d.z * 3.0, u.z * 2.0, w.z * 0.6)
+        g = gp_GTrsf()
+        g.SetVectorialPart(m)
+        c = cq.Vector(*s["pos"]) + d * 2.5
+        g.SetTranslationPart(gp_XYZ(c.x, c.y, c.z))
+        out.append(cq.Shape.cast(BRepBuilderAPI_GTransform(unit, g, True).Shape()))
+    return cq.Compound.makeCompound(out)
 
 
 def burl():
@@ -208,8 +237,10 @@ def main():
         "base_foot": (base_foot(), "silicone/cork ring"),
         "touch_glass": (touch_glass(), "3 mm soda-lime glass, satin etch"),
         "touch_etch": (touch_etch(), "etch marks"),
-        "trunk": (cq.Workplane().add(trunk), "brass tube 14x2 (harness inside), bark patina"),
-        "burl": (burl(), "cast bronze knot (2 halves), bark patina - houses the hub PCB"),
+        "trunk": (cq.Workplane().add(trunk), "cast silicon-bronze shell 2.5 mm with glowing fissures, bark patina"),
+        "trunk_core": (cq.Workplane().add(trunk_core(tree)), "light-diffusing PMMA light guide, cast, 6 mm wire bore"),
+        "burl": (burl(), "cast bronze knot (2 halves) with glowing knot holes - houses the hub light engine"),
+        "samaras": (cq.Workplane().add(samara_solids(tree)), f"{len(tree.samaras)} x diffusing epoxy samara on 0.5 mm end-glow fibre"),
         "branches": (cq.Workplane().add(wood), "brass rod/tube, hand-formed + brazed, bark patina"),
         "sprigs": (cq.Workplane().add(sprig_solids(tree)), "40 x polyimide flex sprigs, bronze coverlay"),
         "leaves_warm": (cq.Workplane().add(leaf_solids(tree, "W")), "400 x 0402 LED 2700 K"),
@@ -227,11 +258,12 @@ def main():
               "base_foot": (0.55, 0.42, 0.3), "base_band": (0.97, 0.95, 0.9), "base_plinth": (0.18, 0.18, 0.19), "touch_glass": (0.1, 0.1, 0.12), "touch_etch": (0.8, 0.8, 0.8),
               "trunk": (0.30, 0.22, 0.14), "branches": (0.30, 0.22, 0.14), "burl": (0.28, 0.20, 0.12),
               "sprigs": (0.45, 0.32, 0.12), "leaves_warm": (1.0, 0.85, 0.5), "leaves_cool": (0.85, 0.92, 1.0),
+              "trunk_core": (0.97, 0.95, 0.9), "samaras": (1.0, 0.93, 0.75),
               "pcb_core": (0.1, 0.3, 0.15), "pcb_halo": (0.95, 0.95, 0.95)}
     meta = {}
     for name, (shape, mat) in parts.items():
-        fine = name.startswith("base") or name.startswith("touch")
-        if name not in ("sprigs", "leaves_warm", "leaves_cool"):   # those are rendered from the skeleton
+        fine = name.startswith("base") or name.startswith("touch") or name in ("burl", "trunk", "trunk_core")
+        if name not in ("sprigs", "leaves_warm", "leaves_cool", "samaras", "branches"):   # rendered from the skeleton (STEP kept)
             cq.exporters.export(shape, os.path.join(args.out, name + ".stl"),
                                 tolerance=0.02 if fine else 0.1, angularTolerance=0.08 if fine else 0.6)
         if not name.startswith("pcb_"):
@@ -255,11 +287,14 @@ def main():
                "pcb_core_z": PCB_TOP_Z - 1.6,
                "skeleton": dict(
                    branches=[dict(p=[[round(c, 2) for c in q] for q in b["points"]],
-                                  r=[round(r, 3) for r in b["radii"]]) for b in tree.branches],
+                                  r=[round(r, 3) for r in b["radii"]], l=b["level"]) for b in tree.branches],
                    sprigs=[dict(stems=[[[round(c, 2) for c in q] for q in st] for st in sp["stems"]],
                                 pet=[[[round(c, 2) for c in b], [round(c, 2) for c in q]] for b, q in sp["petioles"]],
                                 ch=sp["channel"]) for sp in tree.sprig_paths]),
                "leaves": [dict(p=[round(c, 2) for c in l["pos"]], ch=l["channel"], s=l["sprig"]) for l in tree.leaves],
+               "samaras": [dict(p=[round(c, 2) for c in s["pos"]], d=[round(c, 3) for c in s["dir"]], ch=s["channel"])
+                           for s in tree.samaras],
+               "n_roots": len(tree.roots),
                "parts": meta}, open(os.path.join(args.out, "parts.json"), "w"), indent=0)
 
 

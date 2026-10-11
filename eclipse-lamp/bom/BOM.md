@@ -44,9 +44,11 @@ Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before o
 
 | Refs | Qty | Value | Description | Manufacturer | MPN | Unit $ | Ext $ |
 |---|---:|---|---|---|---|---:|---:|
+| D1,D2,D3,D4,D9,D10,D11,D12 | 8 | 2700K | Fibre-bundle light source (top), 25 mA,Trunk light-guide source (bottom), 25 mA | Samsung | LM281B+ 2700K | 0.030 | 0.24 |
+| D5,D6,D7,D8,D13,D14,D15,D16 | 8 | 6500K | Fibre-bundle light source (top), 25 mA,Trunk light-guide source (bottom), 25 mA | Samsung | LM281B+ 6500K | 0.030 | 0.24 |
 | TH1 | 1 | 10k B3380 | NTC 10k 1% B=3380, 0603 | Murata | NCP18XH103F03RB | 0.030 | 0.03 |
 
-**Subtotal: $0.03**
+**Subtotal: $0.51**
 
 ## LED sprigs (x40 per lamp)
 
@@ -62,10 +64,10 @@ Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before o
 | Refs | Qty | Value | Description | Manufacturer | MPN | Unit $ | Ext $ |
 |---|---:|---|---|---|---|---:|---:|
 | PCB1 | 1 |  | Core PCB, D124 + USB tab, 2L 1.6 mm FR4, 1 oz, matte black, ENIG | PCB fab (e.g. JLCPCB) | eclipse-core | 1.200 | 1.20 |
-| PCB2 | 1 |  | Hub PCB, D36 with D4 hole, 2L 1.0 mm FR4, black, ENIG | PCB fab (e.g. JLCPCB) | eclipse-hub | 0.350 | 0.35 |
+| PCB2 | 1 |  | Hub light-engine PCB, D56 with D5 hole, 2L 1.0 mm FR4, white mask, ENIG, 2-side SMT | PCB fab (e.g. JLCPCB) | eclipse-hub | 0.600 | 0.60 |
 | PCB3 | 40 |  | Sprig flex, 2L polyimide 0.11 mm, bronze coverlay, ENIG (panelised) | PCB fab (e.g. JLCPCB) | eclipse-sprig | 0.220 | 8.80 |
 
-**Subtotal: $10.35**
+**Subtotal: $10.60**
 
 ## Mechanical
 
@@ -77,28 +79,33 @@ Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before o
 | M4 | 1 |  | Plinth, D150 x 3 + 3 posts (~0.42 kg) | S235 steel, laser cut, posts welded, black powder coat | ECL-M-004 | 2.400 | 2.40 |
 | M5 | 1 |  | Foot ring, D146/D122 x 1 | Cork/rubber composite, die cut, PSA backed | ECL-M-005 | 0.300 | 0.30 |
 | M6 | 1 |  | Touch window, D52 x 3 | Soda-lime glass, satin etch top, screen-printed ring | ECL-M-006 | 1.600 | 1.60 |
-| M7 | 1 |  | Trunk, 14 x 2 tube, S-bent, ~150 mm + root flare | C260 brass tube, CNC bent, flare spun + brazed | ECL-M-007 | 3.200 | 3.20 |
-| M8 | 1 |  | Burl (fork knot), 2 cast halves, houses the hub | Lost-wax cast silicon bronze, ~80 g | ECL-M-008 | 6.500 | 6.50 |
-| M9 | 1 |  | Crown: 4 limbs, 75 branches + 189 spur twigs (4.7 m) | C260 brass rod D1-6 mm, hand-formed on a jig from the CAD skeleton, brazed | ECL-M-009 | 18.000 | 18.00 |
+| M7 | 1 |  | Trunk shell D44 -> D34, S-curved, 6 buttress roots, open bark fissures | Lost-wax cast silicon bronze, 2.5 mm wall, 2 halves | ECL-M-007 | 14.000 | 14.00 |
+| M7a | 1 |  | Trunk light-guide core, 150 mm, 6 mm wire bore | Light-diffusing PMMA (LED-grade, low haze), cast + polished, white-dot extraction print | ECL-M-016 | 3.500 | 3.50 |
+| M7b | 1 |  | Trunk spigot, D14 x 2 tube, 40 mm (into the base socket) | C260 brass, brazed into the trunk casting | ECL-M-017 | 0.600 | 0.60 |
+| M8 | 1 |  | Burl (fork knot) D68, 2 cast halves, knot holes, houses the light engine | Lost-wax cast silicon bronze, ~180 g | ECL-M-008 | 9.000 | 9.00 |
+| M9 | 1 |  | Crown: 4 limbs, 73 branches + 1222 spur twigs (5x the previous crown) | Brass tube (limbs) + C260 rod/wire D0.7-10 mm, jig-formed from the CAD skeleton, brazed | ECL-M-009 | 42.000 | 42.00 |
+| M9a | 1 |  | End-glow optical fibre, 657 x 0.5 mm, ~0.3 m each, in 4 bundles | PMMA POF, end-glow, black jacket stripped at the tips | ECL-O-001 | 4.500 | 4.50 |
+| M9b | 4 |  | Fibre bundle ferrule (over the hub's top LED pair) | Machined aluminium, polished fibre face, optical gel | ECL-O-002 | 0.400 | 1.60 |
+| M9c | 657 |  | Samara (seed) diffuser, 6 x 4 x 1.2 mm, dip-moulded on each fibre tip | Diffusing epoxy (TiO2 0.2 %), warm tint | ECL-O-003 | 0.004 | 2.63 |
 | M10 | 1 |  | Bark finish, whole tree | Brown-grey liver-of-sulphur patina + matte lacquer | ECL-M-010 | 2.500 | 2.50 |
 | M11 | 1 |  | Magnet wire, 80 x 0.15 mm, ~0.35 m each, laid in branch grooves | Polyurethane-enamelled Cu (solderable), bark-colour | ECL-W-002 | 0.600 | 0.60 |
 | M12 | 1 |  | Trunk harness, 10 x AWG30 PTFE, 260 mm | Hub J1 lands -> core J2 (JST PHR-10 + SPH-002T) | ECL-W-001 | 0.700 | 0.70 |
-| M13 | 1 |  | Burl potting | Black flexible epoxy, ~4 ml | ECL-M-013 | 0.200 | 0.20 |
+| M13 | 1 |  | Burl potting + light-engine optical gel | Black flexible epoxy (back side) + clear silicone gel (LED faces) | ECL-M-013 | 0.400 | 0.40 |
 | F1 | 3 |  | Screw M3 x 6, pan head (core PCB) | A2 stainless | ISO 14583 | 0.020 | 0.06 |
 | F2 | 1 |  | Set screw M4 x 4, cup point (trunk socket) | A2 stainless | ISO 4029 | 0.020 | 0.02 |
 | F3 | 3 |  | Screw M3 x 10, countersunk (plinth posts into shell) | A2 stainless | ISO 10642 | 0.030 | 0.09 |
 | F4 | 2 |  | Screw M2 x 6 (burl halves) | A2 stainless | ISO 14583 | 0.020 | 0.04 |
 | F5 | 40 |  | Sprig clip: 0.3 mm brass crimp sleeve, sprig root to twig tip | C260 brass | ECL-M-014 | 0.010 | 0.40 |
 
-**Subtotal: $46.41**
+**Subtotal: $96.74**
 
 ## Summary
 
 | Section | USD |
 |---|---:|
 | Core board (base) | 5.50 |
-| Hub board (in the burl) | 0.03 |
+| Hub board (in the burl) | 0.51 |
 | LED sprigs (x40 per lamp) | 9.60 |
-| Bare PCBs | 10.35 |
-| Mechanical | 46.41 |
-| **Total material (excl. assembly, packaging, PSU)** | **71.89** |
+| Bare PCBs | 10.60 |
+| Mechanical | 96.74 |
+| **Total material (excl. assembly, packaging, PSU)** | **122.95** |
