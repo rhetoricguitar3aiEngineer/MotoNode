@@ -23,8 +23,7 @@ STEM_OD, STEM_ID = 14.0, 10.0       # trunk socket in the base
 USB_PHI = 90.0                   # USB-C direction (deg, clockwise from rear seen from above)
 PCB_TOP_Z = BASE_H - BASE_SKIN   # core PCB top face pressed against the skin
 import tree_gen as TG                  # procedural cedar-elm skeleton (seeded)
-HUB_D, HUB_T = 56.0, 1.0               # hub light-engine PCB inside the burl
-BURL_RX, BURL_RZ = TG.BURL_R, TG.BURL_R * 0.68   # burl (fork knot) half-sizes
+HUB_D, HUB_T = 56.0, 1.0               # hub light-engine PCB inside the fork swelling
 SHELL_T = 2.5                          # cast bronze trunk shell around the light-guide core
 SHELL_Z0 = 10.0                  # aluminium upper shell of the base starts here
 BAND_Z0, BAND_Z1 = 3.0, SHELL_Z0  # glowing opal band between plinth and shell
@@ -136,26 +135,51 @@ def _tube(points, radii):
     return out
 
 
+CAST_R = 6.0     # wood thicker than this is part of the hollow bronze casting (trunk, leaders, limbs)
+
+
 def tree_solids(tree):
+    """Trunk casting (trunk + flare + buttress roots) and the rest of the wood."""
     trunk = _tube(tree.branches[0]["points"], tree.branches[0]["radii"])
-    # root flare into the base collar
-    x, y, z = TG.TRUNK_FOOT
-    trunk.append(cq.Solid.makeCone(TG.TRUNK_D / 2 + 6.0, TG.TRUNK_D / 2, 18.0, cq.Vector(x, y, z), cq.Vector(0, 0, 1)))
+    for r in tree.roots:
+        trunk += _tube(r["points"], r["radii"])
+    # the buttress roots are half buried: trim everything below the base top
+    above = cq.Solid.makeBox(400, 400, 300, cq.Vector(-200, -200, BASE_H))
+    trunk = [s.intersect(above) for s in trunk]
     wood = []
     for b in tree.branches[1:]:
-        wood += _tube(b["points"], b["radii"])
+        if b["level"] >= 1:
+            wood += _tube(b["points"], b["radii"])
     return cq.Compound.makeCompound(trunk), cq.Compound.makeCompound(wood)
 
 
+CORE_WALL = 8.0     # PMMA light-guide tube wall
+
+
 def trunk_core(tree):
-    """Light-diffusing PMMA light guide inside the trunk shell (TIR rod with a 6 mm wire bore):
-    lit from the top by the hub's 8 bottom LEDs; light escapes through the bark fissures."""
+    """Light-diffusing PMMA light guide inside the trunk shell: a thick-walled tube (TIR guide)
+    lit from the top by the hub's 8 bottom LEDs; light escapes through the bark fissures.
+    The trunk harness runs up its bore."""
     b = tree.branches[0]
-    return cq.Compound.makeCompound(_tube(b["points"], [max(4.0, r - SHELL_T) for r in b["radii"]]))
+    out = []
+    pts, rad = b["points"], [r - SHELL_T - 0.5 for r in b["radii"]]
+    for i, (p, q) in enumerate(zip(pts, pts[1:])):
+        d = cq.Vector(*q) - cq.Vector(*p)
+        if d.Length < 1e-3 or rad[i + 1] < CORE_WALL + 3 or q[2] > tree.hub[2] - 6.0:
+            continue        # the tube ends under the hub's coupling disc
+        def cone(r0, r1, h, at):
+            if abs(r0 - r1) < 1e-4:
+                return cq.Solid.makeCylinder(r0, h, at, d.normalized())
+            return cq.Solid.makeCone(r0, r1, h, at, d.normalized())
+        o = cone(rad[i], rad[i + 1], d.Length, cq.Vector(*p))
+        n = cone(rad[i] - CORE_WALL, rad[i + 1] - CORE_WALL, d.Length * 1.02,
+                 cq.Vector(*p) - d.normalized() * d.Length * 0.01)
+        out.append(o.cut(n))
+    return cq.Compound.makeCompound(out)
 
 
 def samara_solids(tree):
-    """Samaras (cedar-elm seeds): 6 x 4 x 1.2 mm diffusing epoxy wafers on the fibre tips."""
+    """Samaras (cedar-elm seeds): 3.6 x 2.4 x 0.9 mm diffusing epoxy wafers on the fibre tips."""
     from OCP.gp import gp_GTrsf, gp_Mat, gp_XYZ
     from OCP.BRepBuilderAPI import BRepBuilderAPI_GTransform
     unit = cq.Solid.makeSphere(1.0, angleDegrees1=-90, angleDegrees2=90).wrapped
@@ -165,26 +189,89 @@ def samara_solids(tree):
         u = d.cross(cq.Vector(0, 0, 1))
         u = u.normalized() if u.Length > 1e-6 else cq.Vector(1, 0, 0)
         w = d.cross(u).normalized()
-        # columns: seed long axis along the twig (3 mm half), width 2 mm, thickness 0.6 mm
-        m = gp_Mat(d.x * 3.0, u.x * 2.0, w.x * 0.6, d.y * 3.0, u.y * 2.0, w.y * 0.6, d.z * 3.0, u.z * 2.0, w.z * 0.6)
+        # columns: seed long axis along the twig (1.8 mm half), half-width 1.2 mm, half-thickness 0.45 mm
+        m = gp_Mat(d.x * 1.8, u.x * 1.2, w.x * 0.45, d.y * 1.8, u.y * 1.2, w.y * 0.45, d.z * 1.8, u.z * 1.2, w.z * 0.45)
         g = gp_GTrsf()
         g.SetVectorialPart(m)
-        c = cq.Vector(*s["pos"]) + d * 2.5
+        c = cq.Vector(*s["pos"]) + d * 1.5
         g.SetTranslationPart(gp_XYZ(c.x, c.y, c.z))
         out.append(cq.Shape.cast(BRepBuilderAPI_GTransform(unit, g, True).Shape()))
     return cq.Compound.makeCompound(out)
 
 
-def burl():
-    """Fork knot: an irregular ellipsoid hiding the hub PCB; limbs and trunk grow out of it."""
-    s = cq.Solid.makeSphere(1.0, angleDegrees1=-90, angleDegrees2=90)
-    from OCP.gp import gp_GTrsf, gp_Mat, gp_XYZ
-    from OCP.BRepBuilderAPI import BRepBuilderAPI_GTransform
-    g = gp_GTrsf()
-    g.SetVectorialPart(gp_Mat(BURL_RX, 0, 0, 0, BURL_RX * 0.9, 0, 0, 0, BURL_RZ))
-    g.SetTranslationPart(gp_XYZ(*TG.BURL))
-    shp = BRepBuilderAPI_GTransform(s.wrapped, g, True).Shape()
-    return cq.Workplane().add(cq.Shape.cast(shp))
+def foliage_stl(tree, path):
+    """Leaf-film foliage as a binary STL (thousands of flat 0.125 mm leaves: a cutting file, not
+    a solid model). Each leaf is the cedar-elm outline used by the renderer."""
+    import struct
+    tris = []
+    for f in tree.foliage:
+        for a, b, c in leaf_tris(f):
+            tris.append((a, b, c))
+    with open(path, "wb") as fh:
+        fh.write(b"eclipse foliage".ljust(80, b" "))
+        fh.write(struct.pack("<I", len(tris)))
+        for a, b, c in tris:
+            fh.write(struct.pack("<12fH", 0, 0, 0, *a, *b, *c, 0))
+    return len(tris)
+
+
+LEAF_OUTLINE = ((0.0, 0.0), (0.18, 0.30), (0.45, 0.36), (0.75, 0.24), (1.0, 0.0),
+                (0.75, -0.22), (0.45, -0.33), (0.18, -0.28))   # (along, across) x leaf length
+
+
+def leaf_tris(f):
+    p, ax, n, s = f["pos"], f["axis"], f["normal"], f["size"]
+    w = TG.v_norm(TG.v_cross(n, ax))
+    vs = [TG.v_add(TG.v_add(p, TG.v_mul(ax, s * u)), TG.v_mul(w, s * v)) for u, v in LEAF_OUTLINE]
+    return [(vs[0], vs[k], vs[k + 1]) for k in range(1, len(vs) - 1)]
+
+
+def mass_report(tree, solids):
+    """Mass and centre of gravity from the skeleton (wall fractions per construction) + base parts."""
+    def seg_iter(points, radii):
+        for (p, q), r0, r1 in zip(zip(points, points[1:]), radii, radii[1:]):
+            yield [(p[i] + q[i]) / 2 for i in range(3)], TG.v_len(TG.v_sub(q, p)), (r0 + r1) / 2
+    m_tot, mom = 0.0, [0.0, 0.0, 0.0]
+    def add(m, c):
+        nonlocal m_tot
+        m_tot += m
+        for i in range(3):
+            mom[i] += m * c[i]
+    BRONZE, BRASS, PMMA = 8.8e-3, 8.5e-3, 1.19e-3   # g/mm^3
+    for c, L, r in seg_iter(tree.branches[0]["points"], tree.branches[0]["radii"]):
+        ro = r - SHELL_T - 0.5
+        add(2 * math.pi * r * SHELL_T * L * BRONZE + math.pi * max(0, ro ** 2 - (ro - CORE_WALL) ** 2) * L * PMMA, c)
+    for rt in tree.roots:
+        for c, L, r in seg_iter(rt["points"], rt["radii"]):
+            add(2 * math.pi * r * SHELL_T * L * BRONZE, c)
+    for b in tree.branches[1:]:
+        if b["level"] < 1:
+            continue
+        for c, L, r in seg_iter(b["points"], b["radii"]):
+            if r >= CAST_R:
+                v = 2 * math.pi * r * 2.0 * L               # cast shell, 2 mm wall
+            elif r >= 2.0:
+                v = 2 * math.pi * r * 0.8 * L               # brass tube, 0.8 mm wall
+            else:
+                v = math.pi * r * r * L                     # solid rod / wire
+            add(v * (BRONZE if r >= CAST_R else BRASS), c)
+    for f in tree.foliage:
+        add(f["size"] ** 2 * 0.5 * 0.125 * 1.4e-3, f["pos"])
+    for l in tree.leaves:
+        add(0.02, l["pos"])
+    for s in tree.samaras:
+        add(0.03, s["pos"])
+    dens = {"base_shell": 2.7e-3, "base_weight": 7.85e-3, "base_band": 1.19e-3, "base_plinth": 7.85e-3,
+            "touch_glass": 2.5e-3}
+    for name, d in dens.items():
+        sh = solids[name]
+        sh = sh.val() if hasattr(sh, "val") else sh
+        c = sh.Center()
+        add(sh.Volume() * d, (c.x, c.y, c.z))
+    add(45.0, (0, 0, 14))           # core PCBA + harness + screws
+    cog = [mom[i] / m_tot for i in range(3)]
+    off = math.hypot(cog[0], cog[1])
+    return m_tot, cog, off
 
 
 def sprig_solids(tree):
@@ -237,11 +324,10 @@ def main():
         "base_foot": (base_foot(), "silicone/cork ring"),
         "touch_glass": (touch_glass(), "3 mm soda-lime glass, satin etch"),
         "touch_etch": (touch_etch(), "etch marks"),
-        "trunk": (cq.Workplane().add(trunk), "cast silicon-bronze shell 2.5 mm with glowing fissures, bark patina"),
-        "trunk_core": (cq.Workplane().add(trunk_core(tree)), "light-diffusing PMMA light guide, cast, 6 mm wire bore"),
-        "burl": (burl(), "cast bronze knot (2 halves) with glowing knot holes - houses the hub light engine"),
+        "trunk": (cq.Workplane().add(trunk), "cast silicon-bronze shell 2.5 mm (trunk, fork swelling, roots) with glowing fissures"),
+        "trunk_core": (cq.Workplane().add(trunk_core(tree)), "light-diffusing PMMA light-guide tube, 8 mm wall, harness in the bore"),
         "samaras": (cq.Workplane().add(samara_solids(tree)), f"{len(tree.samaras)} x diffusing epoxy samara on 0.5 mm end-glow fibre"),
-        "branches": (cq.Workplane().add(wood), "brass rod/tube, hand-formed + brazed, bark patina"),
+        "branches": (cq.Workplane().add(wood), "leaders/limbs cast bronze shell, branches brass tube, twigs brass rod/wire, bark patina"),
         "sprigs": (cq.Workplane().add(sprig_solids(tree)), "40 x polyimide flex sprigs, bronze coverlay"),
         "leaves_warm": (cq.Workplane().add(leaf_solids(tree, "W")), "400 x 0402 LED 2700 K"),
         "leaves_cool": (cq.Workplane().add(leaf_solids(tree, "C")), "400 x 0402 LED 6500 K"),
@@ -251,18 +337,18 @@ def main():
         parts["pcb_core"] = (core.translate((0, 0, PCB_TOP_Z - 1.6)), "PCBA core")
     hub = kicad_step("hub", 0)
     if hub is not None:
-        parts["pcb_hub"] = (hub.translate((TG.BURL[0], TG.BURL[1], TG.BURL[2] - 0.5)), "PCBA hub (in the burl)")
+        parts["pcb_hub"] = (hub.translate((tree.hub[0], tree.hub[1], tree.hub[2] - 0.5)), "PCBA hub (in the fork swelling)")
 
     asm = cq.Assembly(name="eclipse_lamp")
     colors = {"base_shell": (0.18, 0.18, 0.19), "base_weight": (0.6, 0.6, 0.62), "bottom_cover": (0.3, 0.3, 0.3),
               "base_foot": (0.55, 0.42, 0.3), "base_band": (0.97, 0.95, 0.9), "base_plinth": (0.18, 0.18, 0.19), "touch_glass": (0.1, 0.1, 0.12), "touch_etch": (0.8, 0.8, 0.8),
-              "trunk": (0.30, 0.22, 0.14), "branches": (0.30, 0.22, 0.14), "burl": (0.28, 0.20, 0.12),
+              "trunk": (0.30, 0.22, 0.14), "branches": (0.30, 0.22, 0.14),
               "sprigs": (0.45, 0.32, 0.12), "leaves_warm": (1.0, 0.85, 0.5), "leaves_cool": (0.85, 0.92, 1.0),
               "trunk_core": (0.97, 0.95, 0.9), "samaras": (1.0, 0.93, 0.75),
               "pcb_core": (0.1, 0.3, 0.15), "pcb_halo": (0.95, 0.95, 0.95)}
     meta = {}
     for name, (shape, mat) in parts.items():
-        fine = name.startswith("base") or name.startswith("touch") or name in ("burl", "trunk", "trunk_core")
+        fine = name.startswith("base") or name.startswith("touch") or name == "trunk_core"
         if name not in ("sprigs", "leaves_warm", "leaves_cool", "samaras", "branches"):   # rendered from the skeleton (STEP kept)
             cq.exporters.export(shape, os.path.join(args.out, name + ".stl"),
                                 tolerance=0.02 if fine else 0.1, angularTolerance=0.08 if fine else 0.6)
@@ -273,6 +359,11 @@ def main():
         meta[name] = {"material": mat, "bbox": [bb.xmin, bb.ymin, bb.zmin, bb.xmax, bb.ymax, bb.zmax]}
         print(f"{name:14s} {bb.xlen:7.1f} x {bb.ylen:7.1f} x {bb.zlen:7.1f}  {mat}")
     asm.save(os.path.join(args.out, "eclipse_lamp_assembly.step"))
+    ntri = foliage_stl(tree, os.path.join(args.out, "foliage.stl"))
+    print(f"foliage        {len(tree.foliage)} leaves, {ntri} triangles -> foliage.stl")
+    m, cog, off = mass_report(tree, {k: v[0] for k, v in parts.items()})
+    print(f"mass {m / 1000:.2f} kg, CoG ({cog[0]:.1f}, {cog[1]:.1f}, {cog[2]:.1f}) mm: "
+          f"{off:.1f} mm from the base centre, {BASE_D / 2 - off:.1f} mm inside the edge")
     # zip the heavy STEP files (thousands of tiny solids compress ~6x)
     import zipfile
     for f in sorted(os.listdir(args.out)):
@@ -283,7 +374,7 @@ def main():
             os.remove(fp)
     lx = [l["pos"] for l in tree.leaves]
     cen = [sum(p[i] for p in lx) / len(lx) for i in range(3)]
-    json.dump({"crown_center": cen, "touch": list(TOUCH_XY), "burl": list(TG.BURL),
+    json.dump({"crown_center": cen, "touch": list(TOUCH_XY), "hub": list(tree.hub), "mass_g": round(m), "cog": [round(c, 1) for c in cog],
                "pcb_core_z": PCB_TOP_Z - 1.6,
                "skeleton": dict(
                    branches=[dict(p=[[round(c, 2) for c in q] for q in b["points"]],
@@ -294,6 +385,8 @@ def main():
                "leaves": [dict(p=[round(c, 2) for c in l["pos"]], ch=l["channel"], s=l["sprig"]) for l in tree.leaves],
                "samaras": [dict(p=[round(c, 2) for c in s["pos"]], d=[round(c, 3) for c in s["dir"]], ch=s["channel"])
                            for s in tree.samaras],
+               "foliage": [dict(p=[round(c, 2) for c in f["pos"]], a=[round(c, 3) for c in f["axis"]],
+                                n=[round(c, 3) for c in f["normal"]], s=round(f["size"], 2)) for f in tree.foliage],
                "n_roots": len(tree.roots),
                "parts": meta}, open(os.path.join(args.out, "parts.json"), "w"), indent=0)
 

@@ -1,4 +1,4 @@
-"""Generate the HUB light-engine PCB (D56, lives in the burl): parametric placement + routing.
+"""Generate the HUB light-engine PCB (D56, lives in the trunk fork): parametric placement + routing.
 
 Each channel owns 10 consecutive slots.  Inner (K) pad of sprig k -> outer (A) pad of
 sprig k+1 is a short diagonal.  The channel's feed comes up from its trunk land, runs an
@@ -115,7 +115,7 @@ def main():
     board.GetDesignSettings().SetCopperLayerCount(2)
     board.Save(PCB)
     patch_models(PCB)
-    add_stackup(PCB, mask="White", silk="Black", thickness=1.0)   # white mask: reflector in the burl
+    add_stackup(PCB, mask="White", silk="Black", thickness=1.0)   # white mask: reflector in the trunk fork
     write_project(os.path.join(PROJ, "eclipse-hub.kicad_pro"),
                   [{"name": "Default", "track": W, "clearance": 0.15}],
                   rules={"min_clearance": 0.15, "min_copper_edge_clearance": 0.3})

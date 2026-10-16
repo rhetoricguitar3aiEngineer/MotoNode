@@ -1,4 +1,4 @@
-"""ECLIPSE Tree - HUB board (hidden in the burl at the trunk fork).
+"""ECLIPSE Tree - HUB board (hidden in the fork swelling of the trunk).
 
 Lands the 40 sprig wire pairs and chains each colour channel's 10 sprigs in series, after a
 4-LED 'light engine' group (2 top LEDs light the fibre bundle -> glowing samaras, 2 bottom
@@ -21,9 +21,9 @@ def sprig_ref(ch, k):
 
 
 def build():
-    s = Schematic("eclipse-hub", "ECLIPSE Tree - Hub light engine (in the burl)", "B", paper="A2",
+    s = Schematic("eclipse-hub", "ECLIPSE Tree - Hub light engine (in the trunk fork)", "B", paper="A2",
                   comments=("Per channel: 4 x 2835 (2 fibre / 2 trunk core) + 10 sprigs in series; crown NTC",
-                            "Board: D56 mm, 2 layers 1.0 mm FR4, 1 oz, white mask (reflector), ENIG, in the burl",
+                            "Board: D56 mm, 2 layers 1.0 mm FR4, 1 oz, white mask (reflector), ENIG, in the trunk fork",
                             "J1 = 10 trunk-wire lands, pinout identical to core J2"))
     nets = {pin: net for pin, net in H.J1_PIN_NET.items()}
     jn = {}

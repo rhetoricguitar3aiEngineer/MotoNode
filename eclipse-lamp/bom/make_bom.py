@@ -30,23 +30,24 @@ MECH = [  # ref, qty, description, material / process, part, unit USD
     ("M4", 1, "Plinth, D150 x 3 + 3 posts (~0.42 kg)", "S235 steel, laser cut, posts welded, black powder coat", "ECL-M-004", 2.40),
     ("M5", 1, "Foot ring, D146/D122 x 1", "Cork/rubber composite, die cut, PSA backed", "ECL-M-005", 0.30),
     ("M6", 1, "Touch window, D52 x 3", "Soda-lime glass, satin etch top, screen-printed ring", "ECL-M-006", 1.60),
-    ("M7", 1, "Trunk shell D44 -> D34, S-curved, 6 buttress roots, open bark fissures", "Lost-wax cast silicon bronze, 2.5 mm wall, 2 halves", "ECL-M-007", 14.00),
-    ("M7a", 1, "Trunk light-guide core, 150 mm, 6 mm wire bore", "Light-diffusing PMMA (LED-grade, low haze), cast + polished, white-dot extraction print", "ECL-M-016", 3.50),
+    ("M7", 1, "Trunk shell D77 (root flare, fork swelling that houses the hub), 7 buttress roots, open bark fissures", "Lost-wax cast silicon bronze, 2.5 mm wall, 2 halves", "ECL-M-007", 21.00),
+    ("M7a", 1, "Trunk light-guide tube, ~150 mm, 8 mm wall (harness in the bore)", "Light-diffusing PMMA (LED-grade, low haze), cast + polished, white-dot extraction print", "ECL-M-016", 5.50),
     ("M7b", 1, "Trunk spigot, D14 x 2 tube, 40 mm (into the base socket)", "C260 brass, brazed into the trunk casting", "ECL-M-017", 0.60),
-    ("M8", 1, "Burl (fork knot) D68, 2 cast halves, knot holes, houses the light engine", "Lost-wax cast silicon bronze, ~180 g", "ECL-M-008", 9.00),
-    ("M9", 1, "Crown: 4 limbs, 73 branches + 1222 spur twigs (5x the previous crown)", "Brass tube (limbs) + C260 rod/wire D0.7-10 mm, jig-formed from the CAD skeleton, brazed", "ECL-M-009", 42.00),
-    ("M9a", 1, "End-glow optical fibre, 657 x 0.5 mm, ~0.3 m each, in 4 bundles", "PMMA POF, end-glow, black jacket stripped at the tips", "ECL-O-001", 4.50),
+    ("M8", 1, "Leaders + scaffold limbs (wood >= D12): 3 leaders flaring out of the fork, 7 cast pieces", "Lost-wax cast silicon bronze, 2 mm wall, brazed to the trunk casting", "ECL-M-008", 12.00),
+    ("M9", 1, "Crown wood: 1,167 branches and twigs grown by space colonisation (~29 m), pipe-model taper", "21 x C260 brass tube D4-12 + 1,146 x C260 rod/wire D0.8-4, jig-formed from parts.json, brazed", "ECL-M-009", 46.00),
+    ("M9a", 1, "End-glow optical fibre, 567 x 0.5 mm, ~0.35 m each, in 4 bundles", "PMMA POF, end-glow, black jacket stripped at the tips", "ECL-O-001", 4.20),
     ("M9b", 4, "Fibre bundle ferrule (over the hub's top LED pair)", "Machined aluminium, polished fibre face, optical gel", "ECL-O-002", 0.40),
-    ("M9c", 657, "Samara (seed) diffuser, 6 x 4 x 1.2 mm, dip-moulded on each fibre tip", "Diffusing epoxy (TiO2 0.2 %), warm tint", "ECL-O-003", 0.004),
+    ("M9c", 567, "Samara (seed) diffuser, 3.6 x 2.4 x 0.9 mm, dip-moulded on each fibre tip", "Diffusing epoxy (TiO2 0.2 %), warm tint", "ECL-O-003", 0.003),
+    ("M9d", 1, "Foliage: 21,770 cedar-elm leaves (4.6-7 mm) as ~1,170 laser-cut twig sprays", "0.125 mm light-diffusing olive PET film, 2 tones, bonded to the twigs", "ECL-O-004", 9.00),
     ("M10", 1, "Bark finish, whole tree", "Brown-grey liver-of-sulphur patina + matte lacquer", "ECL-M-010", 2.50),
-    ("M11", 1, "Magnet wire, 80 x 0.15 mm, ~0.35 m each, laid in branch grooves", "Polyurethane-enamelled Cu (solderable), bark-colour", "ECL-W-002", 0.60),
+    ("M11", 1, "Magnet wire, 80 x 0.15 mm, ~0.4 m each, laid along the wood", "Polyurethane-enamelled Cu (solderable), bark-colour", "ECL-W-002", 0.70),
     ("M12", 1, "Trunk harness, 10 x AWG30 PTFE, 260 mm", "Hub J1 lands -> core J2 (JST PHR-10 + SPH-002T)", "ECL-W-001", 0.70),
-    ("M13", 1, "Burl potting + light-engine optical gel", "Black flexible epoxy (back side) + clear silicone gel (LED faces)", "ECL-M-013", 0.40),
+    ("M13", 1, "Hub potting + light-engine optical gel", "Black flexible epoxy (back side) + clear silicone gel (LED faces)", "ECL-M-013", 0.40),
     ("F1", 3, "Screw M3 x 6, pan head (core PCB)", "A2 stainless", "ISO 14583", 0.02),
     ("F2", 1, "Set screw M4 x 4, cup point (trunk socket)", "A2 stainless", "ISO 4029", 0.02),
     ("F3", 3, "Screw M3 x 10, countersunk (plinth posts into shell)", "A2 stainless", "ISO 10642", 0.03),
-    ("F4", 2, "Screw M2 x 6 (burl halves)", "A2 stainless", "ISO 14583", 0.02),
-    ("F5", 40, "Sprig clip: 0.3 mm brass crimp sleeve, sprig root to twig tip", "C260 brass", "ECL-M-014", 0.01),
+    ("F4", 2, "Screw M2 x 6 (trunk casting halves at the fork)", "A2 stainless", "ISO 14583", 0.02),
+    ("F5", 40, "Sprig clip: 0.3 mm brass crimp sleeve, sprig root grafted onto its branchlet", "C260 brass", "ECL-M-014", 0.01),
 ]
 PCB_FAB = [
     ("PCB1", 1, "Core PCB, D124 + USB tab, 2L 1.6 mm FR4, 1 oz, matte black, ENIG", "eclipse-core", 1.20),
@@ -68,7 +69,7 @@ def kicad_bom(board):
 
 def main():
     rows = []
-    for board, label, mult in (("core", "Core board (base)", 1), ("hub", "Hub board (in the burl)", 1),
+    for board, label, mult in (("core", "Core board (base)", 1), ("hub", "Hub board (in the trunk fork)", 1),
                                ("sprig", "LED sprigs (x40 per lamp)", 40)):
         for r in kicad_bom(board):
             mpn = r["MPN"]
@@ -113,7 +114,7 @@ def main():
     md = ["# ECLIPSE Tree - Bill of Materials", "",
           "Generated by `make_bom.py` from the KiCad schematics plus the mechanical parts list.",
           "Unit prices are **budgetary estimates** (USD, 1k-unit volume). Re-quote before ordering.", ""]
-    for sec in ("Core board (base)", "Hub board (in the burl)", "LED sprigs (x40 per lamp)", "Bare PCBs", "Mechanical"):
+    for sec in ("Core board (base)", "Hub board (in the trunk fork)", "LED sprigs (x40 per lamp)", "Bare PCBs", "Mechanical"):
         md += [f"## {sec}", "", "| Refs | Qty | Value | Description | Manufacturer | MPN | Unit $ | Ext $ |",
                "|---|---:|---|---|---|---|---:|---:|"]
         for r in rows:

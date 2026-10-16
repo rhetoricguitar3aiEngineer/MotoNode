@@ -2,18 +2,19 @@
 
 ![ECLIPSE Tree on a desk](renders/eclipse_hero.png)
 
-ECLIPSE Tree is a desk lamp in the form of an old cedar elm (*Ulmus crassifolia*), and every
-part of it carries light:
+ECLIPSE Tree is a desk lamp in the form of an old cedar elm (*Ulmus crassifolia*). In
+daylight it reads as a small tree in leaf; switched on, it fills with light:
 
-* **Trunk.** A thick (44 mm) trunk and its buttress roots are cast as a thin bronze shell
-  around a light-diffusing acrylic light-guide core. Light travels down that core and leaks
-  out wherever the bark is split, so the trunk glows through its fissures and the burl's knot
-  holes.
-* **Crown.** The burl forks into four limbs, then 73 branches, then **1,222 fine spur
-  twigs**, 5× the previous crown.
-* **Leaves.** At the tips of 40 twigs, flexible-circuit sprays carry **800 LED leaves** (0402).
-* **Seeds.** At the tips of 657 other twigs, end-glow optical fibres light **657 diffusing
-  samaras** (cedar-elm seeds).
+* **Grown, not drawn.** The crown is grown by space colonisation: buds compete for space in
+  a rounded crown, so the wood forks where the space divides and tapers continuously (pipe
+  model) from a 77 mm trunk through three leaders to **1,174 twigs**.
+* **Leaves.** 40 flexible-circuit sprays carry **800 LED leaves** (0402) among **21,770
+  leaves of light-diffusing film**, so the foliage glows green-gold around every light.
+* **Trunk.** The trunk, its fork and its buttress roots are a thin bronze shell around a
+  light-diffusing acrylic light-guide tube. Light travels down the tube and leaks out
+  wherever the bark is split, so the trunk glows through its furrows.
+* **Seeds.** End-glow optical fibres light **567 diffusing samaras** (cedar-elm seeds) among
+  the twigs.
 
 Warm and cool light is interleaved everywhere, so the whole tree can be mixed from candle
 glow to daylight, dimmed to embers, or left with only its roots glowing.
@@ -28,11 +29,11 @@ glow to daylight, dimmed to embers, or left with only its roots glowing.
 ## Four light paths, one driver per colour channel
 
 ```
-                     ┌─ 2 top LEDs ──► fibre ferrule ──► 4 bundles × ~164 end-glow fibres ──► 657 glowing samaras
+                     ┌─ 2 top LEDs ──► fibre ferrule ──► 4 bundles × ~142 end-glow fibres ──► 567 glowing samaras
  HUB light engine  ──┤
- (in the burl)       └─ 2 bottom LEDs ─► trunk PMMA light-guide core ──► TIR + extraction ──► glowing bark fissures
-        │                                                                                    roots, knot holes
-        └─ then 10 LED sprigs in series ──► 20 × 0402 leaves each ──► 800 sparkling leaves
+ (in the trunk fork) └─ 2 bottom LEDs ─► trunk PMMA light-guide tube ──► TIR + extraction ──► glowing bark furrows
+        │                                                                                    and buttress roots
+        └─ then 10 LED sprigs in series ──► 20 × 0402 leaves each ──► 800 LED leaves ──► glowing leaf film
 
  CORE board (base): USB-C PD 9 V → 4 × TPS61165 constant-current boost @ 100 mA (W1 C1 W2 C2)
                     ATtiny1616 touch wheel, colour mix, + 8 LEDs → opal root-glow band (night light)
@@ -47,27 +48,28 @@ from the previous revision, and only 10 wires run down the trunk.
 
 | | |
 |---|---|
-| Size | ≈377 mm tall, crown ≈340 × 320 mm, on a Ø150 mm base |
-| Tree | 44 → 34 mm trunk (cast bronze shell + PMMA core), Ø68 burl, 6 buttress roots, 4 limbs, 73 branches, 1,222 spur twigs (procedural, seeded, reproducible) |
+| Size | ≈435 mm tall, crown ≈370 × 360 mm, on a Ø150 mm base |
+| Tree | Space-colonisation grown cedar elm: 77 mm trunk (cast bronze shell + PMMA light-guide tube), 7 buttress roots, 3 leaders, 1,174 branches and twigs, 21,770 film leaves (seeded, reproducible) |
 | Light sources | 800 × 0402 LED leaves + 16 × 2835 light-engine LEDs (8 → fibres, 8 → trunk core) + 8 × 2835 root glow |
-| Optics | PMMA light-guide trunk with fissure extraction · 657 × 0.5 mm end-glow PMMA fibres in 4 bundles · 657 diffusing-epoxy samaras · opal root band |
+| Optics | PMMA light-guide trunk with fissure extraction · light-diffusing leaf film lit by the LED leaves · 567 × 0.5 mm end-glow PMMA fibres in 4 bundles · 567 diffusing-epoxy samaras · opal root band |
 | Light | 12.6 W max LED power (firmware cap ≈8.5 W), ≈600 lm total (estimated), 2700-6500 K, flicker-free |
-| Mass / stability | ≈2.4 kg, centre of gravity 12 mm from the base centre (63 mm inside the base edge) |
+| Mass / stability | ≈4.1 kg, centre of gravity 8.5 mm from the base centre (66 mm inside the base edge) |
 | Power / controls | USB-C PD 9 V (18 W+ charger), capacitive wheel through 3 mm glass |
 
 ## What's in this folder
 
 ```
 eclipse-lamp/
-├── mechanical/   tree_gen.py (procedural cedar elm: trunk, roots, limbs, spurs, sprigs, samaras),
-│                 eclipse_cad.py (CadQuery), wiring_map.py, out/ (STEP/STL, big STEPs zipped, parts.json)
+├── mechanical/   tree_gen.py (space-colonisation cedar elm: trunk, fork, roots, wood, sprigs, samaras, foliage),
+│                 eclipse_cad.py (CadQuery, mass/CoG), wiring_map.py, out/ (STEP/STL, big STEPs zipped,
+│                 foliage.stl leaf-cutting file, parts.json)
 ├── electronics/
 │   ├── core/     KiCad 9: base board (power, 4 drivers, touch MCU, root glow), unchanged circuit
-│   ├── hub/      KiCad 9: Ø56 two-sided light engine in the burl (16 LEDs) + 40 sprig lands + chaining + NTC
+│   ├── hub/      KiCad 9: Ø56 two-sided light engine in the trunk fork (16 LEDs) + 40 sprig lands + chaining + NTC
 │   ├── sprig/    KiCad 9: polyimide flex cedar-elm spray, 20 × 0402 LED leaves (×40 per lamp)
 │   ├── lib/      custom footprints + 3D models
 │   └── tools/    generators: schematics (wire router), PCBs, layouts, netlist checks, fab export
-├── bom/          eclipse_bom.csv, BOM.md (≈$123 material at 1k units, estimates)
+├── bom/          eclipse_bom.csv, BOM.md (≈$147 material at 1k units, estimates)
 ├── renders/      Cycles renders + KiCad board renders, render_blender.py
 └── docs/         DESIGN.md (design notes, optics, calculations), WIRING.md (sprig map)
 ```
@@ -87,7 +89,7 @@ and power uses power symbols only (see `/CLAUDE.md`).
 
 ## Rebuild everything
 
-Requires KiCad 9 (`kicad-cli` + `pcbnew` Python), CadQuery 2.x, shapely, Freerouting 1.9
+Requires KiCad 9 (`kicad-cli` + `pcbnew` Python), CadQuery 2.x, numpy, scipy, shapely, Freerouting 1.9
 (core board only, Java 21 + `xvfb-run`) and the `bpy` 5.x module for renders.
 
 ```sh

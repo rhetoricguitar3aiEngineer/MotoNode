@@ -142,29 +142,33 @@ def bark_material():
     b.inputs["Specular IOR Level"].default_value = 0.18   # patina: little sheen
     tc = nt.nodes.new("ShaderNodeTexCoord")
     mp = nt.nodes.new("ShaderNodeMapping")
-    mp.inputs["Scale"].default_value = (700.0, 700.0, 160.0)   # furrows run along the branches (mostly z)
+    mp.inputs["Scale"].default_value = (420.0, 420.0, 90.0)   # furrows run along the branches (mostly z)
     noise = nt.nodes.new("ShaderNodeTexNoise")
-    noise.inputs["Detail"].default_value = 6.0
+    noise.inputs["Detail"].default_value = 8.0
+    noise.inputs["Roughness"].default_value = 0.62
     bump = nt.nodes.new("ShaderNodeBump")
-    bump.inputs["Strength"].default_value = 0.6
-    bump.inputs["Distance"].default_value = 0.0003   # metres: fine furrows, not a 1 m default
+    bump.inputs["Strength"].default_value = 0.85
+    bump.inputs["Distance"].default_value = 0.0006   # metres: furrowed bark, not a 1 m default
     nt.links.new(tc.outputs["Object"], mp.inputs["Vector"])
     nt.links.new(mp.outputs["Vector"], noise.inputs["Vector"])
     nt.links.new(noise.outputs["Fac"], bump.inputs["Height"])
     nt.links.new(bump.outputs["Normal"], b.inputs["Normal"])
     # lighter worn bronze on the high spots
     ramp = nt.nodes.new("ShaderNodeValToRGB")
-    ramp.color_ramp.elements[0].color = (0.030, 0.022, 0.016, 1)
-    ramp.color_ramp.elements[1].color = (0.13, 0.090, 0.055, 1)
+    ramp.color_ramp.elements[0].color = (0.035, 0.029, 0.024, 1)
+    ramp.color_ramp.elements[1].color = (0.135, 0.110, 0.088, 1)
     nt.links.new(noise.outputs["Fac"], ramp.inputs["Fac"])
     nt.links.new(ramp.outputs["Color"], b.inputs["Base Color"])
     return m
 
 
-def bark_glow_material(strength, warmth=(1.0, 0.62, 0.30)):
+FORK_Z = [0.158]
+
+
+def bark_glow_material(strength, warmth=(1.0, 0.50, 0.18)):
     """Bark with fissures that glow: the trunk is a bronze shell around a light-guide core, and
     the light leaks out where the bark is cracked open (Voronoi edge network, stretched along
-    the grain), plus the knot holes of the burl."""
+    the grain), plus the root buttresses."""
     m = bark_material()
     m.name = "bark_glow"
     if strength <= 0:
@@ -173,7 +177,7 @@ def bark_glow_material(strength, warmth=(1.0, 0.62, 0.30)):
     b = nt.nodes["Principled BSDF"]
     tc = nt.nodes.new("ShaderNodeTexCoord")
     mp = nt.nodes.new("ShaderNodeMapping")
-    mp.inputs["Scale"].default_value = (110.0, 110.0, 16.0)
+    mp.inputs["Scale"].default_value = (170.0, 170.0, 9.0)   # long, narrow furrows along the grain
     vor = nt.nodes.new("ShaderNodeTexVoronoi")
     vor.feature = "DISTANCE_TO_EDGE"
     vor.inputs["Scale"].default_value = 1.0
@@ -181,14 +185,14 @@ def bark_glow_material(strength, warmth=(1.0, 0.62, 0.30)):
     ramp = nt.nodes.new("ShaderNodeValToRGB")
     ramp.color_ramp.elements[0].position = 0.0
     ramp.color_ramp.elements[0].color = (1, 1, 1, 1)
-    ramp.color_ramp.elements[1].position = 0.028
+    ramp.color_ramp.elements[1].position = 0.016
     ramp.color_ramp.elements[1].color = (0, 0, 0, 1)
     # break the network up so only some fissures are open
     noise = nt.nodes.new("ShaderNodeTexNoise")
     noise.inputs["Scale"].default_value = 30.0
     gate = nt.nodes.new("ShaderNodeMapRange")
-    gate.inputs["From Min"].default_value = 0.50
-    gate.inputs["From Max"].default_value = 0.62
+    gate.inputs["From Min"].default_value = 0.52
+    gate.inputs["From Max"].default_value = 0.60
     mul = nt.nodes.new("ShaderNodeMath")
     mul.operation = "MULTIPLY"
     mul2 = nt.nodes.new("ShaderNodeMath")
@@ -201,7 +205,18 @@ def bark_glow_material(strength, warmth=(1.0, 0.62, 0.30)):
     nt.links.new(noise.outputs["Fac"], gate.inputs["Value"])
     nt.links.new(ramp.outputs["Color"], mul.inputs[0])
     nt.links.new(gate.outputs["Result"], mul.inputs[1])
-    nt.links.new(mul.outputs["Value"], mul2.inputs[0])
+    # only the trunk holds the light guide: fade the glow out just above the fork
+    sepz = nt.nodes.new("ShaderNodeSeparateXYZ")
+    zmask = nt.nodes.new("ShaderNodeMapRange")
+    zmask.inputs["From Min"].default_value = FORK_Z[0] + 0.012
+    zmask.inputs["From Max"].default_value = FORK_Z[0] - 0.004
+    nt.links.new(tc.outputs["Object"], sepz.inputs["Vector"])
+    nt.links.new(sepz.outputs["Z"], zmask.inputs["Value"])
+    mul3 = nt.nodes.new("ShaderNodeMath")
+    mul3.operation = "MULTIPLY"
+    nt.links.new(mul.outputs["Value"], mul3.inputs[0])
+    nt.links.new(zmask.outputs["Result"], mul3.inputs[1])
+    nt.links.new(mul3.outputs["Value"], mul2.inputs[0])
     nt.links.new(mul2.outputs["Value"], b.inputs["Emission Strength"])
     b.inputs["Emission Color"].default_value = (*warmth, 1)
     # the fissures are grooves: chain a relief bump on top of the fine bark grain
@@ -226,6 +241,42 @@ def samara_material(name, color, strength):
     return m
 
 
+def leaf_film_material():
+    """Olive light-diffusing leaf film (0.125 mm): glossy on top, translucent, so the LED leaves
+    in the crown light it from inside."""
+    m = bpy.data.materials.new("leaf_film")
+    m.use_nodes = True
+    nt = m.node_tree
+    out = nt.nodes["Material Output"]
+    b = nt.nodes["Principled BSDF"]
+    b.inputs["Roughness"].default_value = 0.38
+    b.inputs["Coat Weight"].default_value = 0.2
+    # per-leaf colour variation: young yellow-green to deep olive
+    rnd = nt.nodes.new("ShaderNodeAttribute")
+    rnd.attribute_name = "tone"
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    els = ramp.color_ramp.elements
+    els[0].position, els[0].color = 0.0, (0.018, 0.036, 0.009, 1)
+    els[1].position, els[1].color = 1.0, (0.10, 0.13, 0.028, 1)
+    mid = els.new(0.55)
+    mid.color = (0.038, 0.068, 0.016, 1)
+    nt.links.new(rnd.outputs["Fac"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], b.inputs["Base Color"])
+    tr = nt.nodes.new("ShaderNodeBsdfTranslucent")
+    hue = nt.nodes.new("ShaderNodeMix")
+    hue.data_type = "RGBA"
+    hue.inputs["Factor"].default_value = 0.6
+    hue.inputs["B"].default_value = (0.55, 0.62, 0.18, 1)
+    nt.links.new(ramp.outputs["Color"], hue.inputs["A"])
+    nt.links.new(hue.outputs["Result"], tr.inputs["Color"])
+    mix = nt.nodes.new("ShaderNodeMixShader")
+    mix.inputs["Fac"].default_value = 0.35
+    nt.links.new(b.outputs["BSDF"], mix.inputs[1])
+    nt.links.new(tr.outputs["BSDF"], mix.inputs[2])
+    nt.links.new(mix.outputs["Shader"], out.inputs["Surface"])
+    return m
+
+
 WARM = (1.0, 0.70, 0.40)
 COOL = (0.82, 0.90, 1.0)
 
@@ -243,10 +294,11 @@ def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, coo
     M["band"] = glow_mat("band_glow", band_on, warmth, 0.9 * (level if band is None else band), side=1.0, up=1.0)
     M["white"] = mat("white_powder", (0.85, 0.85, 0.83), 0.0, 0.6)
     M["bark"] = bark_material()
-    M["bark_glow"] = bark_glow_material(3.2 * trunk if on or trunk else 0.0)
+    M["bark_glow"] = bark_glow_material(3.2 * trunk if on else 0.0)
     M["samara_W"] = samara_material("samara_warm", (1.0, 0.72, 0.42), 2.2 * level if on else 0)
     M["samara_C"] = samara_material("samara_cool", (0.85, 0.92, 1.0), 2.2 * level * cool_mix if on else 0)
-    M["flex"] = mat("flex_coverlay", (0.30, 0.17, 0.07), 0.3, 0.35, coat=0.5)
+    M["flex"] = mat("flex_coverlay", (0.22, 0.13, 0.06), 0.3, 0.35, coat=0.5)
+    M["leaf_film"] = leaf_film_material()
     # leaves: 0402 LEDs. Off: yellow phosphor dots.  On: tiny emitters (warm / cool channels)
     w_on, c_on = on, on and cool_mix > 0
     M["leaf_W"] = mat("leaf_warm", (0.95, 0.80, 0.30), 0.0, 0.3, emit=WARM if w_on else None,
@@ -257,7 +309,7 @@ def build_materials(on=True, warmth=(1.0, 0.80, 0.60), level=1.0, band=None, coo
 
 
 PART_MAT = {"base_shell": "graphite", "base_weight": "white", "base_band": "band", "base_plinth": "graphite",
-            "base_foot": "cork", "touch_glass": "glass", "touch_etch": "etch", "burl": "bark_glow"}
+            "base_foot": "cork", "touch_glass": "glass", "touch_etch": "etch"}
 
 
 # ------------------------------------------------------------------ scene helpers
@@ -437,7 +489,7 @@ def leaf_mesh(name, points, material, r=0.55):
 
 
 def samara_mesh(name, seeds, material):
-    """Flat oval seed wafers (6 x 4 x 1.2 mm) along each fibre tip's direction."""
+    """Flat oval seed wafers (3.6 x 2.4 x 0.9 mm) along each fibre tip's direction."""
     import bmesh
     from mathutils import Matrix
     bm = bmesh.new()
@@ -446,9 +498,9 @@ def samara_mesh(name, seeds, material):
         u = d.cross(Vector((0, 0, 1)))
         u = u.normalized() if u.length > 1e-6 else Vector((1, 0, 0))
         w = d.cross(u).normalized()
-        c = Vector(s["p"]) + d * 2.5
-        M4 = Matrix(((d.x * 3.0, u.x * 2.0, w.x * 0.6, c.x), (d.y * 3.0, u.y * 2.0, w.y * 0.6, c.y),
-                     (d.z * 3.0, u.z * 2.0, w.z * 0.6, c.z), (0, 0, 0, 1)))
+        c = Vector(s["p"]) + d * 1.5
+        M4 = Matrix(((d.x * 1.8, u.x * 1.2, w.x * 0.45, c.x), (d.y * 1.8, u.y * 1.2, w.y * 0.45, c.y),
+                     (d.z * 1.8, u.z * 1.2, w.z * 0.45, c.z), (0, 0, 0, 1)))
         M4 = Matrix.Scale(MM, 4) @ M4
         bmesh.ops.create_uvsphere(bm, u_segments=10, v_segments=6, radius=1.0, matrix=M4)
     me = bpy.data.meshes.new(name)
@@ -461,8 +513,61 @@ def samara_mesh(name, seeds, material):
     return ob
 
 
+THICK_R = 2.2      # wood at least this thick is meshed as one blended body (smooth forks and collars)
+
+
+def blended_wood(branches, material, voxel=0.45):
+    """Trunk, roots and the thicker branches as ONE mesh: the tubes are voxel-remeshed together
+    and relaxed, so every fork grows out of its parent with a smooth collar like real wood."""
+    thick = [b for b in branches if b["l"] <= 0 or max(b["r"]) >= THICK_R]
+    ob = curve_tube("wood", [b["p"] for b in thick], material, radii=[b["r"] for b in thick])
+    ob.data.bevel_resolution = 8
+    ob.data.resolution_u = 2
+    bpy.context.view_layer.objects.active = ob
+    ob.select_set(True)
+    bpy.ops.object.convert(target="MESH")
+    ob = bpy.context.view_layer.objects.active
+    rm = ob.modifiers.new("remesh", "REMESH")
+    rm.mode = "VOXEL"
+    rm.voxel_size = voxel * MM
+    rm.adaptivity = 0.0
+    bpy.ops.object.modifier_apply(modifier="remesh")
+    sm = ob.modifiers.new("relax", "SMOOTH")
+    sm.factor = 0.8
+    sm.iterations = 6
+    bpy.ops.object.modifier_apply(modifier="relax")
+    for p in ob.data.polygons:
+        p.use_smooth = True
+    ob.name = "wood"
+    return ob
+
+
+def foliage_mesh(name, leaves, material):
+    """Leaf-film foliage: one flat cedar-elm leaf (8-point outline, slight cup) per entry."""
+    import bmesh, random
+    OUT = ((0.0, 0.0), (0.18, 0.30), (0.45, 0.36), (0.75, 0.24), (1.0, 0.0),
+           (0.75, -0.22), (0.45, -0.33), (0.18, -0.28))
+    rnd = random.Random(5)
+    bm = bmesh.new()
+    tone = bm.faces.layers.float.new("tone")
+    for f in leaves:
+        p, a, n, s = Vector(f["p"]), Vector(f["a"]), Vector(f["n"]), f["s"]
+        w = n.cross(a).normalized()
+        vs = [bm.verts.new(((p + a * (s * u) + w * (s * v) + n * (0.25 * s * abs(v))) * MM)) for u, v in OUT]
+        face = bm.faces.new(vs)
+        face[tone] = rnd.random()
+        face.smooth = True
+    me = bpy.data.meshes.new(name)
+    bm.to_mesh(me)
+    # expose the per-leaf tone to the shader as a face attribute
+    ob = bpy.data.objects.new(name, me)
+    bpy.context.scene.collection.objects.link(ob)
+    me.materials.append(material)
+    return ob
+
+
 def build_lamp(M, crown_light=0.0):
-    """Base + trunk/burl from STL, branches/sprigs/leaves from the skeleton in parts.json."""
+    """Base from STL, the tree, branches/sprigs/leaves from the skeleton in parts.json."""
     meta = json.load(open(os.path.join(MECH, "parts.json")))
     obs = {}
     for name in PART_MAT:
@@ -470,14 +575,10 @@ def build_lamp(M, crown_light=0.0):
         ob.data.materials.append(M[PART_MAT[name]])
         obs[name] = ob
     sk = meta["skeleton"]
-    tr = sk["branches"][0]
-    obs["trunk"] = curve_tube("trunk", [tr["p"]], M["bark_glow"], radii=[tr["r"]])
-    obs["trunk"].data.bevel_resolution = 10
-    br = [b for b in sk["branches"][1:] if b.get("l", 1) >= 0]
-    roots = [b for b in sk["branches"] if b.get("l", 1) < 0]
-    obs["branches"] = curve_tube("branches", [b["p"] for b in br], M["bark"], radii=[b["r"] for b in br])
-    if roots:
-        obs["roots"] = curve_tube("roots", [b["p"] for b in roots], M["bark_glow"], radii=[b["r"] for b in roots])
+    obs["wood"] = blended_wood(sk["branches"], M["bark_glow"])
+    thin = [b for b in sk["branches"] if b["l"] >= 1 and max(b["r"]) < THICK_R]
+    obs["branches"] = curve_tube("branches", [b["p"] for b in thin], M["bark"], radii=[b["r"] for b in thin])
+    obs["foliage"] = foliage_mesh("foliage", meta["foliage"], M["leaf_film"])
     for c in ("W", "C"):
         ss = [s for s in meta.get("samaras", []) if s["ch"][0] == c]
         if ss:
@@ -550,17 +651,21 @@ def main():
     ap.add_argument("--samples", type=int, default=128)
     ap.add_argument("--res", default="1920x1280")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--view", default=None, help="camera override: az,el,dist_m,target_z_m,lens")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:])
     res = tuple(int(v) for v in args.res.split("x"))
+    FORK_Z[0] = json.load(open(os.path.join(MECH, "parts.json")))["hub"][2] * MM + 0.009
     bpy.ops.wm.read_factory_settings(use_empty=True)
     out = args.out or os.path.join(HERE, f"eclipse_{args.shot}.png")
     shot = args.shot
+    crown_glow = [0.0, (1.0, 0.78, 0.55)]
     T = (0.0, 0.0, 0.20)
 
     if shot == "hero":
         # evening: the crown sparkling, the trunk glowing through its fissures, a pool on the desk
         M = build_materials(on=True, level=1.0, cool_mix=0.35, trunk=1.0)
         obs, meta = build_lamp(M, crown_light=1.0)
+        crown_glow[0] = 1.0
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.24, 0.23, 0.21), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
         props(M)
@@ -578,15 +683,16 @@ def main():
         BACKDROP_ROT = 125 - 90
         backdrop(mat("sweep", (0.80, 0.80, 0.80), 0.0, 0.6), width=9, depth=6, height=4, radius=1.0)
         world((0.6, 0.6, 0.62), 0.25)
-        area("key", orbit(-125, 40, 1.8, T), T, 1.8, 260)
-        area("fill", orbit(-20, 15, 1.8, T), T, 1.8, 90)
-        area("top", (0, 0.0, 1.8), (0, 0.0, 0), 1.4, 120)
+        area("key", orbit(-125, 40, 1.8, T), T, 1.8, 150)
+        area("fill", orbit(-20, 15, 1.8, T), T, 1.8, 45)
+        area("top", (0, 0.0, 1.8), (0, 0.0, 0), 1.4, 70)
         tgt = (0.0, 0.0, 0.20)
         camera(orbit(-55, 10, 1.45, tgt), tgt, lens=50)
     elif shot == "leaves":
         # macro: flex sprigs and 0402 LED leaves
         M = build_materials(on=True, level=0.35, cool_mix=0.35)
         obs, meta = build_lamp(M, crown_light=0.3)
+        crown_glow[0] = 0.25
         add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.18, 0.17, 0.16), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         world((0.01, 0.011, 0.016), 1.0)
@@ -601,6 +707,7 @@ def main():
         # night mode: crown dimmed to embers, the base band (roots) breathing a warm glow
         M = build_materials(on=True, level=0.02, band=4.0, cool_mix=0.0)
         obs, meta = build_lamp(M, crown_light=0.02)
+        crown_glow[0] = 0.04
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.20, 0.19, 0.18), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
         world((0.004, 0.005, 0.009), 1.0)
@@ -611,6 +718,7 @@ def main():
     elif shot == "detail":
         M = build_materials(on=True, level=0.6, cool_mix=0.35)
         obs, meta = build_lamp(M, crown_light=0.4)
+        crown_glow[0] = 0.6
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         world((0.02, 0.022, 0.03), 1.0)
         area("key", (-0.5, -0.5, 0.6), (0, -0.03, 0.02), 0.5, 18, (1.0, 0.95, 0.9))
@@ -620,17 +728,19 @@ def main():
         # close-up: light leaking from the trunk's light-guide core through the bark fissures
         M = build_materials(on=True, level=0.25, cool_mix=0.25, trunk=0.9)
         obs, meta = build_lamp(M, crown_light=0.15)
+        crown_glow[0] = 0.25
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.18, 0.17, 0.16), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
         world((0.006, 0.007, 0.010), 1.0)
         area("rim", orbit(70, 25, 0.9, (0, 0.03, 0.1)), (0, 0.03, 0.1), 0.6, 3, (0.8, 0.85, 1.0))
-        tgt = (0.0, 0.025, 0.105)
-        camera(orbit(-65, 6, 0.48, tgt), tgt, lens=60, dof=0.48, fstop=5.6)
+        tgt = (0.0, 0.02, 0.12)
+        camera(orbit(-65, 8, 0.66, tgt), tgt, lens=60, dof=0.66, fstop=5.6)
         glare(size=0.08)
     elif shot == "cool":
         # same scene as hero with the colour temperature slid to daylight
         M = build_materials(on=True, level=1.0, cool_mix=1.0)
         obs, meta = build_lamp(M, crown_light=1.0)
+        crown_glow[:] = [1.0, (0.85, 0.92, 1.0)]
         add_plane("desk", 3.0, (0, 0, 0), wood_material())
         add_plane("wall", 4.0, (0, 0.45, 1.0), mat("wall", (0.26, 0.25, 0.23), 0.0, 0.95), rot=(math.pi / 2, 0, 0))
         props(M)
@@ -645,8 +755,32 @@ def main():
     else:
         raise SystemExit("unknown shot " + shot)
 
+    if args.view:
+        az, el, dist, tz, lens = (float(v) for v in args.view.split(","))
+        tgt = (0.0, 0.0, tz)
+        bpy.context.scene.camera.data.lens = lens
+        bpy.context.scene.camera.location = orbit(az, el, dist, tgt)
+        look_at(bpy.context.scene.camera, tgt)
+    # inner canopy glow: the 800 LED leaves light the leaf film around them (stand-in for the
+    # many small emitters, which Cycles would need thousands of samples to resolve)
+    if crown_glow[0] > 0:
+        lv = meta["leaves"]
+        g = bpy.data.collections.new("canopy")
+        for name in ("foliage", "wood", "branches"):
+            g.objects.link(bpy.data.objects[name])
+        for k in range(10):
+            sub = lv[k::10]
+            c = [sum(l["p"][i] for l in sub) / len(sub) for i in range(3)]
+            l = bpy.data.lights.new(f"canopy{k}", "POINT")
+            l.shadow_soft_size = 0.05
+            l.energy = 1.0 * crown_glow[0]
+            l.color = crown_glow[1]
+            ob = bpy.data.objects.new(f"canopy{k}", l)
+            bpy.context.scene.collection.objects.link(ob)
+            ob.location = (c[0] * MM, c[1] * MM, c[2] * MM)
+            ob.light_linking.receiver_collection = g
     # the crown helper lights stand in for 800 LEDs lighting the room: they must not light the tree
-    tree_parts = {"trunk", "burl", "branches", "roots", "sprig_stems", "sprig_petioles", "leaves_W", "leaves_C",
+    tree_parts = {"wood", "branches", "foliage", "sprig_stems", "sprig_petioles", "leaves_W", "leaves_C",
                   "samaras_W", "samaras_C"}
     crown = [o for o in bpy.data.objects if o.name.startswith("crown")]
     if crown:

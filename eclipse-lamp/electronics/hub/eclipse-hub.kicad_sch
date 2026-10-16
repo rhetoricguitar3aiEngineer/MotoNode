@@ -5,12 +5,12 @@
 	(uuid "30dcb7a8-4b37-5331-a842-cbd2eddfc107")
 	(paper "A2")
 	(title_block
-		(title "ECLIPSE Tree - Hub light engine (in the burl)")
+		(title "ECLIPSE Tree - Hub light engine (in the trunk fork)")
 		(date "2026-10-07")
 		(rev "B")
 		(company "ECLIPSE desk lamp - open hardware")
 		(comment 1 "Per channel: 4 x 2835 (2 fibre / 2 trunk core) + 10 sprigs in series; crown NTC")
-		(comment 2 "Board: D56 mm, 2 layers 1.0 mm FR4, 1 oz, white mask (reflector), ENIG, in the burl")
+		(comment 2 "Board: D56 mm, 2 layers 1.0 mm FR4, 1 oz, white mask (reflector), ENIG, in the trunk fork")
 		(comment 3 "J1 = 10 trunk-wire lands, pinout identical to core J2")
 	)
 	(lib_symbols
